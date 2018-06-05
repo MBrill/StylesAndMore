@@ -1,0 +1,121 @@
+% ----------------------------------------
+% Einstellung für Mathematik-Übungsblätter
+% ----------------------------------------
+\typeout{Übungsblätter in Mathematik-Veranstaltungen}
+\typeout{     (C) Manfred Brill}
+\typeout{     Version 1.1 Februar 2018}
+% Voraussetzungen
+% Struktur der Aufgaben und Lösungen wie erwartet.
+% Lokal gibt es eine Datei stammdaten, mit Definitionen
+% für das Semester, Studiengang etc.
+\usepackage{mb}
+\usepackage{mbmath}
+\usepackage{textcomp}
+% Array-Paket für mehr Kontrolle der Tabellen
+\usepackage{array}
+% ifthen für Ein- und Ausblenden der Lösungen.
+\usepackage{ifthen}
+% Header für LV-Variablen
+\input{stammdaten-ita}
+% Literatur-Stil
+\bibliographystyle{geralpha}
+% Formeln nur lokal nummerieren. Der Counter wird bei jeder Aufgabe zurückgesetzt!
+\renewcommand{\theequation}{\arabic{equation}}
+%
+\raggedbottom
+\setlength{\parskip}{2.0ex}
+\setlength{\parindent}{0.0cm}
+% Verhindert Schusterjungen und Hurenkinder
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+% Kopfzeilen mit KoMaScript
+\usepackage[automark, headsepline]{scrlayer-scrpage}
+%
+\pagestyle{scrheadings}
+\clearscrheadfoot
+% Thema des Übungsblatts in die Kopfzeile
+\ihead[]{\theBlatt{}}
+\ohead[]{\pagemark}
+\chead{}
+\pagestyle{scrheadings}
+% Farben
+\input{colors}
+% Variablen für Namen, Software, ...
+\input{variablen}
+% Koordinatensysteme (saveboxes)
+\input{coordinateSystems}
+%++++++++++++++++++++++++++++++++++++++++++
+% Abstände zwischen Caption und Bild/Tabelle
+\setlength\abovecaptionskip          {0.4em}
+\setlength\belowcaptionskip          {0.2em}
+\renewcommand{\topfraction}{0.99}
+% Font und Fettdruck für Tabelle/Abbildung (neu, jetzt mit komascript!
+% MB, 28/07/2017
+\addtokomafont{caption}{\small}
+\setkomafont{captionlabel}{\bfseries}
+% Einstellung für Gliederungsüberschriften mit KoMaScript
+\RedeclareSectionCommands[
+  beforeskip=-.5\baselineskip,
+  afterskip=.25\baselineskip
+]{section,subsection,subsubsection}
+%
+%listings
+%   Hintergrundfarbe von Quellcode
+\definecolor{codecolor}{rgb}{0.85,0.85,0.85}
+\lstloadlanguages{[ANSI]C++}
+\lstset{basicstyle = \ttfamily \small}
+\lstset{backgroundcolor=\color{codecolor}}
+\lstset{extendedchars=true} \lstset{showstringspaces = false}
+% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\lstloadlanguages{Java}
+\lstset{basicstyle = \ttfamily \small}
+\lstset{backgroundcolor=\color{codecolor}}
+\lstset{extendedchars=true}
+%
+% Aufgabenmakros zum Einblenden von Musterlösungen
+%
+% Schalter für das ein- und ausblenden der Lösungen
+\newboolean{solutions}
+%
+\theoremstyle{break} % Zeilenumbruch bei Aufgabenüberschrift
+\theorembodyfont{\normalfont}
+\newtheorem{auftitle}{Aufgabe}
+% Teilaufgaben alphabetisch nummerieren
+\renewcommand{\labelenumi}{\alph{enumi})}
+% Funktion für eine Aufgabe im Dokument
+\newcommand{\aufgabentext}[1]{\auftitle\label{#1}\input{aufgaben/aufgabenstellungen/#1}}
+% Funktion für eine Aufgabe im Dokument ohne Lösung
+\newcommand{\offeneAufgabe}[1]{\setcounter{equation}{0}\filename{#1.tex}\aufgabentext{#1}}
+% Counter für equation auf null; damit die Gleichungen immer für jede Aufgabe neu nummeriert werden!
+\newcommand{\aufgabe}[1]{\setcounter{equation}{0}\aufgabentext{#1}\solaufgabe{#1}}
+% Funktion für eine Lösung im Dokument
+\newcommand{\solaufgabe}[1]%
+{\ifthenelse{\boolean{solutions}}{\subsubsection*{Lösung}\input{aufgaben/loesungen/#1}}{}}
+% Funktion für eine Aufgabe zur Nachbereitung
+\newcommand{\nachbereitung}[1]{%
+\ifthenelse{\boolean{solutions}}{}{\subsubsection*{Nachbereitung} \label{#1} \input{nachbereitung/#1}}
+}
+% Kommando für den Flattersatz bei nebeneinander liegenden
+% Abbildungen
+\newcommand{\flatter}{\setlength{\rightskip}{0pt plus 2cm}}
+% Anteil der Grafiken höher auf jeder Seite!
+\renewcommand{\textfraction}{0.001}
+%
+% Schritte in einer Aufzählung, dafür einen Zähler (schritt) und die Umgebung
+% schritte definieren.
+\newcounter{schritt}
+\newenvironment{schritte}%
+{\begin{list}%
+{Schritt \arabic{schritt}:}%
+{\usecounter{schritt}\settowidth{\labelwidth}{Schritt 1:}%
+\setlength{\leftmargin}{\labelwidth}\addtolength\leftmargin{\labelsep}%
+\parsep0.0ex\partopsep-0.3ex\itemsep2pt\topsep0.0ex}}{\end{list}}
+%
+\newcommand{\algorithmus}[2]{%
+\vspace{4pt}\fboxsep 1mm \framebox[155mm]
+{\parbox{145mm}{{\textbf{#1}}\vspace{2pt}#2}}\vspace{4pt}}
+%
+%   Tip (in einer Box)
+\newcommand{\tip}[1]{
+\begin{quote}\fboxsep 3mm\framebox[140mm][c]{\parbox{130mm}{{\textbf{Tipp}:\\}#1}}\end{quote}}

@@ -1,0 +1,113 @@
+% -----------------------------------------------------------------------------------------------------------------------
+% Klausur Einstellungen
+%
+% Stand: 2018
+% -----------------------------------------------------------------------------------------------------------------------
+\typeout{Klausuren an der Hochschule Kaiserslautern}
+\typeout{     (C) Manfred Brill}
+\typeout{     Version 1.0 Januar 2018}
+% Voraussetzungen
+% Struktur der Aufgaben und Lösungen wie erwartet.
+% Lokal gibt es eine Datei stammdaten, mit Definitionen
+% für das Semester, Studiengang etc.
+\usepackage{mb}
+\usepackage{mbmath}
+\usepackage{textcomp}
+% Array-Paket für mehr Kontrolle der Tabellen
+\usepackage{array}
+% ifthen für Ein- und Ausblenden der Lösungen.
+\usepackage{ifthen}
+% Hyperref-Optionen für PDF-Files
+\usepackage[ps2pdf]{hyperref}
+
+% Farben
+\input{colors}
+% Variablen für Namen, Software, ...
+\input{variablen}
+% Koordinatensysteme (saveboxes)
+\input{coordinateSystems}
+
+% Header für LV-Variablen
+\input{stammdaten}
+% Formeln nur lokal nummerieren. Der Counter wird bei jeder Aufgabe zurückgesetzt!
+\renewcommand{\theequation}{\arabic{equation}}
+%
+\raggedbottom
+\setlength{\parskip}{2.0ex}
+\setlength{\parindent}{0.0cm}
+% Kopfzeilen mit KoMaScript
+\usepackage[automark, headsepline]{scrlayer-scrpage}
+%
+\pagestyle{scrheadings}
+\clearscrheadfoot
+% Bezeichnung der Klausur in der Kopfzeile
+\ihead[]{Klausur \theClass{}}
+\ohead[]{\pagemark}
+\chead{}
+\pagestyle{scrheadings}
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Abstände zwischen Caption und Bild/Tabelle
+\setlength\abovecaptionskip          {0.4em}
+\setlength\belowcaptionskip          {0.2em}
+\renewcommand{\topfraction}{0.99}
+%listings
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%   Hintergrundfarbe von Quellcode
+\definecolor{codecolor}{rgb}{0.85,0.85,0.85}
+\lstloadlanguages{Java}
+\lstset{basicstyle = \ttfamily \small}
+\lstset{backgroundcolor=\color{codecolor}}
+\lstset{extendedchars=true}
+\lstset{showstringspaces = false}
+%
+% Aufgabenmakros zum Einblenden von Musterlösungen
+%
+% Schalter für das ein- und ausblenden der Lösungen
+\newboolean{solutions}
+%
+% Aufgabenmakros zum Einblenden von Musterlösungen
+%
+\theoremstyle{break} % Zeilenumbruch bei Aufgabenüberschrift
+\theorembodyfont{\normalfont}
+\newtheorem{auftitle}{Aufgabe}
+% Teilaufgaben alphabetisch nummerieren
+\renewcommand{\labelenumi}{\alph{enumi})}
+
+% Funktion für eine Aufgabe im Dokument; erreichbare Punktzahl als optionales zweites Element
+\newcommand{\aufgabentext}[2]{\auftitle[#2 Punkte] \label{#1}\input{aufgaben/aufgabenstellungen/#1}}
+% Funktion für eine Aufgabe im Dokument ohne Lösung
+\newcommand{\aufgabe}[2]{\setcounter{equation}{0}\aufgabentext{#1}{#2}\solaufgabe{#1}}
+% Funktion für eine Aufgabenlösung im Dokument
+\newcommand{\solaufgabe}[1]%
+{\ifthenelse{\boolean{solutions}}{\subsubsection*{Lösung}\input{aufgaben/loesungen/#1}}{}}
+% Funktion für eine Aufgabe zur Nachbereitung
+\newcommand{\nachbereitung}[1]{%
+\ifthenelse{\boolean{solutions}}{}{\subsubsection*{Nachbereitung} \label{#1} \input{nachbereitung/#1}}
+}
+% Kommando für den Flattersatz bei nebeneinanderliegenden
+% Abbildungen
+\newcommand{\flatter}{\setlength{\rightskip}{0pt plus 2cm}}
+% Anteil der Grafiken höher auf jeder Seite!
+%\renewcommand{\textfraction}{0.001}
+%
+% Schritte in einer Aufzählung, dafür einen Zähler (schritt) und die Umgebung
+% schritte definieren.
+\newcounter{schritt}
+\newenvironment{schritte}%
+{\begin{list}%
+{Schritt \arabic{schritt}:}%
+{\usecounter{schritt}\settowidth{\labelwidth}{Schritt 1:}%
+\setlength{\leftmargin}{\labelwidth}\addtolength\leftmargin{\labelsep}%
+\parsep0.0ex\partopsep-0.3ex\itemsep2pt\topsep0.0ex}}{\end{list}}
+%
+\newcommand{\filename}[1]{%
+\ifthenelse{\boolean{solutions}}{\framebox[50mm]{\parbox{40mm}{\bf #1}}\vspace{6pt}}{}
+}
+%
+\newcommand{\algorithmus}[2]{%
+\vspace{4pt}\fboxsep 1mm \framebox[155mm]
+{\parbox{145mm}{{\bf #1}\vspace{2pt}#2}}\vspace{4pt}}
+%
+%   Tip (in einer Box)
+\newcommand{\tip}[1]{
+\begin{quote}\fboxsep 3mm\framebox[140mm][c]{\parbox{130mm}{{\bf Tip:\\}#1}}\end{quote}}

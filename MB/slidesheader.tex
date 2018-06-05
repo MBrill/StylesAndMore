@@ -1,0 +1,97 @@
+% --------------------------------------------------------------------------------
+%    Farben, Optionen, Packages und Kommandos für Folien
+% --------------------------------------------------------------------------------
+\usepackage[german]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{mbmath}
+% Paket für Hervorhebungen, Durchstreichen, ...
+\usepackage[normalem]{ulem}
+% Coole Symbole, wie smileys, Bügelzeichen, ...
+\usepackage{marvosym}
+% Paket für Euro-Symbol. Danach gibt es die Funktion \euro{} für das
+% Symbol; und \EUR{1,10} für einen Betrag.
+% Für den Text 1,10 € verwendet man \EUR{1,10}. Die Option left führt
+% dazu, dass der Text als € 1,10 ausgegeben wird.
+\usepackage[right]{eurosym}
+% ifthen für Ein- und Ausblenden der Lösungen.
+\usepackage{ifthen}
+% Mehr Kontrollen über Tabellen
+\usepackage{array}
+% Paket für Filme
+\usepackage{multimedia}
+\usepackage{pgfpages}
+% Keine subsections im Inhaltsverzeichnis
+\setcounter{tocdepth}{1}
+% --- Dateien aus texmf-local/tex/latex/MB
+% # colors
+% # variablen
+% # coordinateSystems
+% # beamer
+% Farben
+\input{colors}
+% Variablen für Namen, Software, ...
+\input{variablen}
+% Saveboxes für das Zeichnen von Koordinatensystemen
+\input{coordinateSystems}
+% Beamer theme
+\usetheme{CambridgeUS}
+\input{beamer}
+
+% Listingspaket
+\usepackage{listings}
+\lstloadlanguages{C++}
+\lstset{language=C++}
+\lstset{backgroundcolor=\color{lstback}}
+\lstset{extendedchars=true}
+\lstset{showstringspaces = false}
+\lstset{basicstyle = \ttfamily \small}
+%% listings mit listings.sty
+%
+% Funktion für die Überschrift in den Notes
+\newcommand{\noteshead}[1]{\textbf{\large #1\normalsize}}
+%
+% Schritte in einer Aufzählung, dafür einen Zähler (schritt) und die Umgebung
+% schritte definieren.
+\newcounter{schritt}
+\newenvironment{schritte}%
+{\begin{list}%
+{Schritt \arabic{schritt}:}%
+{\usecounter{schritt}\settowidth{\labelwidth}{Schritt 1:}%
+\setlength{\leftmargin}{\labelwidth}\addtolength\leftmargin{\labelsep}%
+\parsep0.0ex\partopsep-0.3ex\itemsep2pt\topsep0.0ex}}{\end{list}}
+%
+% Umgebung für die Darstellung eines Algorithmus wie in der 2. Auflage des Mathebuchs
+%
+\newcommand{\algorithmus}[2]{\vspace{4pt}\fboxsep 1mm \framebox[115mm]%
+{\parbox{112mm}{{\bf #1}\vspace{2pt}#2}}\vspace{4pt}}
+
+% Schalter für das ein- und ausblenden der Lösungen
+\newboolean{solutions}
+
+% Folie mit Bild und Fragen? ...
+% Auf den Handouts kommt die Fragefolie nicht vor; die braucht man
+% ja nicht jedes Mal auszudrucken.
+%
+\newcommand{\questions}[1]{%
+\ifthenelse{\boolean{solutions}}{%
+\section{Fragen?}%
+\begin{frame}{Unklarheiten? Fragen? Bemerkungen?}%
+\begin{center}%
+\includegraphics[width=5cm]{\imagePath/\questionImage}%
+\end{center}%
+\end{frame}}{}%
+}
+
+% Umgebung für eine Folie mit Bild
+% Argumente: #1 Überschrift der Folie
+%                   #2 Breite des Bilds
+%                   #3 Bilddatei (ohne Endung, und mit Defaultordner
+%
+\newcommand{\imageslide}[3]{%
+\begin{frame}{#1}%
+  \begin{center}%
+   \includegraphics[width = #2]{\imagePath/#3}%
+  \end{center}%
+\end{frame}}

@@ -1,0 +1,64 @@
+%
+% Beamer Thema für Vorlesungsfolien
+% Letzte Änderung: 1.9.2015
+%
+% Um diese Datei zu verwenden muss Sie in texmf-local/MB kopiert werden
+% und TeX muss aktualisiert werden!
+%
+% statt red eine definierte Farbe ...
+\usecolortheme[named=colorDepartment]{structure}
+\makeatletter
+\setbeamercolor{departmentColor}{fg=black, bg=colorDepartment}
+\setbeamercolor{headline}{fg=black}
+\setbeamercolor{title}{bg=gray!30!white, fg=black}
+%
+\setbeamertemplate{navigation symbols}[vertical]
+\setbeamertemplate{navigation symbols}{\insertslidenavigationsymbol}
+%
+\setbeamercolor{frametitle}{fg=white!10!black, bg=white!80!black}
+%
+\addtobeamertemplate{theorem begin}{%
+  \setbeamercolor{block title}{fg=black, bg=gray!30!white}%
+  %\setbeamercolor{block body}{fg=red,bg=yellow}%
+}{}
+\addtobeamertemplate{proof begin}{%
+  \setbeamercolor{block title}{fg=black, bg=gray!30!white}%
+}{}
+\addtobeamertemplate{block begin}{%
+  \setbeamercolor{block title}{fg=black, bg=gray!30!white}%
+}{}
+\makeatother
+%
+%
+\defbeamertemplate*{footline}{vislab infolines}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,left]{departmentColor}%
+    \usebeamerfont{author in head/foot}\hspace*{1ex}\color{black} \lectureName{}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\color{black}\insertshortsubtitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\color{black}\insertframenumber{} \hspace*{1ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\defbeamertemplate*{headline}{vislab infolines}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{departmentColor}%{section in head/foot}%
+    \usebeamerfont{section in head/foot}\color{black}\insertsectionhead\hspace*{2ex}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{subsection in head/foot}%
+    \usebeamerfont{subsection in head/foot}\color{black}\insertsubsectionhead\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+%
+\setbeamertemplate{footline}[vislab infolines]
+\setbeamertemplate{headline}[vislab infolines]
+\setbeamertemplate{note page}[plain] 

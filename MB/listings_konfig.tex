@@ -1,0 +1,96 @@
+\begin{frame}[fragile]{Konfiguration im Header des \LaTeX{}-Dokuments}
+\lstset{language=[LaTeX]TeX}
+\begin{lstlisting}{}
+\usepackage{listings}
+\lstloadlanguages{[ISO]C++,[Sharp]C,XML,[LaTeX]TeX}
+\definecolor{lstback}{gray}{0.85}
+\lstset{backgroundcolor=\color{lstback}}
+\lstset{extendedchars=true}
+\lstset{showstringspaces = false}
+\lstset{basicstyle = \ttfamily \small}
+\end{lstlisting}
+\end{frame}
+
+\section{Code-Beispiele}
+\begin{frame}[fragile]{XML}
+\lstset{language=XML}
+\begin{lstlisting}{}
+    <StackPanel>
+        <Label x:Name="teaser1" FontSize="24" 
+        FontWeight="Bold" HorizontalAlignment="Center">
+        Choose which conversion is desired, then</Label>
+        <Label x:Name="teaser2"  Margin="10,10,20,30" 
+        FontSize="24" FontWeight="Bold" 
+        HorizontalAlignment="Center">
+        type the temperature and press Enter.
+        </Label>
+
+        <Grid x:Name="inOutput" Margin="5,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+    </StackPanel>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{XML mit eingetragenen Keywords}
+\lstset{language=XML, morekeywords={Label, StackPanel,x:Name}}
+\begin{lstlisting}{}
+    <StackPanel>
+        <Label x:Name="teaser1" FontSize="24"
+        FontWeight="Bold" HorizontalAlignment="Center">
+        Choose which conversion is desired, then</Label>
+        <Label x:Name="teaser2"  Margin="10,10,20,30"
+        FontSize="24" FontWeight="Bold"
+        HorizontalAlignment="Center">
+        type the temperature and press Enter.
+        </Label>
+
+        <Grid x:Name="inOutput" Margin="5,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+    </StackPanel>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{C\#}
+\lstset{language=[Sharp]C}
+\begin{lstlisting}{}
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+            toF = true;
+            inputValue = 0.0;
+            specifier = "F2";
+            // Den Radiobutton erst hier aktivieren
+            toCelsius.IsChecked = true;
+        }
+        ...
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{C\# mit grünen Kommentaren \ldots}
+\lstset{language=[Sharp]C,commentstyle=\color{wgreen}}
+\begin{lstlisting}{}
+{
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+            toF = true;
+            inputValue = 0.0;
+            specifier = "F2";
+            // Den Radiobutton erst hier aktivieren
+            toCelsius.IsChecked = true;
+        }
+        ...
+\end{lstlisting}
+\end{frame}
+\end{document}

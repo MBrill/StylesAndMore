@@ -1,0 +1,289 @@
+% \CheckSum{135}
+% \changes{v1.0}{28. Januar 2013}{Erstellt aus hanser.sty}
+% \changes{v2.0}{28. Juli 2017}{packages caption und fancyhf entfernt}
+%    \IndexPrologue
+%      {\section*{Index}
+%          Unterstrichene Seitenzahlen
+%          verweisen auf die Definition, alle anderen auf die Verwendung.
+%          Hinweise für die Erstellung des Index findet man
+%          in \cite{companion}, Seite 449.
+%      }
+%    \GlossaryPrologue{\section*{Änderungen}}
+%
+% \MakeShortVerb{\|}
+% \title{mb.sty -- Style für Texte an der Hochschule Kaiserslautern}
+% \author{Manfred Brill}
+% \maketitle
+% \parindent0.0cm
+% \section{Einleitung}
+%
+% Das \LaTeX-package \emph{mb.sty} enthält
+% die von der Seiten- und Textgröße unabhängigen Angaben für \LaTeX{}-Texte
+% die an der Fachhochschule Kaiserslautern erstellt werden.
+% Weitere Makros als Ergänzung zu \emph{AMS}-\LaTeX{}
+% sind im package |mbmath.sty| enthalten. |mb.sty| ist so gehalten, dass im Hauptdokument
+% nur noch eine entsprechende class-Datei und die beiden packages |mb| und
+% |mbmath| geladen werden müssen. Für englische Texte gibt es die parallel
+% Style-Datei \emph{mb\_english.sty}.
+%
+% Die Style-Datei ist aus \emph{hanser.sty} entstanden, das bei den Projekten
+% für den Hanser-Verlag entstanden ist.
+%
+% \section{Der Initialisierungsteil}
+% Die folgenden Pakete werden geladen:
+% \begin{itemize}
+% \item \emph{ngerman} für die Verwendung der deutschen Sprache
+% \item \emph{inputenc} mit der Option \emph{latin1},
+% \item \emph{makeidx} für die Erstellung eines Index,
+% \item \emph{palatino} für die Postscript Type-1 Fontfamilie Palatino,
+% \item \emph{color} für Graustufen und Farben,
+% \item \emph{listings} mit der Option \emph{saveMem} für Quelltexte,
+% \item \emph{amsmath, amsfonts, amssymb} und \emph{amscd} für das Layout der mathematischen Inhalte,
+% \item \emph{mbmath} für Erweiterungen von \emph{AMS} \LaTeX{},
+% \item \emph{theorem} für das Layout von theorem-Umgebungen,
+% \item \emph{epsfig, epic} und \emph{eepic} für Grafiken,
+% \item \emph{bibgerm} für das Literaturverzeichnis,
+% \item \emph{eurosym} für das Euro-Symbol,
+% \item \emph{supertabular} für mehrseitige Tabellen, insbesondere für das Symbolverzeichnis,
+% \item \emph{multicol} für das zweispaltige Layout des Index.
+% \item \emph{float} für das Erzeugen von Gleitobjekten.
+% \end{itemize}
+% Für Einzelheiten und Dokumentationen dieser Packages wird auf den
+%\LaTeX-Companion \cite{companion} oder die auf CTAN verfügbare
+% Information verwiesen.
+%
+% \section{Tabellen und Abbildungen}
+% Tabellenbeschriftungen stehen immer \emph{vor} der Tabelle.
+% Die Einstellungen des Fonts und dass das Wort |Tabelle| fett gedruckt wird ist aus dem
+% sty-File herausgenommen worden, da es inzwischen Inkompabilitäten mit KomoScript gibt.
+% Die gewünschten einstellungen erhält man auch durch die Anweisungen, wie man sie auch
+% in der Dokumentationsdatei zu diesem File findet.
+% Tabelle \ref{tab1} zeigt
+% das zu erwartende Ergebnis.
+%
+% Bemerkung: wird KoMaScript nicht verwendet wird die gewünschte Darstellung nicht erreicht!
+%
+% \begin{table}[ht]
+% \caption{\label{tab1}Eine Tabellenbeschrifttung}
+% \small
+% \begin{center}
+% \begin{tabular}{ll}\hline
+% Spaltenbeschriftung 1& Spaltenbeschriftung 2\\ \hline
+% eins&zwei\\
+% drei&vier\\ \hline
+% \end{tabular}
+% \end{center}
+% \end{table}
+% Bildbeschriftungen sind \emph{Unterschriften}, das heißt sie stehen unterhalb der Abbildung.
+% Für die Fonts gilt die Bemerkung zu Tabellen entsprechend. Abbildung \ref{mux} ist \cite{mathebuch}
+% entnommen.
+%
+% \begin{figure}[ht]
+% \begin{center}
+% \setlength{\unitlength}{0.5cm}
+% \begin{picture}(5,3.6)(-1.0,-0.3)
+% \put(0,0){\line(1,0){1.75}}
+% \put(1.75,0){\vector(0,1){0.5}}
+% \put(1,0.5){\framebox(1.5,3.0){}}
+% \put(-0.5,-0.1){$s$}
+% \put(2.5,2){\vector(1,0){1.0}}
+% \put(3.6, 1.9){$m$}
+% \put(0,1.5){\vector(1,0){1.0}}
+% \put(0,2.5){\vector(1,0){1.0}}
+% \put(-0.7,1.4){$x_0$}
+% \put(-0.7,2.4){$x_1$}
+% \end{picture}
+% \caption{\label{mux}Eine Multiplexer-Schaltung}
+% \end{center}
+% \end{figure}
+% Der Abstand vor Abschnittsüberschriften ist gegenüber dem \LaTeX-Standard etwas
+% vergrößert worden.
+%
+% Mit |\raggedbottom| wird sichergestellt, dass die Textseiten an der Unterkante
+% flattern und innerhalb der Seite kein vertikaler Raum eingefügt wird.
+%
+% \StopEventually{
+% \begin{thebibliography}{9}
+%   \bibitem{companion} M. ~Goossens, F. ~Mittelbach, und A. ~Samarin:
+%   \emph{Der \LaTeX{} Begleiter}, 2000, Addison-Wesley.
+%   \bibitem{holzmannplate} J. ~Holzmann und J. ~Plate:
+%   \emph{Linux-Server für Intranet und Internet}, 2002, Hanser.
+%   \bibitem{mathebuch} M. ~Brill: \emph{Mathematik für Informatiker},
+%   2001, Hanser.
+% \end{thebibliography}
+% }
+%
+% \clearpage
+% \section{Die Package-Datei}
+% \subsection{Die Kenndaten}
+%    Zunächst identifizieren wir das Paket und dessen aktuelle Version:
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}\relax
+\ProvidesPackage{mb}[2017/07/28, (MB)]
+\typeout{MB package, V2.1, (c) Manfred Brill}
+\ProcessOptions
+%    \end{macrocode}
+% \subsection{Der Initialisierungsteil}
+% Wir laden die folgenden Pakete:
+%    \begin{macrocode}
+\RequirePackage{ngerman}
+\RequirePackage[latin1]{inputenc}
+\RequirePackage{palatino}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{amscd}
+\RequirePackage{mbmath}
+\RequirePackage{epsfig}
+\RequirePackage{theorem}
+\RequirePackage{makeidx}
+\RequirePackage{color}
+\RequirePackage{epic}
+\RequirePackage{eepic}
+\RequirePackage{eurosym}
+\RequirePackage{bibgerm}
+\RequirePackage{multicol}
+\RequirePackage{supertabular}
+\RequirePackage{float}
+\RequirePackage[savemem]{listings}
+%    \end{macrocode}
+%
+% \changes{V1.3}{01.06.2003}{Package float beigefügt}
+% \changes{V1.3}{01.06.2003}{Package listings mit savemem-Option beigefügt}
+% \subsection{Das Seitenlayout}
+% Die Bildunterschriften werden einen Punkt kleiner gesetzt auf |\small|. Der Labelfont ist
+% zusätzlich fett gesetzt.  Nach einer Abbildung wird ein Abstand von $0.2$em verwendet.
+%    \begin{macrocode}
+\setlength\abovecaptionskip          {0.0mm}
+\setlength\belowcaptionskip          {0.2em}
+%    \end{macrocode}
+% Der Textanteil einer Seite in \LaTeX{} ist durch das Makro |\textfraction| festgelegt. Der Default
+% ist dabei $0.2$. Er wird auf $0.001$ gesetzt.
+%    \begin{macrocode}
+\renewcommand{\textfraction}{0.001}
+%    \end{macrocode}
+%
+% Eine Abbildung muss mindestens einen Anteil |\floatpagefraction| einer Seite haben, um
+% auf eine eigene leere Seite gesetzt zu werden. Der Default dafür ist $0.5$. Er wird hier
+% auf $0.99$ gesetzt.
+%    \begin{macrocode}
+\renewcommand{\floatpagefraction}{.99}
+%    \end{macrocode}
+%
+% \subsection{Neue Definition von Gliederungsüberschriften}
+% Diese Angaben können inzwischen besser mit KoMaScript eingestellt werden,
+% und sind deshalb nur noch aus historischen Gründen in dieser Datei.
+%
+% \begin{macro}{\section}
+% \changes{v1.2}{20.03.2003}{Abstand angepasst.}
+% \changes{v2.1}{31.07.2017}{scr\@startsection for KoMa versions >= 3.15}
+%    \begin{macrocode}
+\renewcommand\section{\@startsection{section}{1}{0mm}%
+                {6mm}%
+                {2.8mm}%
+                {\normalfont\raggedright\Large\bfseries}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\subsection}
+% \changes{v1.2}{20.03.2003}{Abstand angepasst.}
+%    \begin{macrocode}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                {4mm}
+                {1.3mm}
+                {\normalfont\large\bfseries}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\subsubsection}
+% \changes{v1.1}{20.03.2003}{Abstand angepasst.}
+%    \begin{macrocode}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                {4mm}
+                {0.8mm}
+                {\normalfont\normalsize\bfseries}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Listen}
+% Für Aufzählungen wird nicht das Standardsymbol benutzt, sondern eine Box mit der Farbe $50$\% grau.
+% Dabei wird der \emph{AMS\LaTeX} Befehl |\Box| verwendet.  Für die Abmessungen dieser Box
+% ist die \LaTeX-Länge |\Blen| definiert, um sicherzustellen, dass immer die gleiche Größe verwendet wird.
+%    \begin{macrocode}
+\newlength{\Blen}
+% Auf Box-Länge setzen
+\settoheight{\Blen}{$\Box$}
+%    \end{macrocode}
+%
+% Mit dieser Länge wird die |rule|-Box auf die gleiche Höhe wie die \emph{AMS} Box gesetzt und
+% für |\labelitemi| verwendet:
+%
+%    \begin{macrocode}
+\renewcommand{\labelitemi}{\textcolor[gray]{0.5}%
+{\rule{\Blen}{\Blen}}}
+%    \end{macrocode}
+%
+% Die Listenumgebungen wurden insbesondere in ihren Längen
+% angepasst.
+% Der linke Einzug bis zur Stufe $6$ wird gesetzt auf
+%
+%    \begin{macrocode}
+\setlength\leftmargini                 {1.5em}
+\setlength\leftmarginii                {1.75em}
+\setlength\leftmarginiii               {1.5em}
+\setlength\leftmarginiv                {1.25em}
+\setlength\leftmarginv                 {1em}
+\setlength\leftmarginvi                {1em}
+%    \end{macrocode}
+%
+% Die Aufzählungspunkte werden nicht eingerückt:
+%
+%    \begin{macrocode}
+\setlength\labelsep                    {0.5em}
+\setlength\labelwidth                  {\leftmargini}
+\addtolength\labelwidth                {-\labelsep}
+\setlength\topsep                      {0.0ex}
+\setlength\itemsep                     {2pt plus1pt minus1pt}
+\setlength\parsep                      {1pt plus1pt}
+\def\@mklab#1{#1\hfil}
+%    \end{macrocode}
+%
+%
+%  \subsection{Makros}
+%
+% \begin{macro}{\clearevenpage}
+% |\clearevenpage| stellt sicher, dass eine gerade leere Seite vor einem Kapitelanfang
+% gesetzt wird. Es wird |\cleardoublepage| verwendet, und vorher
+% wird sichergestellt, dass keine Kopfzeile ausgegeben wird.
+% Dieses Makro orientiert sich an \cite{companion}, pp. $97$.
+%    \begin{macrocode}
+\newcommand{\clearevenpage}%
+{\newpage{\pagestyle{empty}\cleardoublepage}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Verzeichnisse}
+% Die Einträge in das Stichwortverzeichnis werden wie in \cite{companion} erzeugt. Das Layout des
+% Stichwortverzeichnisses wurde verändert, insbesondere wird die Umgebung |multicol| für ein
+% zweispaltiges Layout verwendet, und mit
+% \begin{center}|\addcontentsline{toc}|\end{center}
+% ein Eintrag in das Inhaltsverzeichnis
+% erzwungen.
+%    \begin{macrocode}
+\makeatletter
+\renewenvironment{theindex}%
+    {\newpage\parskip 0pt\columnseprule 0pt%
+     \chapter*{Stichwortverzeichnis}%
+     \markboth{\small Stichwortverzeichnis}{\small Stichwortverzeichnis}%
+     \addcontentsline{toc}{chapter}{Stichwortverzeichnis}%
+     \thispagestyle{plain}%
+     \let\item\@idxitem%
+     \begin{multicols}{2}}
+    {\end{multicols}}
+\renewcommand{\@idxitem}{\par\hangindent 20\p@}
+\renewcommand{\subitem}{\par\hangindent 20\p@ \hspace*{10\p@}}
+\renewcommand{\subsubitem}{\par\hangindent 20\p@ \hspace*{20\p@}}
+\makeatother
+%    \end{macrocode}
+%
+% \changes{V1.3}{01.06.2003}{Algorithmenliste herausgenommen}
+% \Finale
+\endinput

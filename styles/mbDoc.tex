@@ -1,0 +1,19 @@
+\documentclass[11pt, twoside, 
+  DIV=15, BCOR=15mm,
+  abstractoff, headsepline,
+  headings=standardclasses,
+  headings=big]{scrartcl}
+\usepackage{mb}
+\usepackage{doc}
+% Font und Fettdruck für Tabelle/Abbildung (neu, jetzt mit komascript!
+% MB, 28/07/2017
+\addtokomafont{caption}{\small}
+\setkomafont{captionlabel}{\bfseries}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{mb.sty}
+  %\PrintIndex
+  \PrintChanges
+\end{document}

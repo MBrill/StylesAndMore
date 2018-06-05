@@ -1,0 +1,38 @@
+% -----------------------------------------------------------------
+% Einstellungen für Sammlungen von Aufgaben
+% Verwendet die Einstellung in übungsaufgaben.tex
+% Die Ausgabe der Aufgabennummer wird durch
+% eine Box ergänzt, die den Dateinamen anzeigt.
+%
+% Zwei weitere Variable werden definiert,
+% für die Indizierung von Klausuraufgaben und
+% die Verwendung von Aufgaben in Übungsblättern.
+% ---------------------------------------------------------------
+\typeout{Einstellungen für Aufgabensammlungen}
+\typeout{     (C) Manfred Brill}
+\typeout{     Version 1.1 Februar 2018}
+% Variable für die Übungsblatt-Nummer
+\newcommand{\theBlatt}{Aufgabensammlung}
+% Die Einstellung für Übungsblätter laden
+\input{übungsblatt}
+\ihead{\headmark}
+%
+% Einblenden von Musterlösungen
+%
+\newcommand{\filename}[1]{%
+\ifthenelse{\boolean{solutions}}{\framebox[50mm]{\parbox{40mm}{\textbf{#1}}}\vspace{6pt}}{}
+}
+% aufgabe überschreiben, Dateiname mit ausgeben
+\renewcommand{\aufgabe}[1]{\setcounter{equation}{0}\filename{#1.tex}\aufgabentext{#1}\solaufgabe{#1}}
+
+% Funktion für das Verzeichnis der in einer Klausur verwendeten Aufgaben
+\newcommand{\klausur}[1]{\ref{#1}&\lstinline$#1$}
+%
+% Funktion für das Verzeichnis der in den Übungsblättern verwendeten Aufgaben
+\newcommand{\uebung}[1]{#1 (Seite \pageref{#1})}
+%
+% Datensatz-Texte und Daten in eigener Datei
+% chapter- und sectionmark mit der Kurzbezeichnung
+% Die Kurzbezeichnungen werden mit addcontentsline dem Inhaltsverzeichnis hinzugefügt
+\newcommand{\dataset}[3]{\newpage\hrule\textbf{\large #1}\addcontentsline{toc}{section}{#1}\hspace*{2cm}\textbf{\large #2}\vspace*{0.3cm}\hrule\label{#3}\input{datasets/#3}\sectionmark{#1}\chaptermark{#1}}
+%

@@ -1,0 +1,447 @@
+% \CheckSum{243}
+% \changes{V1.0}{April 2001}{Erstellt aus hanserbuch.doc}
+% \changes{V1.1}{Mai 2004}{Symbol für Bool'sche Algebren hinzugefügt; d(x,y) auf dist(x,y) geändert}
+% \changes{V1.2}{Juni 2005}{Symbol für Sigma-Algebren eingefügt}
+% \changes{V1.2}{Juni 2005}{Symbole für die Area-Funktionen eingefügt}
+%    \IndexPrologue
+%      {\section*{Index}
+%          Unterstrichene Seitenzahlen
+%          verweisen auf die Definition, alle anderen auf die Verwendung.
+%      }
+%    \GlossaryPrologue{\section*{Änderungen}}
+%
+% \MakeShortVerb{\|}
+% \title{mbmath.sty -- Ein mathematisches \LaTeX{}-Package}
+% \author{Manfred Brill}
+% \maketitle
+% \thispagestyle{empty}
+% \section{Makros}
+% Grundsätzlich wird für das Setzen mathematischer Ausdrücke
+% \emph{AMS}-\LaTeX{} eingesetzt.
+% \emph{AMS}-\LaTeX{}
+% enthält eine Menge von zusätzlichen Symbolen und Umgebungen, beispielsweise die |align| Umgebung
+% als Alternative zu |eqnarray|.
+% Matrizen werden mit der Umgebung |pmatrix| gesetzt, Determinanten
+% mit der Umgebung |vmatrix|.
+%
+% \begin{beispiele}
+% \item |\begin{pmatrix} 0& 1 \\ 1& 0 \end{pmatrix}| \\ergibt die Ausgabe
+% \[
+% \begin{pmatrix} 0& 1 \\ 1& 0 \end{pmatrix}
+% \]
+% \item Die Determinante 
+%  \[
+% \begin{vmatrix} a & b \\ -b & a \end{vmatrix}
+% \]
+% erhält man durch 
+%
+% |\begin{vmatrix} a & b \\ -b & a \end{vmatrix}|.
+% \end{beispiele}
+% Darüberhinaus werden eine Reihe von Symbolen und Umgebungen definiert, die im Folgenden
+% erläutert werden.
+% \section{Intervall-Boxen für Grafiken}
+% Für die Verwendung in Grafiken werden verschiedene \LaTeX{}-Boxen definiert, die mit
+% |\usebox{box-name}| aufgerufen werden können. Die Längenangaben beziehen sich alle
+% auf die Grundlänge $1$ cm. Insgesamt sind definiert:
+% \begin{itemize}
+% \item ein abgeschlossenes Invervall: |\usebox{closedint}|,
+% \item ein abgeschlossenes Interval der halben Höhe: |\usebox{smallclosedint}|,
+% \item ein rechts offenes und links geschlossenes Intervall: |\usebox{halfopenrint}|,
+% \item ein rechts geschlossenes und links offenes Intervall: |\usebox{halfopenlint}|,
+% \item ein offenes Intervall: |\usebox{openint}|.
+% \end{itemize}
+%
+% Die Abbildung \ref{intex} zeigt eine Abbildung aus \cite{mathebuch}
+% Die Positionierung des abgeschlossenen Intervalls erfolgt in der Grafik mit
+%
+% \begin{center} |\put(1.5,0){\usebox{\closedint}}| \end{center}
+%
+% \begin{figure}[ht]
+% \begin{center}
+% \setlength{\unitlength}{1cm}
+% \begin{picture}(9,1.5)(-1,-1.0)
+% \thicklines
+% \put(-0.5,0){\vector(1,0){8}}
+% \put(0,-0.25){\line(0,1){0.5}}
+% \put(-0.1,-0.9){$0$}
+% \put(1,-0.25){\line(0,1){0.5}}
+% \put(0.9,-0.9){$1$}
+% \put(2,-0.25){\line(0,1){0.5}}
+% \put(1.9,-0.9){$2$}
+% \put(3,-0.25){\line(0,1){0.5}}
+% \put(2.9,-0.9){$3$}
+% \put(4,-0.25){\line(0,1){0.5}}
+% \put(3.9,-0.9){$4$}
+% \put(5,-0.25){\line(0,1){0.5}}
+% \put(4.9,-0.9){$5$}
+% \put(6,-0.25){\line(0,1){0.5}}
+% \put(5.9,-0.9){$6$}
+% \put(1.5,0){\usebox{\closedint}}
+% \put(3.5, 0){\usebox{\halfopenrint}}
+% \put(5.5, 0){\usebox{\openint}}
+% \end{picture}
+% \caption{\label{intex}Die Intervalle $[1,5 ;2,5], [3.5;4.5)$ und $(5,5;6.5)$}
+% \end{center}
+% \end{figure}
+%
+% \begin{table}[t]
+% \begin{center}
+% \caption{\label{tabex}Die zusätzlichen mathematischen Symbole}
+% \small
+% \begin{tabular}{lll}\hline
+% Symbol&Erklärung&\LaTeX{}\\ \hline
+% $\N$&Die natürlichen Zahlen& |$\N$|\\
+% $\Z$&Die ganzen Zahlen& |$\Z$|\\
+% $\Q$&Die rationalen Zahlen& |$\Q$|\\
+% $\R$&Die reellen Zahlen& |$\R$|\\
+% $\C$&Die komplexen Zahlen& |$\C$|\\
+% $\B$&Symbol für Boolsche Algebra& |$\B$|\\
+% $\A$&Symbol für $\sigma$-Algebren& |$\A$|\\
+% $\Potenz(\;)$&Potenzmenge einer Menge& |$\Potenz(\N)$|\\
+% $\abs{\;}$&Absolutbetrag einer Zahl& |$\abs{x}$|\\
+% $\ggT{\;}{\;}$&Größter gemeinsame Teiler& |$\ggT{a}{b}$|\\
+% $\kgV{\;}{\;}$&Kleinstes gemeinsames& |$\kgV{a}{b}$|\\
+%                       &Vielfaches&  \\
+% $\sheffer$&Shefferstrich in der Logik& |$\sheffer a$|\\
+% $\ld{\;}$&Logarithmus zur Basis $2$& |$\ld(x)$|\\
+% $\arccot{\;}$&Arcus Kotangens& |$\arccot{x}$|\\
+% $\areasinh{\:}$&Area Sinus Hyperbolicus& |$\areasinh{x}$|\\
+% $\areacosh{\:}$&Area Kosinus Hyperbolicus& |$\areacosh{x}$|\\
+% $\areatanh{\:}$&Area Tangens Hyperbolicus& |$\areatanh{x}$|\\
+% $\areacoth{\:}$&Area Kotanges Hyperbolicus& |$\areacoth{x}$|\\
+% $\arrow{f}{X}{Y}$& Abbildung& |$\arrow{f}{\R^3}{\R^3}$|\\
+% $\dist{\;}{\;}$& Metrik & |$\dist{x}{y}$|\\
+% $\vtr{x}$&Vektor& |$\vtr{x}$|\\
+% $\nullv$&Nullvektor& |$\nullv$|\\
+% $\vtrs{x}{y}$&Spaltenvektor im $\R^2$&|$\vtrs{1}{2}$|\\
+% $\vtrz{x}{y}$&Spaltenvektor im $\R^2$,& |$\vtrz{1}{2}$|\\
+% & transponiert geschrieben.&\\
+% $\vtrst{x}{y}{z}$&Spaltenvektor im $\R^3$&|$\vtrst${1}{2}{3}$|\\
+% $\vtrzt{x}{y}{z}$&Spaltenvektor im $\R^3$,& |$\vtrzt{1}{2}{3}$|\\
+% & transponiert geschrieben.&\\
+% $\norm{\;}$&Norm eines Vektors& |$\norm{\vtr{x}}$|\\
+% $\inner{\;}{\;}$&Skalarprodukt& |$\inner{\vtr{x}}{\vtr{y}}$|\\
+% $\rang{\;}$&Rang einer Matrix&|$\rang{A}$|\\
+% $\defekt{\;}$&Defekt einer Matrix&|$\defekt{A}$|\\ \hline
+% \end{tabular}
+% \end{center}
+% \end{table}
+%
+% \StopEventually{
+% \begin{thebibliography}{9}
+%   \bibitem{companion} M. ~Goossens, F. ~Mittelbach, und A. ~Samarin:
+%   \emph{Der \LaTeX{} Begleiter}, 2000, Addison-Wesley.
+%   \bibitem{mathebuch} M. ~Brill: \emph{Mathematik für Informatiker},
+%   2001, Hanser.
+% \end{thebibliography}
+% } 
+%
+% \clearpage
+% \section{Die Package-Datei}
+% \subsection{Die Kenndaten}
+%    Zunächst identifizieren wir das Paket und dessen aktuelle Version:
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}\relax
+\ProvidesPackage{mbmath}[2002/06/04, (MB)]
+\typeout{Enhanced math macros, V1.0, (c) Manfred Brill}
+\ProcessOptions
+%    \end{macrocode}
+% \subsection{Der Initialisierungsteil}
+% Wir laden die folgenden Pakete:
+%    \begin{macrocode}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{amscd}
+\RequirePackage{epic}
+\RequirePackage{eepic}
+%    \end{macrocode}
+% \section{Mathematiksymbole und Umgebungen mit AMS-\LaTeX{}}
+% \emph{AMS}-\LaTeX{} bietet bereits eine Menge von speziellen Makros und Umgebungen für
+% das Setzen von mathematischen Inhalten. \cite{companion} ist eine gute Einführung zu diesem Thema.
+% Insbesondere wird empfohlen, die |align| Umgebung zu nutzen, die der in \LaTeX{} enthaltenen
+% |eqnarray| Umgebung deutlich überlegen ist. 
+% \subsection{Zahlenmengen}
+% Es werden Symbole für natürliche, ganze, rationale, reelle und komplexe Zahlen eingeführt.
+%   \begin{macrocode}
+\DeclareMathSymbol{\B}{\mathalpha}{AMSb}{"42}
+\DeclareMathSymbol{\C}{\mathalpha}{AMSb}{"43}
+\DeclareMathSymbol{\Q}{\mathalpha}{AMSb}{"51}
+\DeclareMathSymbol{\R}{\mathalpha}{AMSb}{"52}
+\newcommand{\A}{\ensuremath\mathbb{A}}
+\newcommand{\N}{\ensuremath\mathbb{N}}
+\newcommand{\Z}{\ensuremath\mathbb{Z}}
+%    \end{macrocode}
+%
+% \begin{macro}{\Potenz}
+% Für die Potenzmenge wird das Makro |\Potenz| eingeführt.
+%    \begin{macrocode}
+\newcommand{\Potenz}{\ensuremath\mathbb{P}}
+%    \end{macrocode}
+% \end{macro}
+%
+% Jetzt folgt eine Menge von Funktionen, das Skalarprodukt und der Absolutbetrag.
+% \begin{macro}{\abs}
+% Absolutbetrag:
+%    \begin{macrocode}
+\newcommand{\abs}[1]{\ensuremath\lvert#1\rvert}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\norm}
+% Norm:
+%    \begin{macrocode}
+\newcommand{\norm}[1]{\ensuremath \lVert#1 \rVert}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\dist}
+% Metrik:
+%    \begin{macrocode}
+\newcommand{\dist}[2]{\ensuremath dist\left(#1, #2\right)}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ggT}
+% Es gibt das Makro |\gcd| für den größten gemeinsamen Teiler. Da auch das kleinste gemeinsame
+% Vielfache als Makro eingeführt wird wird eine deutsche Version definiert:
+%    \begin{macrocode}
+\DeclareMathOperator{\ggT}{ggT}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\kgV}
+% Das kleinste gemeinsame Vielfache zweier Zahlen:
+%    \begin{macrocode}
+\DeclareMathOperator{\kgV}{kgV}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\sheffer}
+% Der Sheffer-Strich in der Logik:
+%    \begin{macrocode}
+\newcommand{\sheffer}{\ensuremath\:|\:}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ld}
+% Der Logarithmus zur Basis 2:
+%    \begin{macrocode}
+\DeclareMathOperator{\ld}{ld}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\arccot}
+% Der Arcus-Kotangens:
+%    \begin{macrocode}
+\DeclareMathOperator{\arccot}{arccot}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\areasinh}
+% Der Area Sinus Hyperbolicus:
+%    \begin{macrocode}
+\DeclareMathOperator{\areasinh}{arsinh}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\areacosh}
+% Der Area Sinus Hyperbolicus:
+%    \begin{macrocode}
+\DeclareMathOperator{\areacosh}{arcosh}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\areatanh}
+% Der Area Sinus Hyperbolicus:
+%    \begin{macrocode}
+\DeclareMathOperator{\areatanh}{artanh}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\areacoth}
+% Der Area Sinus Hyperbolicus:
+%    \begin{macrocode}
+\DeclareMathOperator{\areacoth}{arcoth}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\inner}
+% Das Skalarprodukt wird mit spitzen Klammern geschrieben:
+%    \begin{macrocode}
+\newcommand{\inner}[2]{\ensuremath \left< #1, #2 \right>}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\rang}
+% Der Rang einer Matrix:
+%    \begin{macrocode}
+\newcommand{\rang}{\ensuremath \operatorname{Rang}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\defekt}
+% Der Defekt einer Matrix:
+%    \begin{macrocode}
+\newcommand{\defekt}{\ensuremath \operatorname{Def}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\arrow}
+% Eine Abkürzung für $f: M \rightarrow N$:
+%    \begin{macrocode}
+\newcommand{\arrow}[3]{\ensuremath #1:\: #2 \rightarrow #3}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\nullv}
+% Abkürzung für den Nullvektor:
+%    \begin{macrocode}
+\newcommand{\nullv}{\ensuremath \mathbf{0}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\vtr}
+% Vektoren werden als fettgesetzte Kleinbuchstaben geschrieben, um sie von Skalaren zu unterscheiden:
+%    \begin{macrocode}
+\newcommand{\vtr}[1]{\ensuremath \mathbf{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\vtrs}
+% Abkürzung für Spaltenvektoren im $\R^2$:
+%    \begin{macrocode}
+\newcommand{\vtrs}[2]%
+{\ensuremath \begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\vtrst}
+% Abkürzung für Spaltenvektoren im $\R^3$:
+%    \begin{macrocode}
+\newcommand{\vtrst}[3]%
+{\ensuremath \begin{pmatrix} #1 \\ #2 \\ #3\end{pmatrix}}
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\vtrz}
+% Abkürzung für Spaltenvektoren im $\R^2$, geschrieben als transponierte Zeilenvektoren:
+%    \begin{macrocode}
+\newcommand{\vtrz}[2]{\ensuremath \left( #1, #2 \right)^T}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\vtrzt}
+% Abkürzung für Spaltenvektoren im $\R^3$, geschrieben als transponierte Zeilenvektoren:
+%    \begin{macrocode}
+\newcommand{\vtrzt}[3]{\ensuremath \left(#1, #2, #3 \right)^T}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Intervallboxen für Graphiken}
+% Für die Verwendung in Grafiken werden mit Hilfe von |\newsavebox| verschiedene \LaTeX{}-Boxen 
+% definiert.
+% \begin{macro}{closedint}
+% Ein geschlossenes Intervall erhält man durch
+%    \begin{macrocode}
+\setlength{\unitlength}{1cm}
+\newsavebox{\closedint}
+\savebox{\closedint}{
+\begin{picture}(0,0)
+\linethickness{1mm}
+\put(0.0, 0){\line(1,0){1}}
+\thicklines
+\put(0.0, -0.3){\line(0,1){0.6}}
+\put(1.0, -0.3){\line(0,1){0.6}}
+\put(0, -0.3){\line(1,0){0.1}}
+\put(0, 0.3){\line(1,0){0.1}}
+\put(1, -0.3){\line(-1,0){0.1}}
+\put(1, 0.3){\line(-1,0){0.1}}
+\end{picture}
+}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{smallclosedint}
+% Ein geschlossenes Intervall mit der halben Größe im Vergleich zu |closedint| erhält man durch
+% |\usebox{smallclosedint}|.
+%    \begin{macrocode}
+\newsavebox{\smallclosedint}
+\savebox{\smallclosedint}{%
+\setlength{\unitlength}{0.5cm}
+\begin{picture}(0,0)
+\linethickness{0.5mm}
+\put(0.0, 0){\line(1,0){1}}
+\thicklines
+\put(0.0, -0.3){\line(0,1){0.6}}
+\put(1.0, -0.3){\line(0,1){0.6}}
+\put(0, -0.3){\line(1,0){0.1}}
+\put(0, 0.3){\line(1,0){0.1}}
+\put(1, -0.3){\line(-1,0){0.1}}
+\put(1, 0.3){\line(-1,0){0.1}}
+\end{picture}
+}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{halfopenrint}
+% Ein links geschlossenes und rechts offenes Intervall erhält man durch |\usebox{halfopenrint}|.
+%    \begin{macrocode}
+\setlength{\unitlength}{1cm}
+\newsavebox{\halfopenrint}
+\savebox{\halfopenrint}{%
+\begin{picture}(0,0)
+\linethickness{1mm}
+\put(0.0, 0){\line(1,0){1}}
+\thicklines
+\put(0.0, -0.3){\line(0,1){0.6}}
+\put(1.0, -0.3){\line(0,1){0.6}}
+\put(0, -0.3){\line(1,0){0.1}}
+\put(0, 0.3){\line(1,0){0.1}}
+\put(1, -0.3){\line(1,0){0.1}}
+\put(1, 0.3){\line(1,0){0.1}}
+\end{picture}
+}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{halfopenlint}
+% Ein rechts geschlossenes und links offenes Intervall erhält man durch |\usebox{halfopenlint}|.
+%    \begin{macrocode}
+\newsavebox{\halfopenlint}
+\savebox{\halfopenlint}{%
+\begin{picture}(0,0)
+\linethickness{1mm}
+\put(0.0, 0){\line(1,0){1}}
+\thicklines
+\put(0.0, -0.3){\line(0,1){0.6}}
+\put(1.0, -0.3){\line(0,1){0.6}}
+\put(0, -0.3){\line(-1,0){0.1}}
+\put(0, 0.3){\line(-1,0){0.1}}
+\put(1, -0.3){\line(-1,0){0.1}}
+\put(1, 0.3){\line(-1,0){0.1}}
+\end{picture}
+}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{openint}
+% Ein offenes Intervall erhält man durch |\usebox{openint}|.
+%    \begin{macrocode}
+\newsavebox{\openint}
+\savebox{\openint}{%
+\begin{picture}(0,0)
+\linethickness{1mm}
+\put(0.0, 0){\line(1,0){1}}
+\thicklines
+\put(0.0, -0.3){\line(0,1){0.6}}
+\put(1.0, -0.3){\line(0,1){0.6}}
+\put(0, -0.3){\line(-1,0){0.1}}
+\put(0, 0.3){\line(-1,0){0.1}}
+\put(1, -0.3){\line(1,0){0.1}}
+\put(1, 0.3){\line(1,0){0.1}}
+\end{picture}
+}
+%    \end{macrocode}
+% \end{macro}
+% \Finale
+\endinput 

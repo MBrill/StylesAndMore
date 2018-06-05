@@ -1,0 +1,448 @@
+% \CheckSum{205}
+% \changes{v1.0}{4. Juni 2002}{Erstellt aus hanserbuch.cls}
+% \changes{v1.2}{März 2003}{Kleinere Layout-Anpassungen, LE-TeX GbR}
+% \changes{V1.5}{29.08.2004}{Kein Leerraum nach der Umgebung mbeweis}
+% \changes{V1.6}{28.01.2013}{Paket mathpple gelöscht, obsolet}
+%    \IndexPrologue
+%      {\section*{Index}
+%          Unterstrichene Seitenzahlen
+%          verweisen auf die Definition, alle anderen auf die Verwendung.
+%          Hinweise für die Erstellung des Index findet man in \cite{companion}, Seite 449.
+%      }
+%    \GlossaryPrologue{\section*{Änderungen}}
+%
+% \MakeShortVerb{\|}
+% \title{hanser.sty -- Ein \LaTeX{}-Style für Hanserbücher}
+% \author{Manfred Brill}
+% \maketitle
+% \section{Einleitung}
+%
+% Das \LaTeX-package \emph{hanser.sty} enthält
+% die von der Seiten- und Textgröße unabhängigen Angaben für ein Hanser-Buch in \LaTeX{}.
+% Damit können diese Formatierung auch mit den Standardklassen
+% wie |report| oder |article| verwendet werden. Für das Drucken von Texten, die zum Verlag gehen
+% gibt es die class-Datei |hanserbuch.cls|. Weitere Makros als Ergänzung zu \emph{AMS}-\LaTeX{}
+% sind im package |mbmath.sty| enthalten. |hanser.sty| ist so gehalten, dass im Hauptdokument
+% nur noch eine entsprechende class-Datei und die beiden packages |hanser| und |mbmath| geladen werden
+% müssen.
+%
+% \section{Der Initialisierungsteil}
+% Die folgenden Pakete werden geladen:
+% \begin{itemize}
+% \item \emph{inputenc} mit der Option \emph{latin1},
+% \item \emph{makeidx} für die Erstellung eines Index,
+% \item \emph{palatino} für die Postscript Type-1 Fontfamilie Palatino,
+% \item \emph{color} für Graustufen,
+% \item \emph{amsmath, amsfonts, amssymb} und \emph{amscd} für das Layout der mathematischen Inhalte,
+% \item \emph{mbmath} für Erweiterungen von \emph{AMS} \LaTeX{},
+% \item \emph{theorem} für das Layout von theorem-Umgebungen,
+% \item \emph{epsfig, epic} und \emph{eepic} für Grafiken,
+% \item \emph{bibgerm} für das Literaturverzeichnis,
+% \item \emph{eurosym} für das Euro-Symbol,
+% \item \emph{supertabular} für mehrseitige Tabellen, insbesondere für das Symbolverzeichnis,
+% \item \emph{multicol} für das zweispaltige Layout des Index.
+% \item \emph{fancyhdr} für das Layout der Kopf-- und Fußzeilen,
+% \item \emph{caption} für das Layout der Tabellen- und Abbildungsbeschriftungen,
+% \item \emph{float} für das Erzeugen von Gleitobjekten.
+% \end{itemize}
+% Für Einzelheiten und Dokumentationen dieser packages wird auf den \LaTeX-Companion \cite{companion} oder die auf CTAN verfügbare
+% Information verwiesen.
+%
+% \section{Tabellen und Abbildungen}
+% Generell gilt bei Hanser die Regel, dass Tabellenbeschriftungen immer \emph{vor} der Tabelle stehen. Als
+% Font wurde |\small| eingestellt. Das Wort |Tabelle| wird zusätzlich fett gedruckt. Tabelle \ref{tab1} zeigt
+% das zu erwartende Ergebnis. Innerhalb des Textes wird der Font für die Tabellentexte immer auf |\small|
+% gesetzt.
+%
+% \begin{table}[ht]
+% \caption{\label{tab1}Eine Tabellenbeschrifttung}
+% \small
+% \begin{center}
+% \begin{tabular}{ll}\hline
+% Spaltenbeschriftung 1& Spaltenbeschriftung 2\\ \hline
+% eins&zwei\\
+% drei&vier\\ \hline
+% \end{tabular}
+% \end{center}
+% \end{table}
+% Bildbeschriftungen sind bei Hanser \emph{Unterschriften}, das heißt sie stehen unterhalb der Abbildung.
+% Für die Fonts gilt die Bemerkung zu Tabellen entsprechend. Abbildung \ref{mux} ist \cite{mathebuch}
+% entnommen.
+%
+% \begin{figure}[ht]
+% \begin{center}
+% \setlength{\unitlength}{0.5cm}
+% \begin{picture}(5,3.6)(-1.0,-0.3)
+% \put(0,0){\line(1,0){1.75}}
+% \put(1.75,0){\vector(0,1){0.5}}
+% \put(1,0.5){\framebox(1.5,3.0){}}
+% \put(-0.5,-0.1){$s$}
+% \put(2.5,2){\vector(1,0){1.0}}
+% \put(3.6, 1.9){$m$}
+% \put(0,1.5){\vector(1,0){1.0}}
+% \put(0,2.5){\vector(1,0){1.0}}
+% \put(-0.7,1.4){$x_0$}
+% \put(-0.7,2.4){$x_1$}
+% \end{picture}
+% \caption{\label{mux}Eine Multiplexer-Schaltung}
+% \end{center}
+% \end{figure}
+% Der Abstand vor Abschnittsüberschriften ist gegenüber dem \LaTeX-Standard etwas
+% vergrößert worden.
+%
+% Mit |\raggedbottom| wird sichergestellt, dass die Textseiten an der Unterkante
+% flattern und innerhalb der Seite kein vertikaler Raum eingefügt wird.
+% \section{Umgebungen}
+% \subsection{Beweise}
+% \DescribeEnv{beweis}
+% Beweise werden in der |beweis| Umgebung gesetzt. Der Abschluss wird durch ein schwarzes Quadrat
+% gekennzeichnet. Damit führt der Absatz
+%
+% |\begin{beweis}|
+%
+% Hier kommt der mathematische Text,
+% und dann das Ende.
+%
+% |\end{beweis}|
+%
+% zu folgendem Ergebnis:
+%
+% \begin{beweis}
+% Jetzt kommt der mathematische Text, und dann das Ende.
+% \end{beweis}
+%
+% \DescribeEnv{mbeweis}
+% Hört ein Beweis mit einer abgesetzten mathematischen Zeile auf, dann führt die Verwendung von |beweis|
+% zu einer unerwünschten Leerzeile. Dies kann durch die Umgebung |mbeweis| vermieden werden. Sie ist
+% identisch mit |beweis|, allerdings muss das schwarze Quadrat mit |\hfill $\blacksqare$| selbst in der Zeile
+% gesetzt werden.
+%
+% Der Abstand nach dieser Umgebung ist der normale Paragrafenabstand.
+% \subsection{Beispiele}
+% \DescribeEnv{beispiel}
+% Ein einzelnes Beispiel wird in der Umgebung |beispiel| eingeschlossen. Dadurch wird ein Abstand vor und
+% nach dem Beispiel sichergestellt.
+%
+% |\begin{beispiel}|
+%
+% Das ist der Beispieltext zum Beispieltext.
+%
+% |\end{beispiel}|
+%
+% führt zu
+%
+% \begin{beispiel}
+% Das ist der Beispieltext zum Beispieltext.
+% \end{beispiel}
+%
+% \DescribeEnv{beispiele}
+% Mehrere Beispiele werden in einer Listenumgebung aufgeführt. Dabei werden die gleichen Abstände
+% wie in der Umgebung |beispiel| verwendet.
+%
+% \begin{beispiel}
+% |\begin{beispiele}|
+%
+% |\item| Erstes Beispiel.
+%
+% |\item| Zweites Beispiel.
+%
+% |\item| Noch ein Beispiel.
+%
+% |\end{beispiele}|
+% führt zu der Liste
+% \begin{beispiele}
+% \item Erstes Beispiel.
+%
+% \item Zweites Beispiel.
+%
+% \item Noch ein Beispiel.
+%
+% \end{beispiele}
+% \end{beispiel}
+% \section{Makros}
+% \DescribeMacro{\aufgaben}
+% Jedes Kapitel endet mit einer Liste von Aufgaben. Die Überschrift als |\section| wird mit |\aufgaben|
+% erzeugt. Dieses Makro wurde eingeführt, da es zu Beginn des Projekts \cite{mathebuch}
+% nicht klar war, wo die Aufgaben stehen werden.
+%
+% \DescribeMacro{\clearevenpage}
+% Die Hauptdatei eines Buchprojekts enthält Include-Anweisungen für die einzelnen Kapitel. Falls die vorhergehende
+% gerade Seite leer ist, muss sichergestellt werden, dass keine Kopfzeile ausgegeben wird.
+% Dies wird mit
+% \begin{center}|\clearevenpage|\end{center}
+% herbeigeführt.
+%
+% \begin{beispiel}
+% Die Hauptdatei für \cite{mathebuch} hat einen Verlauf wie
+%
+% $\ldots$
+%
+% |%Einleitung|
+%
+% |\include{einleitung}|
+%
+% |\clearevenpage|
+%
+% |%Kapitel Aussagenlogik|
+%
+% |\include{logik}|
+%
+% $\ldots$
+% \end{beispiel}
+%
+% \StopEventually{
+% \begin{thebibliography}{9}
+%   \bibitem{companion} M. ~Goossens, F. ~Mittelbach, und A. ~Samarin:
+%   \emph{Der \LaTeX{} Begleiter}, 2000, Addison-Wesley.
+%   \bibitem{holzmannplate} J. ~Holzmann und J. ~Plate:
+%   \emph{Linux-Server für Intranet und Internet}, 2002, Hanser.
+%   \bibitem{mathebuch} M. ~Brill: \emph{Mathematik für Informatiker},
+%   2001, Hanser.
+% \end{thebibliography}
+% }
+%
+% \clearpage
+% \section{Die Package-Datei}
+% \subsection{Die Kenndaten}
+%    Zunächst identifizieren wir das Paket und dessen aktuelle Version:
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}\relax
+\ProvidesPackage{hanser}[2013/01/28, (MB)]
+\typeout{Hanser package, V1.6, (c) Manfred Brill}
+\ProcessOptions
+%    \end{macrocode}
+% \subsection{Der Initialisierungsteil}
+% Wir laden die folgenden Pakete:
+%    \begin{macrocode}
+\RequirePackage{german}
+\RequirePackage[latin1]{inputenc}
+\RequirePackage{palatino}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{amscd}
+\RequirePackage{mbmath}
+\RequirePackage{epsfig}
+\RequirePackage{theorem}
+\RequirePackage{makeidx}
+\RequirePackage{color}
+\RequirePackage{fancyhdr}
+\RequirePackage{caption}
+\RequirePackage{epic}
+\RequirePackage{eepic}
+\RequirePackage{eurosym}
+\RequirePackage{bibgerm}
+\RequirePackage{multicol}
+\RequirePackage{supertabular}
+\RequirePackage{float}
+\RequirePackage[savemem]{listings}
+%    \end{macrocode}
+%
+% \changes{V1.3}{01.06.2003}{Package float beigefügt}
+% \changes{V1.3}{01.06.2003}{Package listings mit savemem-Option beigefügt}
+% \subsection{Das Seitenlayout}
+
+% Die Bildunterschriften werden einen Punkt kleiner gesetzt auf |\small|. Der Labelfont ist
+% zusätzlich fett gesetzt.  Nach einer Abbildung wird ein Abstand von $0.2$em verwendet.
+%    \begin{macrocode}
+\renewcommand{\captionfont}{\small}
+\renewcommand{\captionlabelfont}{\small \bf}
+\setlength\abovecaptionskip          {0.0mm}
+\setlength\belowcaptionskip          {0.2em}
+%    \end{macrocode}
+% Der Textanteil einer Seite in \LaTeX{} ist durch das Makro |\textfraction| festgelegt. Der Default
+% ist dabei $0.2$. Er wird auf $0.001$ gesetzt.
+%    \begin{macrocode}
+\renewcommand{\textfraction}{0.001}
+%    \end{macrocode}
+%
+% Eine Abbildung muss mindestens einen Anteil |\floatpagefraction| einer Seite haben, um
+% auf eine eigene leere Seite gesetzt zu werden. Der Default dafür ist $0.5$. Er wird hier
+% auf $0.99$ gesetzt.
+%    \begin{macrocode}
+\renewcommand{\floatpagefraction}{.99}
+%    \end{macrocode}
+% \subsection{Umgebungen}
+% \begin{macro}{\section}
+% \changes{v1.2}{20.03.2003}{Abstand angepasst.}
+%    \begin{macrocode}
+\renewcommand\section{\@startsection {section}{1}{0mm}%
+                {6mm}%
+                {2.8mm}%
+                {\normalfont\raggedright\Large\bfseries}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\subsection}
+% \changes{v1.2}{20.03.2003}{Abstand angepasst.}
+%    \begin{macrocode}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                {4mm}
+                {1.3mm}
+                {\normalfont\large\bfseries}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\subsubsection}
+% \changes{v1.1}{20.03.2003}{Abstand angepasst.}
+%    \begin{macrocode}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                {4mm}
+                {0.8mm}
+                {\normalfont\normalsize\bfseries}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{beweis}
+% Beweise werden mit dem Wort |Beweis| begonnen, das fett gesetzt ist. Danach folgt
+% ohne Zeilenumbruch der Text. Das Ende eines Beweises wird mit dem mathematischen Symbol |$\blacksquare$|
+% angezeigt. Das Quadrat wird rechtsbündig gesetzt.
+%
+%    \begin{macrocode}
+\newenvironment{beweis}%
+{\begin{sloppypar}\noindent  \nopagebreak%
+{\textbf{Beweis:}\nopagebreak}\\[0.0em]}%
+{\hfill$\blacksquare$\end{sloppypar}\vspace{2.0ex}}
+%    \end{macrocode}
+% \end{environment}
+% \begin{environment}{mbeweis}
+% Ein Beweis, der mit einer Formel endet, muss selbst |\blacksquare| setzen. Sonst steht die Box
+% alleine, mit einer Leerzeile davor. Der Abstand von $2.0$ex wird nicht
+% gesetzt.
+%   \begin{macrocode}
+\newenvironment{mbeweis}%
+{\begin{sloppypar}\noindent  \nopagebreak%
+{\textbf{Beweis:}\nopagebreak}\\[0.0em]}{\end{sloppypar}}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{beispiel}
+% Ein einzelnes Beispiel wird in der Umgebung |beispiel| gesetzt. Die Umgebung beginnt mit dem
+% kursiv gesetzten Wort \emph{Beispiel} und definiert $0.5$ex Abstände vor und nach der Umgebung.
+% Für Listen von Beispielen gibt es die Umgebung |beispiele|, die intern eine eigene Listenumgebung
+% nutzt.
+% \changes{v1.1}{20.03.2003}{vspace durch vskip ersetzt, um Leerraum am Seitenanfang
+%    zu vermeiden.}
+%    \begin{macrocode}
+\newenvironment{beispiel}%
+{\vskip0.5ex\begin{sloppypar}\noindent \nopagebreak%
+\emph{Beispiel:\nopagebreak}\\[0.5ex]}%
+{\end{sloppypar}\vspace{0.5ex}}
+%    \end{macrocode}
+% \end{environment}
+% \subsection{Listen}
+% Für Aufzählungen wird nicht das Standardsymbol benutzt, sondern eine Box mit der Farbe $50$\% grau.
+% Dabei wird der \emph{AMS\LaTeX} Befehl |\Box| verwendet.  Für die Abmessungen dieser Box
+% ist die \LaTeX-Länge |\Blen| definiert, um sicherzustellen, dass immer die gleiche Größe verwendet wird.
+%    \begin{macrocode}
+\newlength{\Blen}
+% Auf Box-Länge setzen
+\settoheight{\Blen}{$\Box$}
+%    \end{macrocode}
+%
+% Mit dieser Länge wird die |rule|-Box auf die gleiche Höhe wie die \emph{AMS} Box gesetzt und
+% für |\labelitemi| verwendet:
+%
+%    \begin{macrocode}
+\renewcommand{\labelitemi}{\textcolor[gray]{0.5}%
+{\rule{\Blen}{\Blen}}}
+%    \end{macrocode}
+%
+% Die Listenumgebungen wurden insbesondere in ihren Längen
+% angepasst.
+% Der linke Einzug bis zur Stufe $6$ wird gesetzt auf
+%
+%    \begin{macrocode}
+\setlength\leftmargini                 {1.5em}
+\setlength\leftmarginii                {1.75em}
+\setlength\leftmarginiii               {1.5em}
+\setlength\leftmarginiv                {1.25em}
+\setlength\leftmarginv                 {1em}
+\setlength\leftmarginvi                {1em}
+%    \end{macrocode}
+%
+% Die Aufzählungspunkte werden nicht eingerückt:
+%
+%    \begin{macrocode}
+\setlength\labelsep                    {0.5em}
+\setlength\labelwidth                  {\leftmargini}
+\addtolength\labelwidth                {-\labelsep}
+\setlength\topsep                      {0.0ex}
+\setlength\itemsep                     {2pt plus1pt minus1pt}
+\setlength\parsep                      {1pt plus1pt}
+\def\@mklab#1{#1\hfil}
+%    \end{macrocode}
+%
+% \begin{environment}{exList}
+%  Für die Aufzählung mehrerer Beispiele wird intern die Listenumgebung |exList| definiert.
+%    \begin{macrocode}
+\newenvironment{exList}%
+{\begin{list}%
+{\hfill $\Box$}%
+{\parsep0.0ex \itemsep1.5mm%
+\leftmargini1.5em \labelsep0.5em%
+\setlength\labelwidth{\leftmargini}%
+\addtolength\labelwidth{-\labelsep}}}%
+{\end{list}}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{beispiele}
+% Mehrere Beispiele werden in einer Liste aufgeführt. Intern wird die Listen\-umgebung |exList| verwendet.
+% Wie in der Umgebung |beispiel| wird vor und nach der Umgebung ein Abstand von $0.5$ex definiert.
+% \changes{V1.4}{20.01.2004}{Kein Leerraum nach der Umgebung beispiele}
+% Vorher war hier vor begin{sloppypar} \vskip0.5ex
+%    \begin{macrocode}
+\newenvironment{beispiele}%
+{\vspace{0.5ex}\begin{sloppypar}\noindent%
+\nopagebreak \emph{Beispiele:\nopagebreak}%
+\begin{exList}}%
+{\end{exList}\end{sloppypar}\vspace{0.5ex}}
+%    \end{macrocode}
+% \end{environment}
+%
+%  \subsection{Makros}
+%
+% \begin{macro}{\aufgaben}
+% Die Aufgaben stehen zur Zeit am Ende jedes Kapitels.
+%    \begin{macrocode}
+\newcommand{\aufgaben}{ \section{Aufgaben}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\clearevenpage}
+% |\clearevenpage| stellt sicher, dass eine gerade leere Seite vor einem Kapitelanfang
+% gesetzt wird. Es wird |\cleardoublepage| verwendet, und vorher
+% wird sichergestellt, dass keine Kopfzeile ausgegeben wird.
+% Dieses Makro orientiert sich an \cite{companion}, pp. $97$.
+%    \begin{macrocode}
+\newcommand{\clearevenpage}%
+{\newpage{\pagestyle{empty}\cleardoublepage}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Verzeichnisse}
+% Die Einträge in das Stichwortverzeichnis werden wie in \cite{companion} erzeugt. Das Layout des
+% Stichwortverzeichnisses wurde verändert, insbesondere wird die Umgebung |multicol| für ein
+% zweispaltiges Layout verwendet, und mit
+% \begin{center}|\addcontentsline{toc}|\end{center}
+% ein Eintrag in das Inhaltsverzeichnis
+% erzwungen.
+%    \begin{macrocode}
+\makeatletter
+\renewenvironment{theindex}%
+    {\newpage\parskip 0pt\columnseprule 0pt%
+     \chapter*{Stichwortverzeichnis}%
+     \markboth{\small Stichwortverzeichnis}{\small Stichwortverzeichnis}%
+     \addcontentsline{toc}{chapter}{Stichwortverzeichnis}%
+     \thispagestyle{plain}%
+     \let\item\@idxitem%
+     \begin{multicols}{2}}
+    {\end{multicols}}
+\renewcommand{\@idxitem}{\par\hangindent 20\p@}
+\renewcommand{\subitem}{\par\hangindent 20\p@ \hspace*{10\p@}}
+\renewcommand{\subsubitem}{\par\hangindent 20\p@ \hspace*{20\p@}}
+\makeatother
+%    \end{macrocode}
+%
+% \changes{V1.3}{01.06.2003}{Algorithmenliste herausgenommen}
+% \Finale
+\endinput

@@ -1,0 +1,213 @@
+% -----------------------------------------------------------------------------
+%  Save-Boxes für Folien, in denen Koordinatensysteme und Karo-Muster
+%  verwendet werden sollen.
+%
+%  Autor:   MB
+%  History: 19.02.2009 Erstellt aus leeren Folien "Transformationen"
+%           06.11.2012 Polarplots hinzugefügt
+%           26.01.2016 in texmf-local kopiert.
+% -----------------------------------------------------------------------------
+\newsavebox{\gridLines}
+\savebox{\gridLines}{%
+\begin{picture}(8.5,5.5)(-4.25,-2.2)
+%\thicklines
+\color[gray]{0.8}
+\multiput(-4, -2)(0, 0.5){6}{\line(1,0){8.0}}
+\multiput(-4, 0.5)(0, 0.5){6}{\line(1,0){8.0}}
+\multiput(-4, -2)(0.5, 0){17}{\line(0,1){5.0}}
+\color[gray]{0}
+\end{picture}}% Ende \gridLines
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\centeredCS}
+\savebox{\centeredCS}{%
+\begin{picture}(8.5,5.5)(-4.25,-2.2)
+%\thicklines
+\color[gray]{0.8}
+\multiput(-4, -2)(0, 0.5){6}{\line(1,0){8.0}}
+\multiput(-4, 0.5)(0, 0.5){6}{\line(1,0){8.0}}
+\multiput(-4, -2)(0.5, 0){8}{\line(0,1){5.0}}
+\multiput(0.5, -2)(0.5, 0){8}{\line(0,1){5.0}}
+\color[gray]{0}
+\put(0,-2.2){\vector(0,1){5.5}}
+\put(-4.25,0){\vector(1,0){8.5}}
+\end{picture}}% Ende \centeredCS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\positiveYCS}
+\savebox{\positiveYCS}{%
+\begin{picture}(8.5,4.5)(-4.25,-0.2)
+%\thicklines
+\color[gray]{0.8}
+\multiput(-4, 0.5)(0, 0.5){8}{\line(1,0){8.0}}
+\multiput(-4, 0.0)(0.5, 0){8}{\line(0,1){4.0}}
+\multiput(0.5, 0.0)(0.5, 0){8}{\line(0,1){4.0}}
+\color[gray]{0}
+\put(0,-0.2){\vector(0,1){4.5}}
+\put(-4.25,0){\vector(1,0){8.5}}
+\end{picture}}% Ende \positiveYCS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\firstquadrantCSsmall}
+\savebox{\firstquadrantCSsmall}{%
+\begin{picture}(8.6,5.5)(-0.2,-0.2)
+\color[gray]{0.8}
+\multiput(0, 0.25)(0, 0.25){20}{\line(1,0){8.0}}
+\multiput(0.25, 0)(0.25, 0){32}{\line(0,1){5.0}}
+\color[gray]{0}
+\put(0,-0.2){\vector(0,1){5.5}}
+\put(-0.2,0){\vector(1,0){8.6}}
+\end{picture}}% Ende \firstquadrantCSsmall
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\firstquadrantCS}
+\savebox{\firstquadrantCS}{%
+\begin{picture}(8.6,5.5)(-0.2,-0.2)
+\color[gray]{0.8}
+\multiput(0, 0.5)(0, 0.5){10}{\line(1,0){8.0}}
+\multiput(0.5, 0)(0.5, 0){16}{\line(0,1){5.0}}
+\color[gray]{0}
+\put(0,-0.2){\vector(0,1){5.5}}
+\put(-0.2,0){\vector(1,0){8.6}}
+\end{picture}}% Ende \firstquadrantCS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\axis}
+\savebox{\axis}{%
+\begin{picture}(8.5,5.5)(-4.2,-2.75)
+%\thicklines
+\color[gray]{0}
+\put(0,-2.75){\vector(0,1){5.5}}
+\put(-4.25,0){\vector(1,0){8.5}}
+\end{picture}}% Ende \axis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\axisWithNumbers}
+\savebox{\axisWithNumbers}{%
+\begin{picture}(8.5,5.5)(-4.2,-2.75)
+%\thicklines
+\color[gray]{0}
+\put(0,-2.75){\vector(0,1){5.5}}
+\put(-4.25,0){\vector(1,0){8.5}}
+% Beschriftung
+\multiput(1, -0.1)(1,0){3}{\line(0,1){0.2}}
+\multiput(-3, -0.1)(1,0){3}{\line(0,1){0.2}}
+\multiput(-0.1, 1)(0,1){2}{\line(1,0){0.2}}
+\multiput(-0.1, -2)(0,1){2}{\line(1,0){0.2}}
+%
+\small
+\put(0.95, -0.4){$1$}
+\put(-0.4, 0.95){$1$}
+\end{picture}}% Ende \axisWithNumbers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\shortAxis}
+\savebox{\shortAxis}{%
+\begin{picture}(3.4,3.4)(-1.7,-1.7)
+%\thicklines
+\color[gray]{0}
+\put(0,-1.7){\vector(0,1){3.4}}
+\put(-1.7,0){\vector(1,0){3.4}}
+\end{picture}}% Ende \shortAxis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\shortAxisWithNumbers}
+\savebox{\shortAxisWithNumbers}{%
+\begin{picture}(3.4,3.4)(-1.7,-1.7)
+%\thicklines
+\color[gray]{0}
+\put(0,-1.7){\vector(0,1){3.4}}
+\put(-1.7,0){\vector(1,0){3.4}}
+% Beschriftung
+\put(1, -0.1){\line(0,1){0.2}}
+\put(-1, -0.1){\line(0,1){0.2}}
+\put(-0.1, 1){\line(1,0){0.2}}
+\put(-0.1, -1){\line(1,0){0.2}}
+%
+\small
+\put(0.95, -0.4){$1$}
+\put(-0.4, 0.95){$1$}
+\end{picture}}% Ende \shortAxisWithNumbers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\positiveAxis}
+\savebox{\positiveAxis}{%
+\begin{picture}(5.5,5.5)(-0.2,-0.2)
+\put(0,-0.2){\vector(0,1){5.5}}
+\put(-0.2,0){\vector(1,0){5.5}}
+\end{picture}}% Ende \positiveAxis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\shortPositiveAxis}
+\savebox{\shortPositiveAxis}{%
+\begin{picture}(3.5,3.5)(-0.2,-0.2)
+\put(0,-0.2){\vector(0,1){3.5}}
+\put(-0.2,0){\vector(1,0){3.5}}
+\end{picture}}% Ende \shortPositiveAxis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\positiveAxisWithNumbers}
+\savebox{\positiveAxisWithNumbers}{%
+\begin{picture}(5.5,5.5)(-0.2,-0.2)
+\put(0,-0.2){\vector(0,1){5.5}}
+\put(-0.2,0){\vector(1,0){5.5}}
+% Beschriftung
+\multiput(1, -0.1)(1,0){4}{\line(0,1){0.2}}
+\multiput(-0.1, 1)(0,1){4}{\line(1,0){0.2}}
+%
+\small
+\put(0.95, -0.4){$1$}
+\put(-0.4, 0.95){$1$}
+\end{picture}}% Ende \positiveAxisWithNumbers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\polarCircles}
+\savebox{\polarCircles}{%
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+%\thicklines
+\color[gray]{0.8}
+% Argument bei circle ist der Durchmesser!
+\put(0,0){\circle{2.0}}
+\put(0,0){\circle{4.0}}
+\put(0,0){\circle{6.0}}
+\color[gray]{0}
+\end{picture}}% Ende \polarCircles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\polarCirclesFine}
+\savebox{\polarCirclesFine}{%
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+%\thicklines
+\color[gray]{0.8}
+% Argument bei circle ist der Durchmesser!
+\put(0,0){\circle{1.0}}
+\put(0,0){\circle{2.0}}
+\put(0,0){\circle{3.0}}
+\put(0,0){\circle{4.0}}
+\put(0,0){\circle{5.0}}
+\put(0,0){\circle{6.0}}
+\put(0,0){\circle{7.0}}
+\color[gray]{0}
+\end{picture}}% Ende \polarCirclesFine
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\polarAxis}
+\savebox{\polarAxis}{%
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-2.12,-2.12){\line(1,1){4.24}}
+\put(2.12, -2.12){\line(-1, 1){4.24}}
+\thicklines % damit die "normalen" Striche auch gleich dick sind ...
+\put(-3,0){\line(1,0){6.0}}
+\put(0,-3){\line(0,1){6.0}}
+\end{picture}}% Ende \polarAxis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\polarAxisFine}
+\savebox{\polarAxisFine}{%
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-2.47,-2.47){\line(1,1){4.94}}
+\put(2.47, -2.47){\line(-1, 1){4.94}}
+\thicklines % damit die "normalen" Striche auch gleich dick sind ...
+\put(-3.5,0){\line(1,0){7.0}}
+\put(0,-3.5){\line(0,1){7.0}}
+\end{picture}}% Ende \polarAxisFine
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newsavebox{\polarPlot}
+\savebox{\polarPlot}{%
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25,-3.25){\usebox{\polarAxis}}
+\put(-3.25,-3.25){\usebox{\polarCircles}}
+\end{picture}}% Ende \polarPlot
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% \newsavebox{\polarPlot}
+\newsavebox{\polarPlotFine}
+\savebox{\polarPlotFine}{%
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25,-3.25){\usebox{\polarAxisFine}}
+\put(-3.25,-3.25){\usebox{\polarCirclesFine}}
+\end{picture}}% Ende \polarPlotFine
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

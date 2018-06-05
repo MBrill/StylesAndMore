@@ -1,0 +1,425 @@
+% Dokumentation der Makros für Koordinatensysteme
+% Die Dokumentation wird mit Hilfe von beamer als
+% Folien erstellt!
+\documentclass{beamer}
+\input{header}
+\input{slidesheader}
+
+\title{Makros für Koordinatensysteme}
+\subtitle[Koordinatensystem]{Dokumentation der Datei coordinateSystems.tex}
+
+\hypersetup{
+pdfauthor = {Manfred Brill},
+pdfdisplaydoctitle = true,
+pdfsubject = {Vorlesungsfolien},
+pdfkeywords = {Koordinatensysteme und Gitter in \LaTeX{}-Folien},
+pdfpagelayout = {SinglePage}
+}
+% Keine Fragefolie ...
+\setbeameroption{show notes}
+\setboolean{solutions}{false}
+%
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\note{
+\noteshead{Information}
+
+\begin{description}
+\item[Thema:]  Dokumentation der Makros für Koordinatensysteme
+\item[Dateiname:]coordinateSystemsDoc.tex
+\end{description}
+
+Dokumentation der Möglichkeiten in coordinateSystems.tex für die Erzeugung
+von kartesischen und anderen Koordinatensystemen in Form von Beamer-Folien.
+
+Verwendet wird die Version der Makros, die im Verzeichnis \lstinline$texmf-local$
+installiert ist!
+
+Es wird immer zuerst das Koordinatensystem und in der folgenden Folie der \LaTeX{}-Code
+gezeigt, der die Abbildung produziert hat.
+}
+
+\section{gridLines}
+\begin{frame}{gridLines}
+\begin{center}
+\begin{picture}(8.3,5.5)(-4,-2.2)
+\put(-4,-2.0){\usebox{\gridLines}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{gridLines}
+\begin{block}{gridLines}
+Ein Gitter mit einer Länge von $8.5$ und einer Höhe von $5.5$. Linke untere Ecke
+bei $(-4.25, -2.2)$.
+
+Der Abstand der Linien beträgt $0.5$.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(8.3,5.5)(-4,-2.2)
+\put(-4,-2.0){\usebox{\gridLines}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{centeredCS}
+\begin{frame}{centeredCS}
+\begin{center}
+\begin{picture}(8.5,5.5)(-4,-2.2)
+\put(-4.25,-2.2){\usebox{\centeredCS}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{centeredCS}
+\begin{block}{centeredCS}
+Ein symmetrisches Koordinatensystem mit Gitter.
+Linke untere Ecke bei (-4.25, -2.2); Länge ist 8.5, Höhe ist 5.5.
+
+Der Abstand der Gitterlinien beträgt $0.5$.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(8.5,5.5)(-4,-2.2)
+\put(-4.25,-2.2){\usebox{\centeredCS}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{positiveYCS}
+\begin{frame}[fragile]{positiveYCS}
+\begin{center}
+\begin{picture}(8.5,4.5)(-4,-0.2)
+\put(-4.25,-0.2){\usebox{\positiveYCS}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{positiveYCS}
+\begin{block}{positiveYCS}
+Ein symmetrisches Koordinatensystem mit Gitter.
+Linke untere Ecke bei (-4.25, -0.2); Länge ist 8.3, Höhe ist 4.5.
+
+Der Abstand der Gitterlinien beträgt $0.5$.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(8.3,4.5)(-4,-0.2)
+\put(-4.25,-0.2){\usebox{\positiveYCS}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{firstquadrantCS}
+\begin{frame}{firstquadrantCS}
+\begin{center}
+\begin{picture}(8.6,5.5)(-0.1,-0.2)
+\put(-0.2,-0.2){\usebox{\firstquadrantCS}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{firstquadrantCS}
+\begin{block}{firstquadrantCS}
+Ein Koordinatensystem im ersten Quadranten mit Gitter.
+Linke untere Ecke bei (-0.2, -0.2); Länge ist 8.6, Höhe ist 5.5.
+
+Der Abstand der Gitterlinien beträgt $0.25$.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(8.6,5.5)(-0.2,-0.2)
+\put(-0.2,-0.2){\usebox{\firstquadrantCS}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{firstquadrantCSsmall}
+\begin{frame}[fragile]{firstquadrantCSsmall}
+\begin{center}
+\begin{picture}(8.6,5.5)(-0.2,-0.2)
+\put(-0.2,-0.2){\usebox{\firstquadrantCSsmall}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{firstquadrantCSsmall}
+\begin{block}{firstquadrantCSsmall}
+Ein Koordinatensystem im ersten Quadranten mit Gitter.
+Linke untere Ecke bei (-0.1, -0.2); Länge ist 8.6, Höhe ist 5.5.
+
+Der Abstand der Gitterlinien beträgt $0.25$.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(8.6,5.5)(-0.1,-0.2)
+\put(-0.2,-0.2){\usebox{\firstquadrantCSsmall}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{axis}
+\begin{frame}[fragile]{axis}
+\begin{center}
+\begin{picture}(8.3,5.2)(-4,-2.2)
+\put(-4,-2.2){\usebox{\axis}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{axis}
+\begin{block}{axis}
+Ein symmetrisches Koordinatensystem ohne Gitter.
+Linke untere Ecke bei (-4, -2.2); Länge ist 8.3, Höhe ist 5.5.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(8.3,5.2)(-4,-2.2)
+\put(-4,-2.2){\usebox{\axis}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{axisWithNumbers}
+\begin{frame}[fragile]{axisWithNumbers}
+\begin{center}
+\begin{picture}(8.3,5.2)(-4,-2.2)
+\put(-4,-2.2){\usebox{\axisWithNumbers}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{axisWithNumbers}
+\begin{block}{axisWithNumbers}
+Ein symmetrisches Koordinatensystem ohne Gitter.
+Linke untere Ecke bei (-4, -2.2); Länge ist 8.3, Höhe ist 5.5.
+
+Die Achsen haben eine Markierung und die $1$ ist beschriftet.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(8.3,5.2)(-4,-2.2)
+\put(-4,-2.2){\usebox{\axisWithNumbers}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{shortAxis}
+\begin{frame}[fragile]{shortAxis}
+\begin{center}
+\begin{picture}(3.4,3.4)(-1.7,-1.7)
+\put(-1.7,-1.7){\usebox{\shortAxis}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{shortAxis}
+\begin{block}{shortAxis}
+Ein symmetrisches Koordinatensystem ohne Gitter.
+Linke untere Ecke bei (-1.7,-1.7); Länge ist 3.4, Höhe ist 3.4.
+
+Kein Gitter.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(3.4,3.4)(-1.7,-1.7)
+\put(-1.7,-1.7){\usebox{\shortAxis}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{shortPositiveAxis}
+\begin{frame}[fragile]{shortPositiveAxis}
+\begin{center}
+\begin{picture}(3.5,3.5)(-0.2,-0.2)
+\put(-0.2,-0.2){\usebox{\shortPositiveAxis}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{shortPositiveAxis}
+\begin{block}{shortPositiveAxis}
+Ein symmetrisches Koordinatensystem ohne Gitter.
+Linke untere Ecke bei (-0.2,-0.2); Länge ist 3.4, Höhe ist 3.4.
+
+Kein Gitter.
+\end{block}
+\begin{lstlisting}{}
+\begin{picture}(3.5,3.5)(-0.2,-0.2)
+\put(-0.2,-0.2){\usebox{\shortPositiveAxis}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{shortaxisWithNumbers}
+\begin{frame}[fragile]{shortaxisWithNumbers}
+\begin{center}
+\begin{picture}(3.4,3.4)(-1.7,-1.7)
+\put(-1.7,-1.7){\usebox{\shortAxisWithNumbers}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{shortAxisWithNumbers}
+\begin{block}{shortaxisWithNumbers}
+Ein symmetrisches Koordinatensystem ohne Gitter.
+Linke untere Ecke bei (-1.7,-1.7); Länge ist 3.4, Höhe ist 3.4.
+
+Die Achsen haben eine Markierung und die $1$ ist beschriftet.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(3.4,3.4)(-1.7,-1.7)
+\put(-1.7,-1.7){\usebox{\shortAxisWithNumbers}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{positiveAxis}
+\begin{frame}[fragile]{positiveAxis}
+\begin{center}
+\begin{picture}(5.5,5.5)(-0.2,-0.2)
+\put(-0.2,-0.2){\usebox{\positiveAxis}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{positiveAxis}
+\begin{block}{positiveAxis}
+Ein Koordinatensystem im ersten Quadranten.
+Linke untere Ecke bei (-0.1, -0.2); Länge ist 5.5, Höhe ist 5.5.
+
+Kein Gitter.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(5.5,5.5)(-0.2,-0.2)
+\put(-0.2,-0.2){\usebox{\positiveAxis}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{positiveAxisWithNumbers}
+\begin{frame}[fragile]{positiveAxisWithNumbers}
+\begin{center}
+\begin{picture}(5.5,5.5)(-0.2,-0.2)
+\put(-0.2,-0.2){\usebox{\positiveAxisWithNumbers}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{positiveAxisWithNumbers}
+\begin{block}{positiveAxisWithNumbers}
+Ein Koordinatensystem im ersten Quadranten.
+Linke untere Ecke bei $(-0.1, -0.2)$; Länge ist $5.5$, Höhe ist $5.5$.
+
+Kein Gitter. Die Achsen haben eine Markierung und die $1$ ist beschriftet.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(5.5,5.5)(-0.2,-0.2)
+\put(-0.2,-0.2){\usebox{\positiveAxisWithNumbers}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\section{Polar Plots}
+\begin{frame}{polarCircles}
+\begin{center}
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25,-3.25){\usebox{\polarCircles}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{polarCircles}
+\begin{block}{polarCircles}
+Konzentrische Kreise;
+Linke untere Ecke bei $(-3.25,-3.25)$; Länge ist $6.5$, Höhe ist $6.5$.
+
+Abstand der Kreise ist $1$.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25,-3.25){\usebox{\polarCircles}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{polarCirclesFine}
+\begin{center}
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25,-3.25){\usebox{\polarCirclesFine}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{polarCirclesFine}
+\begin{block}{polarCircles}
+Konzentrische Kreise;
+Linke untere Ecke bei $(-3.25,-3.25)$; Länge ist $6.5$, Höhe ist $6.5$.
+
+Abstand der Kreise ist $0.5$.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25,-3.25){\usebox{\polarCirclesFine}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{polarAxis}
+\begin{center}
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25,-3.25){\usebox{\polarAxis}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{polarAxis}
+\begin{block}{polarAxis}
+Linien für $0$, $45$, $90$ und $135$ Grad.
+Linke untere Ecke bei $(-3.25,-3.25)$; Länge ist $6.5$, Höhe ist $6.5$.
+
+Die Enden der Linien liegen auf dem Kreis um den Ursprung mit Radius $3$.
+\end{block}
+
+\begin{lstlisting}{}
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25,-3.25){\usebox{\polarAxis}}
+\end{picture}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{polarAxisFine}
+\begin{center}
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25,-3.25){\usebox{\polarAxisFine}}
+\end{picture}
+\end{center}
+
+Da müssen wir noch für $22,5^\circ$ die Zahlen korrigieren!
+\end{frame}
+
+\begin{frame}{polarPlot}
+\begin{center}
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25, -3.25){\usebox{\polarPlot}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{polarPlotFine}
+\begin{center}
+\begin{picture}(6.5,6.5)(-3.25,-3.25)
+\put(-3.25, -3.25){\usebox{\polarPlotFine}}
+\end{picture}
+\end{center}
+\end{frame}
+\end{document}
