@@ -1,6 +1,5 @@
 *.prj
 /installs/
-
 *.aux
 *.glo
 *.idx
