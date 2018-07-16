@@ -1,6 +1,7 @@
-% \CheckSum{135}
+% \CheckSum{136}
 % \changes{v1.0}{28. Januar 2013}{Erstellt aus hanser.sty}
-% \changes{v2.0}{28. Juli 2017}{packages caption und fancyhf entfernt}
+% \changes{v2.0}{28. Juli 2017}{Ppackages caption und fancyhf entfernt}
+% \changes{v3.0}{16. Juli 2018}{Codierung mit inputenc auf ansinew gesetzt}
 %    \IndexPrologue
 %      {\section*{Index}
 %          Unterstrichene Seitenzahlen
@@ -33,7 +34,8 @@
 % Die folgenden Pakete werden geladen:
 % \begin{itemize}
 % \item \emph{ngerman} für die Verwendung der deutschen Sprache
-% \item \emph{inputenc} mit der Option \emph{latin1},
+% \item \emph{inputenc} mit der Option \emph{ansinew},
+% \item \emph{fonttenc} mit der Option \emph{T1},
 % \item \emph{makeidx} für die Erstellung eines Index,
 % \item \emph{palatino} für die Postscript Type-1 Fontfamilie Palatino,
 % \item \emph{color} für Graustufen und Farben,
@@ -51,6 +53,17 @@
 % Für Einzelheiten und Dokumentationen dieser Packages wird auf den
 %\LaTeX-Companion \cite{companion} oder die auf CTAN verfügbare
 % Information verwiesen.
+%
+% Ein Hinweis für die beiden Pakete inputenc und fontenc. Diese beiden Pakete werden
+% geladen, um deutsche Umlaute oder das ß korrekt  und ohne weitere Codes einzugeben.
+% Es gibt Quellen im WWW (z.B. https://www.namsu.de/Extra/befehle/Umlaute.html), die
+% darauf hinweisen, dass die übergebene Option an inputenc vom Betriebssystem
+% abhängt. Dort findet man die Angaben
+% \begin{enumerate}
+% \item Option ansinew für Windows (dies ist die verwendete Einstellung)
+% \item Option latin1 für Linux,
+% \item Option applemac for OSX.
+% \end{enumerate}
 %
 % \section{Tabellen und Abbildungen}
 % Tabellenbeschriftungen stehen immer \emph{vor} der Tabelle.
@@ -127,7 +140,8 @@
 % Wir laden die folgenden Pakete:
 %    \begin{macrocode}
 \RequirePackage{ngerman}
-\RequirePackage[latin1]{inputenc}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
 \RequirePackage{palatino}
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}

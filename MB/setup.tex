@@ -1,0 +1,267 @@
+% ---------------------------------------------------------------------
+% Vorlage für Dokumente, die auf report oder book basieren
+% Voraussetzung: spezifische Variable wie \imagePath
+% oder \theSemester sind bereits definiert.
+% ---------------------------------------------------------------------
+\typeout{Einstellung für Texte auf report/book-Basis}
+\typeout{     (C) Manfred Brill}
+\typeout{     Version 1.1 Juli 2018}
+\usepackage{mb}
+\usepackage{mbmath}
+\usepackage{textcomp}
+% Array-Paket für mehr Kontrolle der Tabellen
+\usepackage{array}
+% ifthen für Ein- und Ausblenden der Lösungen.
+\usepackage{ifthen}
+% Paket für Postscript Pi-Fonts
+\usepackage{pifont}
+% PSTricks
+\usepackage{pstricks}
+% Paket für das einfache Umdefinieren von Listen
+\usepackage[shortlabels]{enumitem}
+% Alphabetischer Index
+\usepackage{imakeidx}
+\makeindex[title=Index,columns=2,options=-s myGerman, intoc=true]
+% Kopf- und Fusszeilen mit KoMaScript
+\usepackage[automark, headsepline]{scrlayer-scrpage}
+%
+\pagestyle{scrheadings}
+\clearscrheadfoot
+% Kopfzeile definieren
+\ihead{\headmark}
+\ohead[]{\pagemark}
+\chead{}
+\pagestyle{scrheadings}
+% Zentral definierte Variablen
+% Abkürzungen, Namen, ...
+\input{variablen}
+% Farben
+\input{colors}
+% Koordinatensysteme und andere Makros
+\input{coordinateSystems}
+%
+\raggedbottom
+\setlength{\parskip}{2.0ex}
+\setlength{\parindent}{0.0cm}
+% Verhindert Schusterjungen und Hurenkinder
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+%
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+% Abstände zwischen Caption und Bild/Tabelle
+\setlength\abovecaptionskip          {0.4em}
+\setlength\belowcaptionskip          {0.2em}
+% Anteil der Grafiken auf einer Seite sehr hoch setzen
+% Damit wird verhindert, dass bei vielen Abbildungen im Text die
+% Abbildungen ans Ende des PDF geschoben werden.
+\renewcommand{\topfraction}{0.99}
+\renewcommand{\textfraction}{0.0001}
+% Literatur-Stil
+\bibliographystyle{geralpha}
+% Font und Fettdruck für Tabelle/Abbildung (neu, jetzt mit komascript!
+% MB, 28/07/2017
+\addtokomafont{caption}{\small}
+\setkomafont{captionlabel}{\bfseries}
+% Einstellung für Gliederungsüberschriften mit KoMaScript
+\RedeclareSectionCommands[
+  beforeskip=-.5\baselineskip,
+  afterskip=.25\baselineskip
+]{section,subsection,subsubsection}
+%
+% listings-Paket für Quelltexte
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%   Hintergrundfarbe von Quellcode
+\definecolor{codecolor}{rgb}{0.85,0.85,0.85}
+\lstloadlanguages{Java}
+\lstset{language=Java}
+\definecolor{lstback}{gray}{0.85}
+\lstset{backgroundcolor=\color{lstback}}
+\lstset{extendedchars=true}
+\lstset{showstringspaces = false}
+\lstset{basicstyle = \ttfamily \small}
+% Kommando für den Flattersatz bei nebeneinander liegenden Abbildungen
+\newcommand{\flatter}{\setlength{\rightskip}{0pt plus 2cm}}
+% Anteil der Grafiken höher auf jeder Seite!
+\renewcommand{\textfraction}{0.001}
+%
+% Schritte in einer Aufzählung, dafür einen Zähler (schritt) und die Umgebung
+% schritte definieren.
+\newcounter{schritt}
+\newenvironment{schritte}%
+{\begin{list}%
+{Schritt \arabic{schritt}:}%
+{\usecounter{schritt}\settowidth{\labelwidth}{Schritt 1:}%
+\setlength{\leftmargin}{\labelwidth}\addtolength\leftmargin{\labelsep}%
+\parsep0.0ex\partopsep-0.3ex\itemsep2pt\topsep0.0ex}}{\end{list}}
+%   Taste
+\newcommand{\taste}[1]{\small\textsf{#1}\normalsize}
+%   geschützte Namen (NICHT in chapter, section usw. verwenden!)
+\newcommand{\name}[1]{\textsl{#1}}
+%   Fachbegriffe/Erklärung von Abkürzungen
+\newcommand{\begriff}[1]{\index{#1}\textit{#1}}
+%
+\newcommand{\algorithmus}[2]{%
+\vspace{4pt}\fboxsep 1mm \framebox[140mm]
+{\parbox{135mm}{{\textbf{#1}}\vspace{2pt}#2}}\vspace{4pt}}
+%
+%   Dateinamen/Pfade
+\newcommand{\datei}[1]{\texttt{#1}\normalsize}
+%   Tip (in einer Box)
+\newcommand{\tip}[1]{%
+\vspace{4pt}\fboxsep 1mm \framebox[140mm]
+{\parbox{135mm}{{\textbf{Tipp}}:\\ #1}}\vspace{4pt}}
+%
+%   Reflektion (in einer Box)
+\newcommand{\reflection}[1]{
+\begin{quote}\fboxsep 3mm\framebox[140mm][c]{\parbox{130mm}{{\textbf Reflektion:\\}#1}}\end{quote}}
+%
+% Angabe im Begleittext, was die Studierenden lesen sollen (in einer Box)
+\newcommand{\lesen}[1]{%
+\begin{minipage}[c]{2.5cm}
+\includegraphics[width=0.8\textwidth]{\generalImagePath/Misc/buchicon}%
+\end{minipage}%
+\begin{minipage}[t]{12cm}%
+#1%
+\end{minipage}}
+%
+%
+%   Angabe im Begleittext, was die Studierenden lesen sollen (in einer Box)
+%   Dieses Icon wird für Angaben verwendet, die nicht verpflichtend zu lesen
+%   sind. Also "nice-to-have", "wenn sie noch Zeit haben".
+%   Im Gegensatz zu lesen, was einen verpflichtenden Charakter hat.
+\newcommand{\vertiefen}[1]{%
+\begin{minipage}[b]{2.5cm}
+\includegraphics[width=\textwidth]{\generalImagePath/Misc/reading}%
+\end{minipage}%
+\begin{minipage}[b]{12cm}%
+#1%
+\end{minipage}}
+%
+% Ein Counter für die Kontrollfragen. Wir zählen diesen Counter selbst hoch
+% mit einem entsprechenden Kommando, das wir in \item verwenden.
+\newcounter{kontrollCounter}[chapter]
+\newcommand{\kontroll}[0]{
+    \refstepcounter{kontrollCounter}
+    % Kapitelnummer.Zähler für das Item
+    \arabic{chapter}.\arabic{kontrollCounter}
+    % Das Label ist bis auf weiteres "kontrolle:Kapitelnummer:kontrollcounter
+    \label{kontrolle:\arabic{chapter}:\arabic{kontrollCounter}}
+}
+% Definition der Kontrollfrage; die Nummerierung
+% für das ganze erhalten wir mit Hilfe von \item{\kontroll}.
+\newcommand{\kontrollfrage}[1]{%
+\begin{minipage}[c]{1.85cm}
+\huge{\ding{46}}%
+\end{minipage}%
+\begin{minipage}[t]{12cm}%
+\begin{itemize}#1%
+\end{itemize}%
+\end{minipage}}
+% Schalter für das ein- und ausblenden der Musterlösungen
+\newboolean{solutions}
+%
+% Dateinamen
+\newcommand{\filename}[1]{%
+\ifthenelse{\boolean{solutions}}{\framebox[50mm]{\parbox{40mm}{\textbf #1}}\vspace{6pt}}{}}
+%
+% Theorem-Umgebung für die Übungsaufgaben
+% Wichtig: alle Attribute einstellen, dann die neue
+% theorem-Umgebung mit newtheorem definieren!
+% Oder, wie hier, durch das Einschließen in {}
+%
+{
+% Zeilenumbruch bei Aufgaben-Überschrift
+\theoremstyle{break}
+% "Normaler" Font im Text
+\theorembodyfont{\normalfont}
+% Kapitelweise neu nummerieren
+\newtheorem{auftitle}{Aufgabe}[chapter]
+}
+%
+% Definition für die Kennzeichnung der Übungsaufgaben
+%
+\newcommand{\uebung}{%
+\vspace*{11pt}%
+\begin{tabular}{@{}p{2.25cm}@{}p{11.7cm}}%
+\huge{\ding{45}}&\Large{\textbf{Übungsaufgaben}}%
+\end{tabular}%
+}
+% Ein Counter für die Übungsaufgaben. Wir zählen diesen Counter selbst hoch
+% mit einem entsprechenden Kommando, das wir in \item verwenden.
+\newcounter{aufgabenCounter}[chapter]
+\newcommand{\auf}[0]{
+    \refstepcounter{aufgabenCounter}
+    % Kapitelnummer.Zähler für das Item
+    \arabic{chapter}.\arabic{aufgabenCounter}
+}
+% Der Text der Aufgaben steht im Ordner ../Uebungsaufgaben/aufgaben/aufgabenstellungen.
+% Die Struktur ist so wie in den Mathematikvorlesungen.
+
+% Umgebungen für Satz, Definition, Beweis, ... . Wir orientieren uns am Mathematik-Buch,
+% dort gab es diese Umgebungen auch schon. Im Grunde sind das einfach
+% wieder theorem-Umgebungen.
+{
+\setlength\theorempreskipamount{5pt plus 3pt minus 1.5pt}
+\setlength\theorempostskipamount{5pt plus 1pt minus 1pt}
+% "Normaler" Font im Text
+\theorembodyfont{\normalfont}
+% Die Namen sind so gewählt, dass sie kompatibel zu Beamer sind; dann können
+% wir den Text aus Folien kopieren und umgekehrt auch.
+\newtheorem{Satz}{Satz}[chapter]
+\newtheorem{Fakt}{Fakt}[chapter]
+\newtheorem{Definition}{Definition}[chapter]
+}
+% Text mit Pfad, der vorher im Dokument definiert ist.
+\newcommand{\aufgabentext}[1]{\renewcommand{\labelenumi}{\alph{enumi})}\auftitle\label{#1}\input{\exercisePath/aufgaben/aufgabenstellungen/#1}}
+% Funktion für die Lösungs-Hinweise für eine Aufgabe. Der Text
+% steht analog zu den Übungsaufgaben im Ordner aufgaben/loesungen.
+\newcommand{\hinweistext}[1]{\renewcommand{\labelenumi}{\alph{enumi})}\input{\exercisePath/aufgaben/loesungen/#1}}
+% Und jetzt die Funktionen, die wir im Text aufrufen
+\newcommand{\aufgabe}[1]{\aufgabentext{#1}}
+% Lösungshinweise im Anhang
+\newcommand{\hinweis}[1]{\subsubsection*{Aufgabe \ref{#1}} \hinweistext{#1}}
+%
+% Marginalien
+%
+\newcommand{\randnotiz}[1]{\marginpar{\small{\textbf{#1}}}}
+%
+% Gabelschlüssel als Marginalie und Hinweis auf Praxisbezug
+\newcommand{\praxisbezug}[0]{\randnotiz{\includegraphics[width=1cm]{\generalImagePath/Misc/gabel}}}
+%
+% Smile Face
+\newcommand{\smileface}[0]{\randnotiz{\includegraphics[width=1cm]{\generalImagePath/Misc/Face-smile}}}
+%
+% alert aus beamer-Folien zu emph machen
+\newcommand{\alert}[1]{\emph{#1}}
+%
+% Das obligatorische Argument ist der Titel des Dokuments.
+% Als Default wird software-project.eps als Titelbild
+% verwendet. Mit Hilfe eines optionalen Arguments kann
+% ein anderes Bild verwendet werden!
+% Beispiel: \titelseite[\imagePath{}/Misc/ameise]{Das Liebesleben der Ameisen}
+%
+\newcommand{\titelseite}[2][\titleImage{}]{%
+%% Titelseite
+\pagenumbering{roman}%
+\thispagestyle{empty}%
+\begin{titlepage}%
+% Volle Zeilenbreite verwenden!
+\centering%
+\vspace*{0.5cm}%
+
+\Huge{\theClass{}}\\\vspace*{0.5cm}%
+
+\Huge{#2}%
+
+\vspace*{3.0cm}%
+\includegraphics[height=6cm]{#1}%
+
+\vspace*{3.0cm}%
+\Large{\theSchool{}}%
+
+\Large{\theTeacher{}}%
+
+\Large{\theSemester{}}%
+\end{titlepage}}
