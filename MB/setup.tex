@@ -82,7 +82,7 @@
 \lstset{showstringspaces = false}
 \lstset{basicstyle = \ttfamily \small}
 % Kommando für den Flattersatz bei nebeneinander liegenden Abbildungen
-\newcommand{\flatter}{\setlength{\rightskip}{0pt plus 2cm}}
+\newcommand*{\flatter}{\setlength{\rightskip}{0pt plus 2cm}}
 % Anteil der Grafiken höher auf jeder Seite!
 \renewcommand{\textfraction}{0.001}
 %
@@ -96,18 +96,18 @@
 \setlength{\leftmargin}{\labelwidth}\addtolength\leftmargin{\labelsep}%
 \parsep0.0ex\partopsep-0.3ex\itemsep2pt\topsep0.0ex}}{\end{list}}
 %   Taste
-\newcommand{\taste}[1]{\small\textsf{#1}\normalsize}
+\newcommand*{\taste}[1]{\small\textsf{#1}\normalsize}
 %   geschützte Namen (NICHT in chapter, section usw. verwenden!)
-\newcommand{\name}[1]{\textsl{#1}}
+\newcommand*{\name}[1]{\textsl{#1}}
 %   Fachbegriffe/Erklärung von Abkürzungen
-\newcommand{\begriff}[1]{\index{#1}\textit{#1}}
+\newcommand*{\begriff}[1]{\index{#1}\textit{#1}}
 %
 \newcommand{\algorithmus}[2]{%
 \vspace{4pt}\fboxsep 1mm \framebox[140mm]
 {\parbox{135mm}{{\textbf{#1}}\vspace{2pt}#2}}\vspace{4pt}}
 %
 %   Dateinamen/Pfade
-\newcommand{\datei}[1]{\texttt{#1}\normalsize}
+\newcommand*{\datei}[1]{\texttt{#1}\normalsize}
 %   Tip (in einer Box)
 \newcommand{\tip}[1]{%
 \vspace{4pt}\fboxsep 1mm \framebox[140mm]
@@ -234,15 +234,15 @@
 \newcommand{\smileface}[0]{\randnotiz{\includegraphics[width=1cm]{\generalImagePath/Misc/Face-smile}}}
 %
 % alert aus beamer-Folien zu emph machen
-\newcommand{\alert}[1]{\emph{#1}}
+\newcommand*{\alert}[1]{\emph{#1}}
 %
 % Das obligatorische Argument ist der Titel des Dokuments.
 % Als Default wird software-project.eps als Titelbild
 % verwendet. Mit Hilfe eines optionalen Arguments kann
 % ein anderes Bild verwendet werden!
-% Beispiel: \titelseite[\imagePath{}/Misc/ameise]{Das Liebesleben der Ameisen}
+% Beispiel: \titelseite[\imagePath/Misc/ameise]{Das Liebesleben der Ameisen}
 %
-\newcommand{\titelseite}[2][\titleImage{}]{%
+\newcommand{\titelseite}[2][\titleImage]{%
 %% Titelseite
 \pagenumbering{roman}%
 \thispagestyle{empty}%

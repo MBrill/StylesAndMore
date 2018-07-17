@@ -50,7 +50,7 @@
 %% listings mit listings.sty
 %
 % Funktion für die Überschrift in den Notes
-\newcommand{\noteshead}[1]{\textbf{\large #1\normalsize}}
+\newcommand*{\noteshead}[1]{\textbf{\large #1\normalsize}}
 %
 % Schritte in einer Aufzählung, dafür einen Zähler (schritt) und die Umgebung
 % schritte definieren.
@@ -74,12 +74,12 @@
 % Auf den Handouts kommt die Fragefolie nicht vor; die braucht man
 % ja nicht jedes Mal auszudrucken.
 %
-\newcommand{\questions}[1]{%
+\newcommand*{\questions}[1][5cm]{%
 \ifthenelse{\boolean{solutions}}{%
 \section{Fragen?}%
 \begin{frame}{Unklarheiten? Fragen? Bemerkungen?}%
 \begin{center}%
-\includegraphics[width=5cm]{\imagePath/\questionImage}%
+\includegraphics[width=#1]{\imagePath/\questionImage}%
 \end{center}%
 \end{frame}}{}%
 }
@@ -89,7 +89,7 @@
 %                   #2 Breite des Bilds
 %                   #3 Bilddatei (ohne Endung, und mit Defaultordner
 %
-\newcommand{\imageslide}[3]{%
+\newcommand*{\imageslide}[3]{%
 \begin{frame}{#1}%
   \begin{center}%
    \includegraphics[width = #2]{\imagePath/#3}%
