@@ -1,5 +1,6 @@
 % \CheckSum{135}
 % \changes{v1.0}{18. Juni 2018}{Erstellt aus mb.sty}
+% \changes{v1.1}{12. September 2018}{pict2e durch xpicture ersetzt (enthält pict2e)}
 %    \IndexPrologue
 %      {\section*{Index}
 %          Unterstrichene Seitenzahlen
@@ -14,8 +15,8 @@
 % \author{Manfred Brill}
 % \maketitle
 % \parindent0.0cm
+%\thispagestyle{empty}
 % \section{Einleitung}
-%
 % Das \LaTeX-package \emph{mbPDF.sty} enthält
 % die von der Seiten- und Textgröße unabhängigen Angaben für \LaTeX{}-Texte
 % die an der Hochschule Kaiserslautern erstellt werden. Diese
@@ -37,7 +38,8 @@
 % Die folgenden Pakete werden geladen:
 % \begin{itemize}
 % \item \emph{ngerman} für die Verwendung der deutschen Sprache
-% \item \emph{inputenc} mit der Option \emph{latin1},
+% \item \emph{inputenc} mit der Option \emph{ansinew},
+% \item \emph{fonttenc} mit der Option \emph{T1},
 % \item \emph{makeidx} für die Erstellung eines Index,
 % \item \emph{palatino} für die Postscript Type-1 Fontfamilie Palatino,
 % \item \emph{color} für Graustufen und Farben,
@@ -46,7 +48,7 @@
 % \item \emph{mbmath} für Erweiterungen von \emph{AMS} \LaTeX{},
 % \item \emph{theorem} für das Layout von theorem-Umgebungen,
 % \item \emph{graphicx} für externe Grafiken,
-% \item \emph{pict2e} für \LaTeX{}-Grafiken,
+% \item \emph{xpicture} für \LaTeX{}-Grafiken,
 % \item \emph{bibgerm} für das Literaturverzeichnis,
 % \item \emph{eurosym} für das Euro-Symbol,
 % \item \emph{supertabular} für mehrseitige Tabellen, insbesondere für das Symbolverzeichnis,
@@ -56,6 +58,26 @@
 % Für Einzelheiten und Dokumentationen dieser Packages wird auf den
 %\LaTeX-Companion \cite{companion} oder die auf CTAN verfügbare
 % Information verwiesen.
+%
+% Ein Hinweis für die beiden Pakete inputenc und fontenc. Diese beiden Pakete werden
+% geladen, um deutsche Umlaute oder das ß korrekt  und ohne weitere Codes einzugeben.
+% Es gibt Quellen im WWW, z.B.
+% \begin{center}
+%https://www.namsu.de/Extra/befehle/Umlaute.html,
+%\end{center}
+% die darauf hinweisen, dass die übergebene Option an inputenc vom Betriebssystem
+% abhängt. Dort findet man die Angaben
+% \begin{enumerate}
+% \item Option ansinew für Windows (dies ist die verwendete Einstellung)
+% \item Option latin1 für Linux,
+% \item Option applemac for OSX.
+% \end{enumerate}
+% \section{Satzspiegel}
+%
+% Mit |\raggedbottom| wird sichergestellt, dass die Textseiten an der Unterkante
+% flattern und innerhalb der Seite kein vertikaler Raum eingefügt wird. Diese
+% Einstellung stammt vom Hanser-Verlag - Buchdrucker mögen das Standard-Verhalten
+% von \LaTeX an dieser Stelle nicht.
 %
 % \section{Tabellen und Abbildungen}
 % Tabellenbeschriftungen stehen immer \emph{vor} der Tabelle.
@@ -103,10 +125,234 @@
 % \end{figure}
 % Der Abstand vor Abschnittsüberschriften ist gegenüber dem \LaTeX-Standard etwas
 % vergrößert worden.
+%\section{Bemerkungen zu pict2e und xpicture}
+%Seit September 2018 wird nicht nur \emph{pict2e}, sondern \emph{xpicture}
+%verwendet. Der Schritt zu pict2e war notwendig, um zukünftig pdflatex
+%zu verwenden. Alle Grafiken, die bisher mit epic und eepic erstellt wurden
+%können nachwievor eingesetzt werden, bis auf Funktionen wie \emph{drawline}
+%zum Ausgeben von Polygonzügen. Dafür gibt es in pict2e die Funktion \emph{polygon}.
+%Das Paket \emph{xpicture} lädt pict2e und gleichzeitig noch Pakete wie
+%\emph{curve2e}, \emph{calculator} und \emph{calculus}. xpicture erweitert die
+%\emph{picture}-Umgebung, es gibt die neue Umgebung \emph{Picture}.
+%Diese neue Umgebunb bietet die Möglichkeit, eigene Referenzsysteme wie
+%schiefwinklige Koordinatenachsen oder Polarkoordinaten zu verwenden.
+%Auch ein Gitter in der Koordinatenebene, oder bei Polarkoordinaten Kreise,
+%stehen damit zur Verfügung und können mittelfristig die Datei
+%\emph{coordinateSystems} mit vordefinierten Elementen für \emph{picture}
+%ersetzen.
 %
-% Mit |\raggedbottom| wird sichergestellt, dass die Textseiten an der Unterkante
-% flattern und innerhalb der Seite kein vertikaler Raum eingefügt wird.
+%Zur Illustration der Möglichkeiten werden hier zwei Beispiele gezeigt, die
+%leicht angepasst der Dokumentation von \emph{xpicture} entnommen wurden.
+%Abbildung \ref{grid} zeigt ein kartesisches Koordinatensystem mit
+%zusätzlichen Gitterlinien. Die Quelltext für diese Abbildung lautet:
 %
+%\begin{verbatim}
+%\definecolor{myblue}{cmyk}{1,1,0,0.5}
+%\renewcommand{\gridcolor}{myblue}
+%\renewcommand{\secundarygridcolor}{cyan}
+%\setlength{\gridthickness}{0.5pt}
+%\setlength{\secundarygridthickness}{0.1pt}
+%\renewcommand{\xunitdivisions}{3}
+%\renewcommand{\yunitdivisions}{3}
+%\renewcommand{\axeslabelsize}{\footnotesize}
+%\begin{center}
+%\setlength{\unitlength}{1cm}
+%\begin{Picture}(-3.5,-2.5)(3.5,2.5)
+%\cartesiangrid(-3.4,-2.4)(3.4,2.4)
+%\end{Picture}
+%\end{center}
+%\end{verbatim}
+%
+%\begin{figure}[ht]
+%\definecolor{myblue}{cmyk}{1,1,0,0.5}
+%\renewcommand{\gridcolor}{myblue}
+%\renewcommand{\secundarygridcolor}{cyan}
+%\setlength{\gridthickness}{0.5pt}
+%\setlength{\secundarygridthickness}{0.1pt}
+%\renewcommand{\xunitdivisions}{3}
+%\renewcommand{\yunitdivisions}{3}
+%\renewcommand{\axeslabelsize}{\footnotesize}
+%\begin{center}
+%\setlength{\unitlength}{1cm}
+%\begin{Picture}(-3.5,-2.5)(3.5,2.5)
+%\cartesiangrid(-3.4,-2.4)(3.4,2.4)
+%\end{Picture}
+%\caption{\label{grid}Ein kartesisches Koordinatensystem mit Gitterlinien}
+%\end{center}
+%\end{figure}
+%Abbildung \ref{polargrid} zeigt ein Polarkoordinatensystem, dem auch
+%Gitterlinien hinzugefügt wurden.
+%Diese Abbildung wurde mit dem folgenden Quelltext erzeugt:
+%\begin{verbatim}
+%\renewcommand{\runitdivisions}{2}
+%\setlength{\unitlength}{0.75cm}
+%\renewcommand{\gridcolor}{magenta}
+%\begin{center}
+%\begin{Picture}(-4,-4)(4,4)
+%\polargrid{3.5}{12}
+%\end{Picture}
+%\end{center}
+%\end{verbatim}
+%
+%\begin{figure}[ht]
+%\renewcommand{\runitdivisions}{2}
+%\setlength{\unitlength}{0.75cm}
+%\renewcommand{\gridcolor}{magenta}
+%\begin{center}
+%\begin{Picture}(-4,-4)(4,4)
+%\polargrid{3.5}{12}
+%\end{Picture}
+%\end{center}
+%\caption{\label{polargrid}Ein Polarkoordinatensystem mit Koordinatenlinien}
+%\end{figure}
+%\section{Das Paket calculator}
+%\emph{calculator} bietet die Möglichkeit, Berechnen in der
+%\LaTeX-Datei durchzuführen.
+% Die Dokumentation zu \emph{calculator} zeigt die weitreichenden Möglichkeiten.
+%Hier soll ein einfaches Beispiel gezeigt werden. Wir möchten den Quotienten
+%\[
+% \frac{2.5^2}{\sqrt{12}}
+%\]
+%berechnen. Das können wir natürlich außerhalb der \LaTeX{}-Datei
+%berechnen und dann in den Text eingeben. Mit \emph{calculator}
+%gelingt dies aber in der Datei selbst:
+%
+% \begin{verbatim}
+%\tempA = 2,5^2
+%\SQUARE{2.5}{\tempA}
+%\tempB = sqrt(12)
+%\SQUAREROOT{12}{\tempB}
+%\Division = \tempA/\tempB
+%\DIVIDE{\tempA}{\tempB}{\Division}
+%\end{verbatim}
+%\SQUARE{2.5}{\tempA}
+%\SQUAREROOT{12}{\tempB}
+%\DIVIDE{\tempA}{\tempB}{\Division}
+%Jetzt verwenden wir die eben definierten Variablen und fügen
+%sie in die Ausgabe des Ausdrucks von oben ein:
+%\begin{align*}
+% \frac{2.5^2}{\sqrt{12}} &= \frac{\tempA}{\tempB}\\
+%         &= \Division.
+%\end{align*}
+%Diese Ausgabe wurde so erzeugt:
+%\begin{verbatim}
+%\begin{align*}
+% \frac{2.5^2}{\sqrt{12}} &= \frac{\tempA}{\tempB}\\
+%                                           &= \Division.
+%\end{align*}
+%\end{verbatim}
+%Neben den Funktionen sind auch sehr viele Konstanten aus der Mathematik
+%und Naturwissenschaft definiert. Die Zahl $\pi$ erhalten wir als
+%\emph{\\numberPI}, auch $2\pi$ oder die Euler'sche Zahl
+%stehen zur Verfügung.
+%
+%Mit dem Paket \emph{calculus} können wir auf so gut wie alle
+%elementare Funktion zurückgreifen und auch neue Funktionen
+%definieren, bis hin zu Verkettung. Dies ist mit xpicture
+%kombinierbar, damit können wir Fuunktionsgraphen in \LaTeX
+%erstellen ohne vorher die Funktionswerte extern berechnen zu müssen.
+%Als Beispiel betrachten wir die Funktion $\cos{(2 t)}$.
+%Der Kosinus steht als \emph{COSfunction} zur Verfügung. Die Skalierung
+%ist durch \emph{SCALEVARIABLEfunction} verfügbar.
+%Dann definieren wir folgendermaßen eine neue Funktion mit dem Namen
+%\emph{neueFunktion}:
+%\begin{verbatim}
+%\SCALEVARIABLEfunction{2}{\COSfunction}{\neueFunktion}
+%\end{verbatim}
+%
+%Der Dokumentation von \emph{xpicture} ist eine grafische Darstellung
+%der Funktion $f(x) = x^3-2x$ entnommen wie in Abbildung \ref{graph}.
+%
+%\begin{figure}[ht]
+%\definecolor{myGrey}{rgb}{0.2, 0.2, 0.2}
+%\renewcommand{\gridcolor}{myGrey}
+%\renewcommand{\secundarygridcolor}{gray}
+%\setlength{\gridthickness}{0.5pt}
+%\setlength{\secundarygridthickness}{0.1pt}
+%\renewcommand{\xunitdivisions}{3}
+%\renewcommand{\yunitdivisions}{3}
+%\renewcommand{\axeslabelsize}{\footnotesize}
+%\LINEARCOMBINATIONfunction
+%{1}{\CUBEfunction}
+%{-2}{\IDENTITYfunction}
+%{\Ffunction}
+%\begin{center}
+%\setlength{\unitlength}{1cm}
+%\begin{Picture}(-2.5,-4.5)(2.5,4.5)
+%\cartesianaxes(-2.5,-4.5)(2.5,4.5)
+%\cartesiangrid(-2.5,-4.5)(2.5,4.5)
+%\pictcolor{green}
+%\linethickness{1.5pt}
+%\PlotFunction[10]{\Ffunction}{-2}{2}
+%\Put[rbr](2,4){$f(t)=t^3-2t$}
+%\end{Picture}
+%\end{center}
+%\caption{\label{graph}Die Funktion $f(x) = x^3-2x$ für $x\in [-2,2]$}
+%\end{figure}
+%Diese Abbildung wurde mit dem folgenden Quelltext erzeugt:
+
+%%\begin{verbatim}
+%\definecolor{myGrey}{rgb}{0.2, 0.2, 0.2}
+%\renewcommand{\gridcolor}{myGrey}
+%\renewcommand{\secundarygridcolor}{gray}
+%\setlength{\gridthickness}{0.5pt}
+%\setlength{\secundarygridthickness}{0.1pt}
+%\renewcommand{\xunitdivisions}{3}
+%\renewcommand{\yunitdivisions}{3}
+%\renewcommand{\axeslabelsize}{\footnotesize}
+%\LINEARCOMBINATIONfunction
+%{1}{\CUBEfunction}
+%{-2}{\IDENTITYfunction}
+%{\Ffunction}
+%\begin{center}
+%\setlength{\unitlength}{1cm}
+%\begin{Picture}(-2.5,-4.5)(2.5,4.5)
+%\cartesianaxes(-2.5,-4.5)(2.5,4.5)
+%\cartesiangrid(-2.5,-4.5)(2.5,4.5)
+%\pictcolor{green}
+%\linethickness{1.5pt}
+%\PlotFunction[10]{\Ffunction}{-2}{2}
+%\Put[rbr](2,4){$f(t)=t^3-2t$}
+%\end{Picture}
+%\end{center}
+%\end{verbatim}
+%
+%Als letztes Beispiel eine grafische Darstellung einer Kardioide$\rho=1+\cos\phi$
+%in Abbildung \ref{cardioide}. Diese Abbildung wurde mit dem folgenden
+%Quelltext erzeugt:
+%
+%\begin{verbatim}
+%\SUMfunction{\ONEfunction}{\COSfunction}{\ffunction}
+%\POLARfunction{\ffunction}{\cardioide}
+%\begin{center}
+%\def\runitdivisions{2}
+%\setlength{\unitlength}{1.5cm}
+%\begin{Picture}(-2.5,-2.5)(2.5,2.5)
+%\polargrid{2}{12}
+%\pictcolor{green}
+%\linethickness{1.5pt}
+%\PlotParametricFunction[20]{%
+%\cardioide}{0}{\numberTWOPI}
+%\end{Picture}
+%\end{center}
+%\end{verbatim}
+%
+%\begin{figure}[ht]
+%\SUMfunction{\ONEfunction}{\COSfunction}{\ffunction}
+%\POLARfunction{\ffunction}{\cardioide}
+%\begin{center}
+%\def\runitdivisions{2}
+%\setlength{\unitlength}{1.5cm}
+%\begin{Picture}(-2.5,-2.5)(2.5,2.5)
+%\polargrid{2}{12}
+%\pictcolor{green}
+%\linethickness{2.5pt}
+%\PlotParametricFunction[20]{%
+%\cardioide}{0}{\numberTWOPI}
+%\end{Picture}
+%\end{center}
+%\caption{\label{cardioide}Eine grafische Darstellung einer Kardioide $\rho=1+\cos\phi$}
+%\end{figure}
 % \StopEventually{
 % \begin{thebibliography}{9}
 %   \bibitem{companion} M. ~Goossens, F. ~Mittelbach, und A. ~Samarin:
@@ -124,15 +370,16 @@
 %    Zunächst identifizieren wir das Paket und dessen aktuelle Version:
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}\relax
-\ProvidesPackage{mbPDF}[2018/06/18, (MB)]
-\typeout{MBPDF package, V1.0, (c) Manfred Brill}
+\ProvidesPackage{mbPDF}[2018/09/23, (MB)]
+\typeout{MBPDF package, V1.1, (c) Manfred Brill}
 \ProcessOptions
 %    \end{macrocode}
 % \subsection{Der Initialisierungsteil}
 % Wir laden die folgenden Pakete:
 %    \begin{macrocode}
 \RequirePackage{ngerman}
-\RequirePackage[latin1]{inputenc}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
 \RequirePackage{palatino}
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
@@ -143,7 +390,7 @@
 \RequirePackage{makeidx}
 \RequirePackage{color}
 \RequirePackage{graphicx}
-\RequirePackage{pict2e}
+\RequirePackage{xpicture}
 \RequirePackage{eurosym}
 \RequirePackage{bibgerm}
 \RequirePackage{multicol}
@@ -152,8 +399,6 @@
 \RequirePackage[savemem]{listings}
 %    \end{macrocode}
 %
-% \changes{V1.3}{01.06.2003}{Package float beigefügt}
-% \changes{V1.3}{01.06.2003}{Package listings mit savemem-Option beigefügt}
 % \subsection{Das Seitenlayout}
 % Die Bildunterschriften werden einen Punkt kleiner gesetzt auf |\small|. Der Labelfont ist
 % zusätzlich fett gesetzt.  Nach einer Abbildung wird ein Abstand von $0.2$em verwendet.
@@ -179,8 +424,6 @@
 % und sind deshalb nur noch aus historischen Gründen in dieser Datei.
 %
 % \begin{macro}{\section}
-% \changes{v1.2}{20.03.2003}{Abstand angepasst.}
-% \changes{v2.1}{31.07.2017}{scr\@startsection for KoMa versions >= 3.15}
 %    \begin{macrocode}
 \renewcommand\section{\@startsection{section}{1}{0mm}%
                 {6mm}%
@@ -189,7 +432,6 @@
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\subsection}
-% \changes{v1.2}{20.03.2003}{Abstand angepasst.}
 %    \begin{macrocode}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                 {4mm}
@@ -198,7 +440,6 @@
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\subsubsection}
-% \changes{v1.1}{20.03.2003}{Abstand angepasst.}
 %    \begin{macrocode}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                 {4mm}
@@ -288,6 +529,5 @@
 \makeatother
 %    \end{macrocode}
 %
-% \changes{V1.3}{01.06.2003}{Algorithmenliste herausgenommen}
 % \Finale
 \endinput
