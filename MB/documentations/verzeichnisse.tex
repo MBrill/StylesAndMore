@@ -1,0 +1,46 @@
+\chapter{Verzeichnisse und Index}
+\section{Literaturverzeichnis}
+Das \begriff{Literaturverzeichnis} wird mit Hilfe von \bibtex{} aufgebaut. \bibtex{} ist relativ alt und unhandlich, das macht sich häufig bemerkbar. Es ist geplant auf
+\emph{BibLaTeX} umzusteigen.
+
+Die einzelnen Eingabe-Dateien für die Quellen werden mit Hilfe von \jabref{}, einer
+\java{}-Anwendung\randnotiz{JabRef}\index{JabRef}, verwaltet (\cite{jabref}). Vorteil dieser Anwendung ist, dass man in den Dateien suchen kann
+und die Einträge als Formular-Einträge bearbeitet werden können. Das Literaturverzeichnis,
+das wir auf Seite \pageref{literatur} finden wurde so in das Dokument eingefügt:
+
+\begin{lstlisting}{}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\chaptermark{Literaturverzeichnis}
+\sectionmark{Literatur}\label{literatur}
+\bibliography{../../../BibTex/latex}
+\end{lstlisting}
+Interessant ist die Funktion \lstinline$phantomsection$, die dafür sorgt, dass das Literaturverzeichnis
+richtig behandelt wird und die Verweise in der Inhaltsangabe bei der \pdf{}-Anzeige auch
+korrekt auf den Anfang des Literaturverzeichnisses verweisen.
+%
+\section{Index}
+Der \begriff{Index} wird mit dem Paket \lstinline$imakeidx$ erzeugt. Hier ist wichtig, dass die deutschen Umlaute korrekt
+dargestellt werden. Dies gelingt durch die Option \lstinline$-g$ für die Funktion \lstinline$makeindex$, die
+während der Erstellung des \pdf{}-Dokuments aufgerufen wird. Damit diese Option korrekt arbeitet und
+deutsche Umlaute wie gewohnt im Editor eingegeben werden können müssen die Quotes umgestellt werden. Dazu gibt
+es die Datei \datei{german.ist}, die sinnvoller Weise in \datei{texmf-local/makeindex/german} gespeichert ist:\index{Index!deutsche Umlauge}
+\begin{lstlisting}{}
+% Voraussetzung: makeindex mit Option -g aufrufen!
+quote '>'    % > ersetzt "
+%
+delim_0 "\\hspace{2ex} "
+delim_1 "\\hspace{2ex} "
+delim_2 "\\hspace{2ex} "
+\end{lstlisting}
+Für den Index ist eingestellt, dass ein Eintrag im Inhaltsverzeichnis erstellt wird und dass der Index, der mit \lstinline$printindex$
+ausgegeben wird, zweispaltig ist. In diesem Dokument wurde der Index so eingefügt:
+\begin{lstlisting}{}
+% Index
+\clearevenpage
+\phantomsection
+\small
+\printindex
+\normalsize
+\end{lstlisting}

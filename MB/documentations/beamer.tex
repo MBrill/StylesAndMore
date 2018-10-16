@@ -1,0 +1,215 @@
+\chapter{Folien mit dem Beamer-Package}
+Folien werden mit Hilfe des \texttt{Beamer}-Package
+erstellt. Dabei stehen die Quellen der Folien parallel zu den Texten und Übungsaufgaben.
+Damit wird gewährleistet, dass Abbildungen und andere Assets möglichst  wiederverwendet werden.
+
+Wie schon für die Texte gibt es auch hier eine Datei  mit
+Angaben, die abhängig von der jeweiligen Vorlesung sind. Diese Datei heißt \datei{header.tex}.
+Das folgende Beispiel
+stammt aus den Folien für die Präsenzphase des Fachs \emph{Stochastik für Informatiker}
+im Studiengang IT-Analyst:
+\begin{lstlisting}{}
+\newcommand{\lectureName}{Stochastik für Informatiker}
+% Titel der Folie
+\title{\lectureName}
+\author{Prof. Dr. Manfred Brill}
+\institute{Hochschule Kaiserslautern\\
+     Fachbereich Informatik und Mikrosystemtechnik}
+\date[]{}
+% Variablen wie Semester ...
+%
+\newcommand{\theSemester}{Sommersemester~2018}
+% Standardverzeichnis für das Basis-Verzeichnis der Bilder
+%
+\newcommand{\imagePath}{../../images}
+%
+% Name der Bild-Datei, die auf die Frage-Folie kommen soll
+\newcommand{\questionImage}{Misc/Answer_to_Life}
+\end{lstlisting}
+Die Bezeichnung der Lehrveranstaltung wird definiert und anschließend werden die Variablen
+für die Titelfolie gesetzt.
+Anschließend definieren wir das aktuelle Semester und die Pfade für das Verzeichnis, in dem Bilder für die Lehrveranstaltung liegen. Jede Folie enthält eine letzte Folie mit einem Bild. Das Bild, das verwendet werden soll wird in der Variable \lstinline$questionImage$
+angegeben.
+
+An die Stelle der Datei \texttt{setup.tex} tritt
+\datei{slidesheader.tex}, die im Verzeichnis \datei{texmf-local} steht und
+unabhängig von den Lehrveranstaltungen verwendet werden kann.
+Diese Datei wird im Folgenden noch beschrieben.
+
+Bevor wir auf \datei{slidesheader.tex} eingehen werfen wir einen Blick
+auf \datei{keywords}. Hier werden Schlagwörter und andere Informationen für
+die Eigenschaften des erstellten \pdf{}-Dokuments gespeichert. Das Vorgehen ist
+ähnlich wie bei den Texten. Hier ein Beispiel,
+wieder aus der gleichen Veranstaltung:
+
+\begin{lstlisting}{}
+\subject{Stochastik für Informatiker}
+\keywords{Wahrscheinlichkeitsrechnung und Statistik,
+          Medieninformatik, Hochschule Kaiserslautern}
+%
+\usepackage{breakurl}
+\hypersetup{
+pdfauthor = {Manfred Brill},
+pdfsubject = {Stochastik für Informatiker},
+pdftitle = {Stochastik für Informatiker},
+pdfkeywords = {Stochastik für Informatiker, IT-Analyst,
+      Hochschule Kaiserslautern},
+pdfpagelayout = SinglePage,
+pdfpagemode = UseThumbs,
+pdfdisplaydoctitle = true
+}
+
+\urlstyle{same}
+\end{lstlisting}
+Die Datei \datei{slidesheader.tex} lädt ähnlich wie \datei{setup.tex}
+einige Packages. Da es bei Folien durchaus vorkommen kann, dass Medien
+eingebunden werden wird das Package \lstinline$multimedia$ geladen.
+Neben den Folien gibt es Handouts, deshalb wird das Package
+\lstinline$pgfpages$ verwendet.
+Um Smileys und andere Abbildungen in Folien zu verwenden wird das Package
+\lstinline$marvosym$ geladen. Auch für die Folien
+wird in der aktuellen Version das Paket
+\lstinline$xpicture$ geladen. Damit können alle Grafiken, die
+bisher mit \lstinline$eepic$ und \lstinline$dvips$ erstellt wurden auch
+mit PDF\LaTeX{} verwendet werden.
+
+Wie für die anderen Dokumente werden die Einstellungen
+in den Dateien \lstinline$colors.tex$, \lstinline$variablen.tex$ und \lstinline$coordinateSystems.tex$
+geladen. Auch das \lstinline$listings$-Paket wird geladen und konfiguriert.
+Für Folien wird die Variable \lstinline$solutions$ definiert, die anschließend
+in den Folien und auch in \lstinline$slidesheader$ verwendet wird.
+
+Das \lstinline$beamer$-Package bietet verschiedene Styles an, die angepasst werden können.
+Als \emph{theme} wird \lstinline$CambridgeUS$ ausgewählt. Die weiteren Anpassungen
+finden in der Datei \datei{beamer.tex} statt.
+Wichtig ist die Verwendung der Farbe \lstinline$colorDepartment$, die in \datei{colors.tex}
+definiert ist. Hier wird die Farbe des Fachbereichs aus dem Logo der Hochschule verwendet. Das Ergebnis
+ist in Abbildung \ref{titelfolie} zu sehen.
+
+Folien die nur aus Abbildung und einer Überschrift bestehen kommen häufig in Präsentationen vor.
+Deshalb ist eine Funktion
+definiert, mit deren Hilfe man eine solche Folie erstellen kann:
+\begin{lstlisting}{}
+\newcommand{\imageslide}[3]{%
+\begin{frame}{#1}%
+  \begin{center}%
+   \includegraphics[width = #2]{\imagePath/#3}%
+  \end{center}%
+\end{frame}}
+\end{lstlisting}
+Diese Funktion hat drei Argumente. Das erste Argument ist der Titel der Folie, gefolgt
+von der Breite, mit der die Abbildung in die Folie eingeführt werden soll. Das letzte Argument
+ist der Pfad zur Bild-Datei, relativ zum Wert der Variable \lstinline$imagePath$.
+
+\begin{lstlisting}{}
+\imageslide{Die Startseite}{6cm}{OLAT/itastochastik_index}
+\end{lstlisting}
+In Abbildung \ref{bildfolie} ist das Ergebnis dieser Anweisung zu sehen.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=8cm]{\imagePath/imageFolienBeispiel}
+\caption{\label{bildfolie}Eine Folie, erzeugt mit \lstinline$imageslide$}
+\end{center}
+\end{figure}
+Am Ende jeder Datei mit Folien wird eine Folie eingefügt, die die Zuhörer zu Fragen auffordert. Die Hörer
+erkennen so immer, dass das Thema abgeschlossen ist. Dafür gibt es die Funktion \lstinline$questions$.
+Als Bild wird die Datei verwendet, die in \datei{header.tex} in der Variable \lstinline$\questionImage$
+definiert ist. Die Funktion \lstinline$questions$ reagiert auf die Variable \lstinline$solutions$.
+Die Folie wird nur erzeugt, wenn \lstinline$solutions$ auf \lstinline$TRUE$ gesetzt ist. So kann
+die Fragefolie bei Handouts und anderen Dokumenten ausgeblendet werden. Für die Studierenden
+macht es sicher keinen Sinn, in $50$ PDF-Dateien jedes Mal die Fragefolie zu drucken.
+Abbildung \ref{fragefolie} zeigt ein Ergebnis der Funktion.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=8cm]{\imagePath/questionsSlide}
+\caption{\label{fragefolie}Eine Folie, erzeugt mit \lstinline$questions$}
+\end{center}
+\end{figure}
+Die Breite des eingefügten Bilds kann als optionales Argument übergeben werden; der Default-Wert dafür ist
+$5$~cm. Ein Bild mit einer Breite von $8$~cm wird so eingefügt:
+\begin{lstlisting}{}
+\questions[8cm]
+\end{lstlisting}
+
+Mit den beschriebenen Konfigurationen
+sieht der Kopf der \TeX{}-Datei für die Folien immer gleich aus:
+\begin{lstlisting}{}
+\documentclass{beamer}
+\input{header}
+\input{slidesheader}
+%
+\subtitle{Organisatorisches}
+%
+\input{keywords}
+% Kommentieren der folgenden Zeilen, je nach Kontext
+\setbeameroption{show notes}
+\setboolean{solutions}{true}
+\pgfpagesuselayout{2 on 1}[a4paper, border shrink=5mm]
+%
+\end{lstlisting}
+Das Thema der Folien wird mit \lstinline$subtitle$ auf die Titel-folie eingefügt. Die Variable
+\lstinline$solutions$ wird gesetzt, damit können wir Folien aus- und einblenden.
+Das \lstinline$beamer$-Package bietet die Möglichkeit, Notizen in die Datei einzufügen.
+Diese werden als Default ausgeblendet, mit der Zeile
+\begin{lstlisting}{}
+setbeameroptions{show notes}
+\end{lstlisting}
+werden sie angezeigt. Die Zeile mit der Funktion \lstinline$pgfpagesuselayout$
+wird für Handouts eingesetzt, bei denen zwei Folien pro Seite ausgegeben werden.
+Abbildung \ref{handouts} zeigt ein solches Beispiel.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[height=7cm]{\imagePath/handoutsExample}
+\caption{\label{handouts}Die Informationen aus unserem Beispiel}
+\end{center}
+\end{figure}
+Insgesamt werden immer drei Versionen des PDF-Dokuments erzeugt. Dafür gibt es im Verzeichnis mit
+den Quelldateien ein Verzeichnis mit dem Namen \datei{fertig} und drei Unterverzeichnisse für
+Folien, Handouts und Notizen. Alle Folien und alle Notizen liegen in \datei{notes}, die Folien, die
+angezeigt werden sollen im Verzeichnis \datei{folien}, und die Handouts, die über OLAT
+oder andere Seiten an die Hörer verteilt werden liegen im Ordner \datei{handouts}. Die Handouts
+werden mit \lstinline$\setboolean{solutions{false}$ und ohne Notizen erzeugt.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=8cm]{\imagePath/beispielfolie}
+\caption{\label{titelfolie}Die Titel-Folie zu unserem Beispiel}
+\end{center}
+\end{figure}
+Um in den Notizen eine Überschrift zu formatieren gibt es in \datei{slidesheader}
+die Funktion \lstinline$\noteshead$, an die ein Text für die Überschrift übergeben wird.
+Die ersten beiden Einträge in jeder Folien-Datei besteht dann aus der Titel-Folie
+und einer Notizen-Seite. Auf dieser Notizen-Seite sind Angaben über den Inhalt, den
+Namen der Datei und über die Rangfolge enthalten.
+Hier ein Beispiel, das zu der Titel-Folie in Abbildung \ref{titelfolie} führt:
+\begin{lstlisting}{}
+\begin{frame}
+  \titlepage
+  \begin{center}
+   \includegraphics[width = 3.5cm]
+          {\imagePath/statistiklogo}
+  \end{center}
+\end{frame}
+
+\note{
+\noteshead{Information}
+
+\begin{description}
+\item[Thema:]  Einführung
+\item[Version:] \theSemester{}
+\item[Dateiname:] organisatorisches.tex
+\item[Reihenfolge:] $1$
+\end{description}
+}
+\end{lstlisting}
+Abbildung \ref{infoSlide} zeigt die so erzeugte Notizen-Seite.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=8cm]{\imagePath/infoNote}
+\caption{\label{infoSlide}Die Informationen aus unserem Beispiel}
+\end{center}
+\end{figure}

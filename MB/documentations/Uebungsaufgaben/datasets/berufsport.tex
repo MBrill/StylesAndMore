@@ -1,0 +1,37 @@
+%
+% Datensatz Berufs-Gruppen und sportliche Betätigung aus Bamberg/Baur
+%
+\subsection*{Beschreibung}\index{Beruf und Sport}
+In einer Befragung wurden $1\:000$ berufstätige Personen nach der Berufsgruppe
+und der sportlichen Betätigung gefragt. Quelle ist \cite{bamberg_93}.
+%
+\subsection*{Format}
+Die Kontingenztabelle der Ergebnisse ist in Tabelle \ref{berufsport:urliste} zusammengefasst.
+
+\begin{table}[ht]
+\begin{center}
+\caption{\label{berufsport:urliste}Die Ergebnisse für den Datensatz "`Beruf und Sport"'}
+\begin{tabular}{c|c|c|c|c}\hline
+                                &\multicolumn{3}{c|}{\small{Sportliche Betätigung}}&\\\hline
+\small{Berufsgruppe}&Nie&Gelegentlich&Regelmäßig&Randhäufigkeit\\\hline
+Arbeiter&240&120&70&430\\
+Angestellter&160&90&90&340\\
+Beamter&30&30&30&90\\
+Landwirt&37&7&6&50\\
+Freiberuflich&40&32&18&90\\\hline
+Randhäufigkeit&507&279&214&$\mathbf{1\:000}$\\\hline
+\end{tabular}
+\end{center}
+\end{table}
+%
+\subsection*{Dateien}
+\subsubsection*{berufsport.csv}
+Die Datei enthält die Kontingenztabelle wie in Tabelle \ref{berufsport:urliste}.
+%
+\subsubsection*{berufsport.json}
+Die Werte für beide Merkmale der Kontingenztabelle sind in der Liste \lstinline$Daten$
+abgelegt. Dabei wurde die Matrix zeilenweise abgespeichert. Die Ausprägungen
+des Merkmals "`Berufsgruppe"' sind in der Liste \lstinline$KategorienX$ abgelegt, in der
+Reihenfolge wie in der ersten Spalte der Kontingenztabelle. Die Ausprägungen
+des Merkmals "`Sportliche Betätigung"' befinden sich in der Liste \lstinline$KategorienY$.
+Die Reihenfolge hält sich an die Angaben in der zweiten Zeile der Kontingenztabelle.

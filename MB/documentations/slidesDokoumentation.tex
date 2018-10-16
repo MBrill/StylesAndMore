@@ -1,0 +1,66 @@
+% -----------------------------------------------------------------------
+% Dokumentation der Vorlage für Texte
+% -----------------------------------------------------------------------
+\documentclass[enabledeprecatedfontcommands, fontsize=12pt,
+     open=right, a4paper,
+     twoside, DIV=11,
+     abstractoff,
+     headsepline,
+     numbers=noenddot,
+     BCOR=15mm,
+     headings=standardclasses,
+     headings=big]{scrbook}
+\KOMAoptions{cleardoublepage=empty}
+%
+% Header für Variablen  wie Vorlesung, Semester, Pfade zu Aufgaben, Bildern, ...
+\input{stammdaten}
+% Einstellungen
+\input{setup}
+% Testen: hier muss auch eine Definition für die Datensätze hin,
+\input{LVDefinitionen}
+%
+\input{pdfsetup}
+%
+% Schalter für das Ein- und Ausblenden der Lösungen
+\setboolean{solutions}{true}
+%
+% Beginn Dokument
+%
+\begin{document}
+\titelseite[\imagePath/tugboat]{\LaTeX{}-Folien an der Hochschule Kaiserslautern}
+%
+% Inhaltsverzeichnis
+%
+\tableofcontents
+\clearevenpage
+\pagenumbering{arabic}
+%
+%
+%
+\chapter{Einleitung}
+Getestet wurden die Einstellungen auf Windows 10 mit MiKTeX 2.9 und auf Debian. Die Version aus dem Jahr 2015 wurde auch auf Fedora 17 mit TeXLive getestet.
+%
+%
+%
+\input{beamer}
+%
+%
+% Literatur
+%
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\chaptermark{Literaturverzeichnis}
+\sectionmark{Literatur}\label{literatur}
+\bibliography{latex,../../../BibTex/mathematikBooks,../../../BibTex/stochastikBooks}
+%
+% Anhang
+%
+\appendix
+% Index
+\clearevenpage
+\phantomsection
+\small
+\printindex
+\normalsize
+\end{document}

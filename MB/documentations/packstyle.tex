@@ -1,0 +1,279 @@
+\chapter{Pakete und Style Files}
+\section{Aufbau der Hauptdatei}
+Um den Header der Haupt-Datei nicht unnötig lang zu machen wurden alle
+Einstellungen in die Datei \datei{setup.tex}\index{setup.tex} verschoben. Dort werden die nötigen Pakete geladen und alle weiteren Einstellungen durchgeführt.
+
+Angaben zum Semester, zum Modul oder zum Dozenten sind in einer
+vorher zu ladenden Datei definiert. In diesem vorliegenden Dokument wird die
+Datei \datei{stammdaten.tex} verwendet. An dieser Stelle werden auch die Pfade
+für die Bilder und die Übungsaufgaben definiert.
+Hier die Werte die für dieses Dokument verwendet wurden:
+\begin{lstlisting}{}
+% Variablen für das Semester, die Vorlesung ...
+% Letzte Änderung: 3. Oktober 2018
+\newcommand{\theSemester}{wintersemester~2018/19}
+% Variable für die Vorlesung
+\newcommand{\theClass}{Styles and More}
+% Variable für den Studiengang
+\newcommand{\theCourse}{Dokumentation der Datei setup.tex}
+% Variable für den Hochschul-Namen
+\newcommand{\theSchool}{Hochschule~Kaiserslautern}
+% Variable für den Dozenten
+\newcommand{\theTeacher}{Manfred~Brill}
+
+% Verzeichnis für die Übungsaufgaben
+\newcommand{\exercisePath}{../../Uebungsaufgaben/Stochastik}
+% Verzeichnis für Bilder
+\newcommand{\imagePath}{./images}
+% Default-Titelbild der Lehrveranstaltung
+\newcommand{\titleImage}{\imagePath/tugboat}
+\end{lstlisting}
+Makros und Funktionen verwenden diese Variablen, so dass Namen, Semester und anderes einfach zu verändern ist,
+indem man diese Datei anpasst. Die hier dargestellten Werte
+findet man unter anderem auf der Titelseite.
+
+Weiter gibt es die Datei \datei{pdfsetup.tex}, in der Angaben für die PDF-Dateien
+gemacht werden. Insbesondere wird mit \lstinline$\hypersetup$ eingestellt, dass Links
+in grün im PDF dargestellt werden, und dass URLs im Text mit Zeilenumbruch dargestellt werden:
+\begin{lstlisting}{}
+\usepackage[breaklinks]{hyperref}
+\usepackage{breakurl}
+
+\hypersetup{
+pdftitle = {Vorlage für Lehrtexte
+an der Hochschule Kaiserslautern},
+pdfauthor = {Manfred Brill},
+pdfsubject = {Studienbrief, Vorlage, LaTeX,
+Fachbereich Informatik und Mikrosystemtechnik},
+pdfkeywords = {Fachbereich Informatik und Mikrosystemtechnik,
+Hochschule Kaiserslautern},
+pdfdisplaydoctitle = true,
+pdfpagemode = UseThumbs,
+colorlinks = false,
+linkcolor = green,
+linkbordercolor = {0 1 0},
+pdfpagelayout = {SinglePage}
+}
+
+\urlstyle{same}
+\end{lstlisting}
+Vom Ergebnis kann man sich im Acrobat Reader überzeugen, die Angaben in der Datei
+werden in die Eigenschaften der PDF-Datei geschrieben.
+Wichtig ist, dass die Funktion \lstinline$\hypersetup$ als letztes im Header durchgeführt wird.
+
+Die Files für die Erstellung eines Studienbriefs oder ähnlicher Dokumente für die Lehre sind immer auf die gleiche Weise organisiert. Im Stamm-Verzeichnis befinden sich
+\begin{itemize}
+\item \datei{setup.tex},
+\item \datei{pdfsetup.tex}.
+\end{itemize}
+Spezifische Variable werden in der Datei \datei{stammdaten.tex} definiert, die vor
+\datei{setup.tex} ins Dokument eingefügt wird.
+
+Der Header dieses Dokuments lautet folgendermaßen:
+\begin{lstlisting}{}
+\documentclass[enabledeprecatedfontcommands, fontsize=12pt,
+     open=right, a4paper,
+     twoside, DIV=11,
+     abstractoff,
+     headsepline,
+     numbers=noenddot,
+     BCOR=15mm,
+     headings=standardclasses,
+     headings=big]{scrbook}
+\KOMAoptions{cleardoublepage=empty}
+% Header für Variablen wie Vorlesung, Semester,
+% Pfade zu Aufgaben, Bildern, ...
+\input{stammdaten}
+% Einstellungen
+\input{setup}
+% Spezifische Definitionen für die
+Stochastik für Informatiker, Studiengang IT-Analyst
+\input{LVDefinitionen}
+%
+\input{pdfsetup}
+%
+\end{lstlisting}
+Solange wir noch \bibtex{} als Literaturverwaltung verwenden müssen
+wir bei KoMaScript die Option \lstinline$enabledeprecatedfontcommands$ laden,
+sonst kompilieren die \LaTeX{}-Texte nicht mehr.
+
+Ein Blick auf den Satzspiegel zeigt, dass ein relativ großer Rand
+gesetzt wird. Dies liegt daran, dass wir, wie wir noch sehen werden,
+Marginalien, also Randnotizen, einsetzen. Wenn man darauf verzichtet
+kann mit der dokumentierten Vorlage auch ein anderer Satzspiegel eingestellt werden!
+%
+\section{Die Datei setup.tex}
+\subsection{Verwendete \LaTeX{}-Pakete}
+Die Datei \datei{setup.tex} verwendet style files, die im Rahmen von Büchern
+entstanden sind:
+\datei{mbPDF.sty} und \datei{mbmath.sty}. Eine Dokumentation dazu
+findet man in \cite{brill_18, brill_13b}. In \lstinline$mbPDF.sty$ werden die grundlegenden
+Pakete geladen, Fonts und so weiter festgelegt. In \datei{mbmath.sty} gibt es auf der Basis
+der AMS-Pakete weitere Definitionen für Funktionen und andere mathematischen
+mathematischen Symbole. Werden diese nicht benötigt kann man diesen Eintrag löschen.
+
+Darüber hinaus werden die folgenden Pakete geladen:
+\begin{itemize}
+\item \lstinline$textcomp$
+\item \lstinline$array$
+\item \lstinline$ifthen$
+\item \lstinline$pifont$
+\item \lstinline$pstricks$
+\item \lstinline$enumitem$ mit der Option \lstinline$shortlabels$
+\item \lstinline$imakeidx$, mit
+\begin{lstlisting}{}
+\makeindex[title=Index,columns=2,options=-s german, intoc=true]
+\end{lstlisting}
+\item \lstinline$scrlayer-scrpage$ mit den Optionen
+\lstinline$automark$ und \lstinline$headsepline$
+\item \lstinline$hyperref$
+\end{itemize}
+In \lstinline$\makeindex$ wird der Index so eingestellt, dass er mit deutschen
+Umlauten arbeiten kann und zweispaltig formatiert wird. Je nachdem wie der Index erstellt werden soll kann man dieses Paket weglassen und mit dem "`normalen"' Index arbeiten.
+
+\tip{Wichtig ist, dass \lstinline$hyperref$ als \emph{letztes} Paket geladen wird.
+Deshalb die Auslagerung für dieses Paket in die Datei \datei{pdfsetup.tex}.}
+%
+%
+%
+\subsection{Einstellungen und Funktionen}
+Nach dem Laden der \LaTeX{}-Pakete werden noch einige Dateien geladen, die entweder
+im aktuellen Verzeichnis oder zentral, in \datei{texmf-local}, liegen können.
+Aktuell werden die folgenden Dateien geladen:
+\begin{itemize}
+\item \datei{variablen} für Begriffe wie Programmiersprachen, Software-Pakete, Versionen
+und anderen Angaben,
+\item \datei{colors} für Farben (z.b. die aktuelle Fachbereichsfarbe), und
+\item \datei{coordinateSystems} für \LaTeX{}-Makros zum Zeichnen von Koordinatensystemen
+mit \LaTeX{}-Vektorgrafik. Diese Datei ist als deprecated markiert und ist nur aus Kompatibilitätsgründen noch enthalten.
+\end{itemize}
+Beispiele für Definitionen, die in diesen Dateien enthalten sind findet man weiter unten im Text.
+
+Mit \lstinline$\raggedbottom$ wird eingestellt,
+dass \LaTeX{} die Zeilen nicht auseinander zieht um eine Seite zu füllen. Diese Einstellung
+stammt aus der Zusammenarbeit mit dem Hanser-Verlag. Damit erhält man gleiche
+Zeilenabstände. Verwendet man den \LaTeX{}-Default werden die Zeilen etwas verzogen,
+um auf jede Seite den exakt gleichen Satzspiegel zu haben. Das mögen Buchbinder
+gar nicht. Auch Absatzabstände, Einzüge und Einstellungen zu \emph{Hurenkindern}\index{Hurenkinder} und
+\emph{Schusterjungen}\index{Schusterjunge} -- Begriffe aus dem Buchdruck, die sich auf Absatz-Beginn und -ende beziehen, die nur aus einer Zeile bestehen.
+
+\tip{
+Die kursiv gedruckten Begriffe im letzten Absatz wurden mit der Funktion
+$\backslash$\lstinline$begriff$ formatiert. Mit dieser Funktion wird nicht nur hervorgehoben,
+sondern auch ein Index-Eintrag erstellt!
+}
+
+Die Tiefe des Inhaltsverzeichnisses wird auf $2$ eingestellt.
+Mit
+\begin{lstlisting}{}
+\renewcommand{\topfraction}{0.99}
+\renewcommand{\textfraction}{0.001}
+\end{lstlisting}
+wird gewährleistet, dass eine Seite bis zu $99$\% aus einer Abbildung bestehen kann. Dies
+stammt aus Texten zur Computergrafik und ist bei sehr vielen Abbildungen in einem Text
+äußerst nützlich.
+
+Dann erfolgen
+die Einstellung für Kopf- und Fußzeilen:
+\begin{lstlisting}{}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead{\headmark}
+\ohead[]{\pagemark}
+\chead{}
+\pagestyle{scrheadings}
+\end{lstlisting}
+
+Quelltexte wie der gerade gezeigte werden mit Hilfe des Pakets
+\lstinline$lstlisting$ ausgegeben.
+Gesetzt werden Eigenschaften für die Sprachen \java{} und \cpp{},
+die Hintergrundfarbe aus ein $85$-\% Grau und weitere Eigenschaften.
+
+\tip{
+Java und C++ wurden mit den Funktionen $\backslash$\lstinline$java$ und $\backslash$\lstinline$cpp$
+aus der Datei \datei{variablen.tex} gesetzt!
+}
+
+In der Datei werden eine Reihe von Funktionen definiert, um Formatierungen
+einheitlich zu gestalten. Es gibt Funktionen für die Formatierung
+von Tasten auf dem Keyboard, von Namen, von Dateinamen, die in
+Tabelle \ref{fun1} zusammengefasst sind. Diese wurden auch bereits im Text verwendet.
+
+\begin{table}[ht]
+\centering
+\caption{\label{fun1}Funktionen in \datei{setup.tex}}
+\begin{tabular}{ll}\hline
+\textbf{Bedeutung}&\textbf{Beispiel mit Aufruf}\\\hline
+Taste auf dem Keyboard&\lstinline$\taste{Esc}$ ergibt \taste{Esc}\\
+Datei- oder Verzeichnis-Name&\lstinline$\datei{setup.tex}$ ergibt \datei{setup.tex}\\
+(Geschützte) Namen&\lstinline$\name{Microsoft}$ ergibt \name{Microsoft}\\
+                        &Nicht in einer Überschrift verwenden!\\
+Begriffe beim ersten&\lstinline$\begriff{Beispiel}$ ergibt \begriff{Beispiel}\\
+Erwähnen kursiv formatieren&und einen Index-Eintrag\\
+und in den Index eintragen&\\\hline
+\end{tabular}
+\end{table}
+Mit \lstinline$\tip{Text}$ kann eine Box ausgegeben werden, in der Tipps
+für die Leser ausgegeben werden, wie das folgende Beispiel zeigt.
+
+\tip{
+In dieser Box steht ein Tipp, der mit \lstinline$\\tip$ erzeugt wurde!
+}
+
+Für die Darstellung von Algorithmen gibt es die Umgebung \lstinline$\algorithmus$.
+Sie erhält zwei Argumente, eine Überschrift und das eigentliche Verfahren, mit den
+verschiedenen durchgeführten Schritten. Dafür wird
+die Nummerierung \lstinline$schritte$ definiert und verwendet.
+
+Hier ein Beispiel aus der Mathematik:
+\begin{lstlisting}{}
+\algorithmus{LU}--Zerlegung ohne Zeilenvertauschungen}
+{
+\begin{schritte}
+\item Reduzieren Sie $A$ ohne Zeilenvertauschung auf
+Stufenform $U$ und speichern Sie die Multiplikatoren,
+die die führenden Einsen und die Nullen unterhalb
+der Diagonale erzeugen.
+\item Belegen Sie die Diagonale von $L$ mit den Kehrwerten
+der Multiplikatoren, die an der entsprechenden Position
+in $U$ eine führende Eins geliefert haben.
+\end{schritte}
+}
+\end{lstlisting}
+Und hier das Ergebnis:
+
+\algorithmus{LU--Zerlegung ohne Zeilenvertauschungen}
+{
+\begin{schritte}
+\item Reduzieren Sie $A$ ohne Zeilenvertauschung auf Stufenform $U$ und
+speichern Sie die Multiplikatoren, die die führenden Einsen und die
+Nullen unterhalb der Diagonale erzeugen.
+\item Belegen Sie die Diagonale von $L$ mit den Kehrwerten der
+Multiplikatoren, die an der entsprechenden Position in $U$ eine führende
+Eins geliefert haben.
+\end{schritte}
+}
+
+Für die Gestaltung einer Titelseite gibt es die Funktion \lstinline$\titelseite$.
+Abhängig von der Variablen \lstinline$\titleImage$ wird ein Default-Bild
+auf der Seite eingefügt. Diese Default-Einstellung kann wie unten im Beispiel
+gezeigt mit Hilfe eines optionalen Arguments verändert werden.
+
+\begin{lstlisting}{}
+\titelseite{<Pfad zu Bild>}{Dokumentation}
+\end{lstlisting}
+Das zweite Argument ist der Titel des Dokuments. Die Titelseite
+dieses Dokuments wurde durch
+\begin{lstlisting}{}
+\titelseite[\imagePath/tugboat]
+{Eine Vorlage für Studienbriefe}
+\end{lstlisting}
+erzeugt.
+Es muss keine Endung angegeben werden. \LaTeX{} sucht dann, je nachdem
+wie wir die \pdf{}-Datei erzeugen, das passende Format aus.
+Durch diese beiden Funktionen wird gewährleistet, dass die Titelseiten aller Studienbriefe
+zu einer Lehrveranstaltung immer das gleiche Layout aufweisen.
+
+Der Rest der Definitionen in \datei{setup.tex} realisiert Vorschläge für die Gestaltung
+von Lehrbriefen. Das folgende Kapitel zeig die Verwendung dieser
+Funktionen und Umgebungen an Hand von Beispielen. 

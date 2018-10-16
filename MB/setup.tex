@@ -122,7 +122,7 @@
 % Angabe im Begleittext, was die Studierenden lesen sollen (in einer Box)
 \newcommand{\lesen}[1]{%
 \begin{minipage}[c]{2.5cm}
-\includegraphics[width=0.8\textwidth]{\generalImagePath/Misc/buchicon}%
+\includegraphics[width=0.8\textwidth]{\imagePath/Misc/buchicon}%
 \end{minipage}%
 \begin{minipage}[t]{12cm}%
 #1%
@@ -135,7 +135,7 @@
 %   Im Gegensatz zu lesen, was einen verpflichtenden Charakter hat.
 \newcommand{\vertiefen}[1]{%
 \begin{minipage}[b]{2.5cm}
-\includegraphics[width=\textwidth]{\generalImagePath/Misc/reading}%
+\includegraphics[width=\textwidth]{\imagePath/Misc/reading}%
 \end{minipage}%
 \begin{minipage}[b]{12cm}%
 #1%
@@ -230,10 +230,10 @@
 \newcommand{\randnotiz}[1]{\marginpar{\small{\textbf{#1}}}}
 %
 % Gabelschlüssel als Marginalie und Hinweis auf Praxisbezug
-\newcommand{\praxisbezug}[0]{\randnotiz{\includegraphics[width=1cm]{\generalImagePath/Misc/gabel}}}
+\newcommand{\praxisbezug}[0]{\randnotiz{\includegraphics[width=1cm]{\imagePath/Misc/gabel}}}
 %
 % Smile Face
-\newcommand{\smileface}[0]{\randnotiz{\includegraphics[width=1cm]{\generalImagePath/Misc/Face-smile}}}
+\newcommand{\smileface}[0]{\randnotiz{\includegraphics[width=1cm]{\imagePath/Misc/Face-smile}}}
 %
 % alert aus beamer-Folien zu emph machen
 \newcommand*{\alert}[1]{\emph{#1}}
@@ -258,7 +258,7 @@
 \Huge{#2}%
 
 \vspace*{3.0cm}%
-\includegraphics[height=6cm]{#1}%
+\includegraphics[height=5cm]{#1}%
 
 \vspace*{3.0cm}%
 \Large{\theSchool{}}%

@@ -1,0 +1,234 @@
+\chapter{Ein Kapitel mit Beispielen}
+%
+Dieses Kapitel verwendet Texte aus den Studienbriefen
+für die Lehrveranstaltung  \emph{Stochastik für Informatiker}
+und \emph{Software-Qualitätsmanagement}.
+im Sudiengang IT-Analyst.
+\section{Marginalien}
+In den Empfehlungen der ZFH für das Verfassen von Studienbriefen
+wird vorgeschlagen, \begriff{Marginalien} zu verwenden. Dadurch wird das Wiederfinden von Begriffen und die Navigation im Dokument erleichtert. Um solche Marginalien
+zu unterstützen sieht der Satzspiegel einen relativ großen äußeren Rand vor,
+was dem Leser sicher schon aufgefallen ist.
+Die Marginalien werden fett gedruckt; dafür gibt es die\randnotiz{Randnotiz} Funktion \lstinline$\randnotiz{Randnotiz}$. Das Ergebnis sieht man hier am Rand.
+
+\tip{Die Funktion sollte nicht zu spät im Absatz platziert werden.
+ Die Marginalie wandert mit, was bei Seitenumbrüchen ungünstig ist!}
+
+\subsection*{Praxisbezug}
+Für Abschnitte, die \praxisbezug{}\index{Praxisbezug}
+einen Bezug zur Praxis darstellen gibt es eine spezielle Marginalie mit dem
+Zeichen wie in Abbildung \ref{praxisbezug_icon}.
+Dieser Abschnitt ist bereits so markiert worden.
+Hier der Absatz als \LaTeX{}-Quelle:
+\begin{lstlisting}{}
+Für Abschnitte, die \praxisbezug{}
+einen Bezug zur Praxis darstellen gibt es eine spezielle
+Marginalie mit dem Zeichen wie in
+Abbildung \ref{praxisbezug_icon}.
+Dieser Abschnitt ist bereits so markiert worden.
+\end{lstlisting}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1cm]{\imagePath/Misc/gabel}
+\caption{\label{praxisbezug_icon}Die Grafik für den "`Praxisbezug"'}
+\end{figure}
+
+\section{Lese-Anleitungen}
+Es gibt Lehrbriefe, die als Lese-Anleitungen verfasst sind. Deshalb gibt es Funktionen,
+die grafisch kennzeichnen, dass jetzt eine \begriff{Lese-Anleitung} im Text folgt.
+Insgesamt gibt es zwei Funktionen. Einmal ein Symbol für einen Hinweis
+auf einen Begleittext oder ein Lehrbuch, das jetzt "`sofort"' und unbedingt
+gelesen werden soll. Dazu gibt es die Funktion \lstinline$\lesen$:
+\begin{lstlisting}{}
+\lesen{Lesen Sie diese Anleitung, um die \LaTeX{}-Vorlage
+zu verwenden!}
+\end{lstlisting}
+Und hier das Ergebnis:
+
+\lesen{Lesen Sie diese Anleitung, um die \LaTeX{}-Vorlage zu verwenden!}
+
+\tip{
+Wichtig: vor der Umgebung muss eine Leerzeile stehen!
+}
+
+Für Hinweise auf Literatur, die als Vertiefung gelesen werden kann gibt es die
+Funktion \lstinline$\vertiefen{}$. Sie unterscheidet sich von der \lstinline$\lesen$-Funktion
+durch das verwendete Symbol. Hier ein Ergebnis:
+
+\vertiefen{Wichtig bei der Formulierung von Richtlinien ist, dass man nicht zu viele
+Regeln aufstellt. Dadurch erreicht man häufig das Gegenteil dessen, was eigentlich
+erreicht werden sollte. Holzmann schlägt $10$ Regeln
+vor. Dieses interessante PDF finden Sie in OLAT!}
+
+Und die \LaTeX{}-Quelle:
+\begin{lstlisting}{}
+\vertiefen{Wichtig bei der Formulierung von Richtlinien ist,
+dass man nicht zu viele Regeln aufstellt. Dadurch erreicht
+man häufig das Gegenteil dessen, was eigentlich
+erreicht werden sollte. Holzmann schlägt $10$ Regeln
+vor. Dieses interessante PDF finden Sie in OLAT!
+}
+\end{lstlisting}
+%
+%
+%
+\section{Kontrollfragen und Übungsaufgaben}
+In den Lehrbriefen der ZFH gibt es Kontrollfragen und Übungsaufgaben.
+Kontrollfragen sind kleine Fragen im Text, über die die Leser sofort, beim Lesen, nachdenken sollen.
+Der Lesefluss soll also unterbrochen werden.
+Die Antwort
+ist typischer Weise im darauf folgenden Text zu finden. Übungsaufgaben
+sind meist am Ende eines Abschnitts oder eines Kapitels aufgeführt, und im Anhang
+oder in einem separaten Dokument
+gibt es Lösungshinweise dazu.
+%
+%
+%
+\subsection{Kontrollfragen}
+Für die \begriff{Kontrollfragen}\randnotiz{Kontrollfragen} gibt es die Funktion
+\lstinline$\kontrollfrage$ und einen eigenen Zähler, \lstinline$\kontroll$. Der Zähler
+ist kapitelweise definiert. Hier ein Beispiel:
+\begin{lstlisting}{}
+\kontrollfrage{
+\item[\kontroll] Wie fügt man eine Kontrollfrage ein?
+\item[\kontroll] Wie fügt man eine Abbildung ein?
+\item[\kontroll] Und drittens \ldots
+}
+\end{lstlisting}
+Und so sieht das Ergebnis aus:
+
+\kontrollfrage{
+\item[\kontroll] Wie fügt man eine Kontrollfrage ein?
+\item[\kontroll] Wie fügt man eine Abbildung ein?
+\item[\kontroll] und drittens \ldots
+}
+
+Und noch eine weitere Frage, um zu sehen ob die Nummerierung funktioniert:
+
+\kontrollfrage{
+    \item[\kontroll]Das ist eine blöde Frage!
+}
+
+\tip{
+Unbedingt darauf achten, dass \emph{vor} und \emph{nach} den Kontrollfragen
+in der \LaTeX{}-Quelle Leerzeilen enthalten sind!
+}
+
+Wollen wir uns auf Kontrollfragen beziehen ist die Lösung aktuell etwas umständlich.
+Die Kontrollfrage 4 im dritten Kapitel erzeugen wir durch die
+Eingabe von \lstinline$\ref{kontrolle:3:4}$.
+Allgemein ist
+\begin{lstlisting}{}
+\ref{kontrolle:x:y}
+\end{lstlisting}
+ein Bezug auf eine Kontrollfrage im Kapitel $x$, mit der Nummer $y$.
+
+Bei der Ausgabe wird nur die Nummer der Frage ausgegeben, das Kapitel muss
+manuell hinzugefügt werden. Dies ist ein Bezug auf die Kontrollfrage 3 im Kapitel 4:
+\ref{kontrolle:3:4}. Die Nummer des Kapitels im Bezug: 3.\ref{kontrolle:3:4}
+auf Seite \pageref{kontrolle:3:4} erhalten wir durch
+\lstinline$3.\ref{kontrolle:3:4}$.
+%
+%
+%
+\subsection{Übungsaufgaben}
+\begriff{Übungsaufgaben}\randnotiz{Übungs-\\aufgaben} werden nach einer Überschrift, die auch grafisch kennzeichnet, dass jetzt Übungsaufgaben folgen aufgeführt.
+Die Aufgaben werden kapitelweise nummeriert.
+
+Zur Kennzeichnung gibt es die Funktion \lstinline$\uebung$. Die einzelnen Aufgaben
+und die \emph{Lösungen} stehen\index{Übungsaufgaben!Verzeichnisstruktur} in einzelnen \LaTeX{}-Dateien. Dies stammt aus einem System,
+für die Mathematik-Übungen eingesetzt wird. Ob eine Lösung dargestellt wird
+kann mit einer logischen Variable, \lstinline$solutions$, in \LaTeX{} entschieden werden.
+Damit können wir leicht Musterlösungen von Übungsblättern oder Lösungs-Folien für die Vorlesung
+erzeugen, im gleichen oder in einem weiteren Dokument.
+
+Die Aufgabenstellungen und Lösungen\randnotiz{Verzeichnisse} liegen\index{Übungsaufgaben}
+je nach Lehrveranstaltung relativ zur Haupt-Datei. Wo die Texte liegen
+wird durch \lstinline$\exercisePath$ angegeben, die im vorliegenden Text
+in \datei{stammdaten} definiert ist.
+Alle Dateien für die Aufgabenstellung und die Lösungen stehen in den Unterverzeichnissen \datei{aufgaben}
+und \datei{loesungen}. Jede Aufgabe hat einen eindeutigen Namen. Als Beispiel
+verwenden wir im Folgenden
+\datei{stat17.tex}. Diese Datei existiert in jedem der beiden Unterverzeichnisse.
+Der Dateiname ohne Suffix ist der Schlüssel zur Aufgabe. In der Funktion, die die
+Aufgabenstellung einliest wird auch ein \begriff{Label} gesetzt, das mit dem
+Namen der Datei übereinstimmt. So kann man später mit Hilfe von \lstinline$\label{stat17}$
+Bezug auf die Nummer der gestellten Aufgabe Bezug nehmen.
+Werden in der Aufgabenstellung oder der Lösung \LaTeX{}-Labels generiert,
+werden diese als Regel immer mit dem Dateinamen
+begonnen. Dadurch wird sichergestellt dass es keine doppelten Marken
+gibt.
+Eine Abbildung in der Datei \datei{stat17.tex} hat ein Label
+wie \lstinline$stat17:abbildung$. In den Lehrbriefen werden die Lösungshinweise im Anhang gesammelt.
+Deshalb findet man im Header dieser Datei die Zeile
+\begin{lstlisting}{}
+\setboolean{solutions}{true}
+\end{lstlisting}
+Setzt man diese Variable auf \lstinline$false$ werden die Lösungen ausgeblendet.
+
+Für die Darstellung der Aufgabenstellung gibt es die Funktion \lstinline$\aufgabe$,
+die als Argument den Dateinamen der Aufgabenstellung erhält, ohne die Endung \datei{.tex}.
+Für die Lösungen im Anhang gibt es die Funktion \lstinline$\hinweis$, wieder
+mit dem Dateinamen als Argument.
+Zwei Übungsaufgaben in den Dateien \datei{stat17.tex} und \datei{stat22.tex}
+werden so als Übungsaufgaben in den Text eingeführt:
+\begin{lstlisting}{}
+\uebung
+\aufgabe{stat17}
+\aufgabe{stat22}
+\end{lstlisting}
+Und hier das Ergebnis:
+
+\uebung
+\aufgabe{stat17}
+\aufgabe{stat22}
+
+Teilaufgaben sollen alphabetisch nummeriert werden. Dazu wird das Paket
+\lstinline$enumitem$ verwendet, um zu verhindern, dass jedes Mal für eine Aufgabe
+die Standard-Labels umgestellt werden.
+Um "`normale"'
+Aufzählungen zu erhalten müsste man eine eigene Umgebung definieren,
+oder jedes Mal den Stil des Standard-Labels umstellen.
+
+Die Lösungen der beiden Aufgaben findet man im Anhang \ref{solhinweise}, ab Seite
+\pageref{solhinweise}. Im PDF werden Links erstellt, so dass man
+von den Lösungs-Seiten wieder auf die Aufgabenstellung springen kann.
+
+Möchte man sich auf eine Aufgabe beziehen kann man, wie bereits erwähnt, ein Label verwenden, das in der
+Funktion \lstinline$\aufgabe$ erzeugt wird. Jede Aufgabe hat ein Label das mit dem Dateinamen
+übereinstimmt. Wir können uns also auf die zweite Aufgabe im Beispiel beziehen, sie hat die
+Nummer \ref{stat22}. Diesen Bezug erhalten wir mit Hilfe von \lstinline$\ref{stat22}$.
+
+\tip{
+Es gibt parallel zu diesem System der Übungsaufgaben auch eine Vorlage \datei{setup\_artcl}
+für Übungsblätter oder andere Dokumente, die mit \lstinline$scrartcl$ formatiert werden. Dort gibt es nur eine Funktion \lstinline$\\aufgabe$. Wird die Variable
+\lstinline$solutions$ im Header der Datei auf \lstinline$true$ gesetzt wird in diesem Kontext eine Musterlösung erzeugt, dabei steht die Lösung
+immer direkt nach der Aufgabenstellung.}
+
+Für die Aufgaben und Lösungen wird das Paket \lstinline$theorem$ eingesetzt.
+Deshalb werden an dieser Stelle in der Datei \datei{setup.tex} drei
+Umgebungen \begriff{Fakt}, \begriff{Satz} und \begriff{Definition}
+definiert. Diese Umgebungen sind kapitelweise nummeriert.
+
+Je nach Lehrveranstaltung gibt es weitere Fragmente, die einem Dokument
+hinzugefügt werden. in \emph{Software Management} gibt es \begriff{Szenarien}, in der Stochastik und in Lehrveranstaltungen zur Datenanalyse wird mit Datensätzen \index{Datensätze}gearbeitet.
+Solche spezifische Funktionen werden nach \datei{setup.tex} in die Haupt-Datei eingefügt,
+hier mit \datei{LVDefinitionen.tex}. Im vorliegenden Fall
+definiert sie die Funktion \lstinline$dataset$:
+
+\begin{lstlisting}{}
+\newcommand{\dataset}[2]{\textbf{\large Datensatz #1}
+\vspace*{0.3cm}\hrule\label{#2}
+\input{\exercisePath/datasets/#2}}
+\end{lstlisting}
+Auch hier
+gibt es für jeden Datensatz eine ASCII-Datei. Jeder Datensatz hat eine Kurzbezeichnung, die als
+erstes Argument angegeben wird, gefolgt vom Namen der Datei ohne die Endung.
+Der folgende Text wird durch
+\begin{lstlisting}{}
+\dataset{Beruf und Sport}{berufsport}
+\end{lstlisting}
+in das Dokument eingefügt.
+
+\dataset{Beruf und Sport}{berufsport}
