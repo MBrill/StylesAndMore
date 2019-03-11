@@ -5,13 +5,15 @@ Einstellungen in die Datei \datei{setup.tex}\index{setup.tex} verschoben. Dort w
 
 Angaben zum Semester, zum Modul oder zum Dozenten sind in einer
 vorher zu ladenden Datei definiert. In diesem vorliegenden Dokument wird die
-Datei \datei{stammdaten.tex} verwendet. An dieser Stelle werden auch die Pfade
-für die Bilder und die Übungsaufgaben definiert.
+Datei \datei{stammdaten.tex} verwendet. An dieser Stelle werden die Pfade
+für die Bilder und die Übungsaufgaben definiert. Wenn man Abbildungen
+für Randnotizen oder Lese-Anleitungen verwendet definiert man die
+zu Bilder, die dazu einsetzt ebenfalls in dieser Datei.
+
 Hier die Werte die für dieses Dokument verwendet wurden:
 \begin{lstlisting}{}
 % Variablen für das Semester, die Vorlesung ...
-% Letzte Änderung: 3. Oktober 2018
-\newcommand{\theSemester}{wintersemester~2018/19}
+\newcommand{\theSemester}{Sommersemester~2019}
 % Variable für die Vorlesung
 \newcommand{\theClass}{Styles and More}
 % Variable für den Studiengang
@@ -25,8 +27,20 @@ Hier die Werte die für dieses Dokument verwendet wurden:
 \newcommand{\exercisePath}{../../Uebungsaufgaben/Stochastik}
 % Verzeichnis für Bilder
 \newcommand{\imagePath}{./images}
+
+%
+% Abbildungen für die Titelseite oder spezielle Markierungen
+%
 % Default-Titelbild der Lehrveranstaltung
 \newcommand{\titleImage}{\imagePath/tugboat}
+% Abbildung für die Angabe von Begleittexten
+\newcommand{\lesenImage}{\imagePath/Misc/buchicon}
+% Abbildung für die Angabe von vertiefenden Texten
+\newcommand{\vertiefenImage}{\imagePath/Misc/reading}
+% Abbildung für eine Marginalie zum Praxisbezug
+\newcommand{\praxisImage}{\imagePath/Misc/gabel}
+% Abbildung für ein Smiley
+\newcommand{\smileImage}{\imagePath/Misc/smilie} 
 \end{lstlisting}
 Makros und Funktionen verwenden diese Variablen, so dass Namen, Semester und anderes einfach zu verändern ist,
 indem man diese Datei anpasst. Die hier dargestellten Werte
@@ -118,7 +132,7 @@ Darüber hinaus werden die folgenden Pakete geladen:
 \item \lstinline$array$
 \item \lstinline$ifthen$
 \item \lstinline$pifont$
-\item \lstinline$pstricks$
+\item \lstinline$caption$
 \item \lstinline$enumitem$ mit der Option \lstinline$shortlabels$
 \item \lstinline$imakeidx$, mit
 \begin{lstlisting}{}
