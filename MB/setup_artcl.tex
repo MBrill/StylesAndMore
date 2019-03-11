@@ -44,8 +44,6 @@
 \input{variablen}
 % Farben
 \input{colors}
-% Koordinatensysteme und andere Makros
-\input{coordinateSystems}
 %
 \raggedbottom
 \setlength{\parskip}{2.0ex}
@@ -243,11 +241,15 @@
 % alert aus beamer-Folien zu emph machen
 \newcommand*{\alert}[1]{\emph{#1}}
 %
+% Titel, Autor und optional ein Bild
 % Das obligatorische Argument ist der Titel des Dokuments.
-% Als Default wird software-project.eps als Titelbild
-% verwendet. Mit Hilfe eines optionalen Arguments kann
-% ein anderes Bild verwendet werden!
+% Mit Hilfe eines optionalen Arguments kann
+% ein hinzugefügt werden!
 % Beispiel: \titelseite[\imagePath/Misc/ameise]{Das Liebesleben der Ameisen}
+%
+% Das Defaultbild kann in einer spezifisch für das Thema
+% erstellt Datei (wie z.B. stammdaten.tex) mit Hilfe
+% der Variablen \titleImage eingestellt werden.
 %
 \newcommand{\titelseite}[2][\titleImage]{%
 %% Titelseite
