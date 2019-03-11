@@ -5,7 +5,7 @@
 % ---------------------------------------------------------------------
 \typeout{Einstellung für Texte auf report/book-Basis}
 \typeout{     (C) Manfred Brill}
-\typeout{     Version 1.2 September 2018}
+\typeout{     Version 1.3 März 2019}
 \typeout{     PDF-Support für LaTeX-Grafiken}
 \typeout{     Bei Verwendung von dvi -> ps -> pdf mb.sty verwenden!}
 \usepackage{mbPDF}
@@ -17,8 +17,9 @@
 \usepackage{ifthen}
 % Paket für Postscript Pi-Fonts
 \usepackage{pifont}
-% PSTricks
-\usepackage{pstricks}
+% Mit Hilfe des Package caption stellen wir sicher, dass \ref im PDF-Reader nicht
+% zur Beschriftung, sondern zur Abbildung springt.
+\usepackage{caption}
 % Paket für das einfache Umdefinieren von Listen
 \usepackage[shortlabels]{enumitem}
 % Alphabetischer Index
@@ -122,7 +123,7 @@
 % Angabe im Begleittext, was die Studierenden lesen sollen (in einer Box)
 \newcommand{\lesen}[1]{%
 \begin{minipage}[c]{2.5cm}
-\includegraphics[width=0.8\textwidth]{\imagePath/Misc/buchicon}%
+\includegraphics[width=0.8\textwidth]{\lesenImage}%
 \end{minipage}%
 \begin{minipage}[t]{12cm}%
 #1%
@@ -135,7 +136,7 @@
 %   Im Gegensatz zu lesen, was einen verpflichtenden Charakter hat.
 \newcommand{\vertiefen}[1]{%
 \begin{minipage}[b]{2.5cm}
-\includegraphics[width=\textwidth]{\imagePath/Misc/reading}%
+\includegraphics[width=0.8\textwidth]{\vertiefenImage}%
 \end{minipage}%
 \begin{minipage}[b]{12cm}%
 #1%
@@ -230,22 +231,18 @@
 \newcommand{\randnotiz}[1]{\marginpar{\small{\textbf{#1}}}}
 %
 % Gabelschlüssel als Marginalie und Hinweis auf Praxisbezug
-\newcommand{\praxisbezug}[0]{\randnotiz{\includegraphics[width=1cm]{\imagePath/Misc/gabel}}}
+\newcommand{\praxisbezug}[0]{\randnotiz{\includegraphics[width=1cm]{\praxisImage}}}
 %
-% Smile Face
-\newcommand{\smileface}[0]{\randnotiz{\includegraphics[width=1cm]{\imagePath/Misc/Face-smile}}}
+% Smiling Face
+\newcommand{\smileface}[0]{\randnotiz{\includegraphics[width=1cm]{\smileImage}}}
 %
 % alert aus beamer-Folien zu emph machen
 \newcommand*{\alert}[1]{\emph{#1}}
 %
-% Das obligatorische Argument ist der Titel des Dokuments.
-% Als Default wird software-project.eps als Titelbild
-% verwendet. Mit Hilfe eines optionalen Arguments kann
-% ein anderes Bild verwendet werden!
-% Beispiel: \titelseite[\imagePath/Misc/ameise]{Das Liebesleben der Ameisen}
+% Das Argument ist der Titel des Dokuments.
 %
-\newcommand{\titelseite}[2][\titleImage]{%
-%% Titelseite
+\newcommand{\titelseite}[1]{%
+% Titelseite
 \pagenumbering{roman}%
 \thispagestyle{empty}%
 \begin{titlepage}%
@@ -253,9 +250,36 @@
 \centering%
 \vspace*{0.5cm}%
 
-\Huge{\theClass{}}\\\vspace*{0.5cm}%
+\Huge{\textbf{\theClass{}}}\\\vspace*{0.5cm}%
 
-\Huge{#2}%
+\Huge{\textbf{#1}}%
+
+\vspace*{1.0cm}%
+\Large{\theSchool{}}%
+
+\Large{\theTeacher{}}%
+
+\Large{\theSemester{}}%
+\end{titlepage}}
+%
+% Das obligatorische Argument ist der Titel des Dokuments.
+% Als Default wird software-project.eps als Titelbild
+% verwendet. Mit Hilfe eines optionalen Arguments kann
+% ein anderes Bild verwendet werden!
+% Beispiel: \titelseite[\imagePath/Misc/ameise]{Das Liebesleben der Ameisen}
+%
+\newcommand{\titelseiteMitBild}[2][\titleImage]{%
+% Titelseite
+\pagenumbering{roman}%
+\thispagestyle{empty}%
+\begin{titlepage}%
+% Volle Zeilenbreite verwenden!
+\centering%
+\vspace*{0.5cm}%
+
+\Huge{\textbf{\theClass{}}}\\\vspace*{0.5cm}%
+
+\Huge{\textbf{#2}}%
 
 \vspace*{3.0cm}%
 \includegraphics[height=5cm]{#1}%

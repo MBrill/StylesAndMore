@@ -10,7 +10,7 @@
 % ---------------------------------------------------------------------
 \typeout{Einstellung für Texte auf article-Basis}
 \typeout{     (C) Manfred Brill}
-\typeout{     Version 1.1 September 2018}
+\typeout{     Version 1.2 März 2019}
 \typeout{     PDF-Support für LaTeX-Grafiken}
 \typeout{     Bei Verwendung von dvi -> ps -> pdf mb.sty verwenden!}
 \usepackage{mbPDF}
@@ -22,8 +22,9 @@
 \usepackage{ifthen}
 % Paket für Postscript Pi-Fonts
 \usepackage{pifont}
-% PSTricks
-\usepackage{pstricks}
+% Mit Hilfe des Package caption stellen wir sicher, dass \ref im PDF-Reader nicht
+% zur Beschriftung, sondern zur Abbildung springt.
+\usepackage{caption}
 % Paket für das einfache Umdefinieren von Listen
 \usepackage[shortlabels]{enumitem}
 % Alphabetischer Index
@@ -241,6 +242,30 @@
 % alert aus beamer-Folien zu emph machen
 \newcommand*{\alert}[1]{\emph{#1}}
 %
+% Titelseite ohne Bild
+%
+\newcommand{\titelseite}[1]{%
+% Titelseite
+\pagenumbering{roman}%
+\thispagestyle{empty}%
+\begin{titlepage}%
+% Volle Zeilenbreite verwenden!
+\centering%
+\vspace*{0.3cm}%
+
+\Large{\textbf{\theClass{}}}\\\vspace*{0.3cm}%
+
+\Large{\textbf{#1}}\\\vspace*{0.3cm}%
+
+\vspace*{1.0cm}%
+
+\large{\theSchool{}}%
+
+\large{\theTeacher{}}%
+
+\large{\theSemester{}}%
+\end{titlepage}}
+%
 % Titel, Autor und optional ein Bild
 % Das obligatorische Argument ist der Titel des Dokuments.
 % Mit Hilfe eines optionalen Arguments kann
@@ -251,26 +276,26 @@
 % erstellt Datei (wie z.B. stammdaten.tex) mit Hilfe
 % der Variablen \titleImage eingestellt werden.
 %
-\newcommand{\titelseite}[2][\titleImage]{%
+\newcommand{\titelseiteMitBild}[2][\titleImage]{%
 %% Titelseite
 \pagenumbering{roman}%
 \thispagestyle{empty}%
 \begin{titlepage}%
 % Volle Zeilenbreite verwenden!
 \centering%
-\vspace*{0.5cm}%
+\vspace*{0.3cm}%
 
-\Huge{\theClass{}}\\\vspace*{0.5cm}%
+\Large{\textbf{\theClass{}}}\\\vspace*{0.3cm}%
 
-\Huge{#2}%
+\Large{\textbf{#2}}%
 
-\vspace*{3.0cm}%
-\includegraphics[height=6cm]{#1}%
+\vspace*{1.0cm}%
+\includegraphics[height=4cm]{#1}%
 
-\vspace*{3.0cm}%
-\Large{\theSchool{}}%
+\vspace*{1.0cm}%
+\large{\theSchool{}}%
 
-\Large{\theTeacher{}}%
+\large{\theTeacher{}}%
 
-\Large{\theSemester{}}%
+\large{\theSemester{}}%
 \end{titlepage}}
