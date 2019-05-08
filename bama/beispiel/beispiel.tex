@@ -1,0 +1,50 @@
+% -----------------------------------------------------------------------------------------------------------------------
+% Abschluss- oder Projektarbeit mit LaTeX
+% -----------------------------------------------------------------------------------------------------------------------
+\documentclass[enabledeprecatedfontcommands, a4paper,
+                       fontsize=12pt, twoside, open=right,
+                       headsepline,
+                       numbers=noenddot,
+                       DIV=15, BCOR=15mm,
+                       headings=standardclasses,
+                       headings=big]{scrbook}
+\KOMAoptions{cleardoublepage=empty}
+%
+\input{setup}
+%
+\input{pdfsetup}
+%
+% Beginn Dokument
+%
+\begin{document}
+\thispagestyle{empty}
+\title{Beispiel für eine Abschlussarbeit mit \LaTeX{}}
+\author{Manfred Brill}
+\maketitle
+% Inhaltsverzeichnis
+\pagenumbering{roman}
+\tableofcontents
+\pagenumbering{arabic}
+% Text
+% Einleitung
+\input{einleitung}
+% Kapitel 1
+\input{projektionen}
+% Kapitel 2
+\input{glsl}
+%
+% Anhang
+%
+\appendix
+% Literatur
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\chaptermark{Literaturverzeichnis}
+\sectionmark{Literatur}\label{literatur}
+\bibliography{cg}
+%
+\input{ehren}
+%
+\input{sperre}
+\end{document}
