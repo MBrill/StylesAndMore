@@ -1,0 +1,177 @@
+% ----------------------------------------------------------------
+%  Letzte Änderung: 17. 05. 2006 erstellt
+%                   04. 09. 2007 überarbeitet und korrigiert
+% ----------------------------------------------------------------
+\chapter{OpenGL Extensions}\label{glextensions}
+Dieses Kapitel enthält eine Einführung in OpenGL Extensions, wie sie verwaltet
+und verwendet werden. Mehr dazu finden Sie in \cite{rost:06}
+%
+%
+%
+\section{OpenGL Extensions}
+Die OpenGL \emph{Extensions} bieten den Hardware-Herstellern die Möglichkeit,
+spezifische Erweiterungen im Treiber anzubieten. Es gibt inzwischen mehr als $300$
+solcher Erweiterungen. \emph{Silicon Graphics} ist für das OpenGL Extension Registry
+zuständig.
+
+Es gibt eine Systematik für die Namensvergabe der \emph{Extensions}. Stammt die
+Erweiterung von einem Hersteller wie \emph{NVidia} oder \emph{ATI}, dann wird im
+Namen ein Prefix wie GL\_NV\_ oder GL\_ATI\_ aufgenommen. Wird eine Erweiterung von
+mehreren Herstellern angeboten, dann wird der Prefix GL\_EXT\_ verwendet.
+Kommt das ARB zum Ergebnis, dass die Erweiterung eine sinnvolle Erweiterung von
+\emph{OpenGL} darstellt wird der Prefix GL\_ARB\_ vergeben. Dies ist häufig der letzte
+Schritt, bevor die Erweiterung in einer neuen Version von \emph{OpenGL} zu einer
+Standard-Funktion wird. Dann fällt der Prefix weg.
+In Tabelle \ref{glsl:extensions} finden Sie die wichtigsten
+Prefixes.
+
+\begin{table}[ht]
+\centering
+\caption{\label{glsl:extensions}Eine Auswahl von \emph{OpenGL Extension} Prefixes}
+\begin{tabular}{ll}\hline
+Prefix&Bedeutung\\\hline
+SGI\_&\emph{Silicon Graphics}\\
+ATI\_&\emph{ATI}\\
+NV\_&\emph{NVidia}\\
+IBM\_&\emph{IBM}\\
+WGL\_&\emph{Microsoft}\\
+EXT\_&Herstellerübergreifend\\
+ARB\_&Vom ARB übernommen\\\hline
+\end{tabular}
+\end{table}
+Wollen Sie unter \emph{Windows} mit \emph{Extensions} arbeiten, dann reicht es nicht
+mit der \emph{opengl\-32.dll} zu arbeiten, die Sie im Betriebssystem finden. Auch
+die Datei \emph{libopengl32.a}, die wir in \emph{Cygwin} verwenden enthält nur eine
+Version $1.1$ von \emph{OpenGL}. Deshalb benötigen wir einen Mechanismus, mit dessen Hilfe
+wir Pointer auf eine \emph{OpenGL}-Funktion erhalten, der direkt im Treiber
+existiert. Die Funktion \lstinline$wglGetProcAdress()$
+in der \emph{Windows}-Implementierung von \emph{OpenGL}
+gibt diese Pointer zurück.
+
+Als Beispiel suchen wir nach der \emph{Extension} GL\_EXT\_point\_parameters.
+Ist diese im Treiber vorhanden, dann erhalten wir einen Pointer auf die Funktion durch
+\begin{lstlisting}{}
+#include <windows.h>
+#include <GL/glut.h>
+#include <GL/glext.h
+// Funktionsprototypen als globale Variable
+PFNGLPOINTPARAMETERFEXTPROC glPointParameterfEXT;
+...
+glPointParameterfEXT =
+(PFNGLPOINTPARAMETERFEXTPROC)
+    wglGetProcAddress("glPointParameterfEXT");
+\end{lstlisting}
+Nach dieser Zuweisung in der letzten Zeile können Sie \lstinline$glPointParameterfEXT$ wie
+gewohnt aufrufen.
+%
+% GLSL und OpenGL
+%
+\section{GLSL und OpenGL}\label{glsl}
+Bei der Implementierung eines
+\emph{GLSL}-Shaders für eine OpenGL-Applikation haben Sie es mit mindestens
+zwei unterschiedlichen Dateien zu tun. Zum einen ist dies eine
+übliche \emph{OpenGL}-Applika\-tion, die die
+Shader lädt und aktiviert.
+Zudem muss in dieser Datei die Parameterübergabe zwischen \emph{OpenGL}
+und \emph{GLSL} definiert werden.
+
+Ein \emph{Vertex-Shader} hat bei uns immer den Suffix
+\emph{*.vsh}; ein \emph{Fragment-Shader} \emph{*.fsh}.
+Der Quellcode liegt immer in einem Unterverzeichnis \emph{shader}.
+Pro \emph{Vertex-} und \emph{Fragment-Shader} gibt es
+mindestens die Definition eines Einsprungspunkts; dafür
+verwenden wir immer eine \lstinline$main$-Funktion.
+\subsection{Vertex Processor}
+Der \emph{Vertex Processor} arbeitet auf den Eckpunkten und den dazu gehörenden
+Attributen. Er ist vorgesehen, um die folgenden Operationen durchzuführen:
+\begin{itemize}
+\item Transformation der Eckpunkte;
+\item Transformation der Eckennormalen und Normalisierung;
+\item Berechnung von Textur-Koordinaten;
+\item Transformation von Textur-Koordinaten;
+\item Beleuchtungsberechnungen für die Eckpunkte;
+\item Material und Farbzuweisung für die Eckpunkte.
+\end{itemize}
+Eingaben an den \emph{Vertex Processor} werden in \emph{GLSL} \emph{Attributes}
+genannt. Das sind Farben und andere Eigenschaften, die zwischen \lstinline$glBegin()$
+und \lstinline$glEnd()$ oder mit Hilfe der Funktion \lstinline$glDrawElements$ übergeben werden -- prinzipiell
+alle Eigenschaften, die pro Eckpunkt wechseln können. Es gibt \emph{Built-in attribute
+values}, die durch Aufrufe von \lstinline$glColor()$, \lstinline$glNormal()$ oder \lstinline$glVertex()$
+erzeugt werden. In \emph{GLSL} greifen wir durch die Variablen
+\lstinline$gl_Color$ oder \lstinline$gl_Normal$ darauf zu.
+Darüber hinaus
+können Sie eigene Attribute definieren. Der \emph{Vertex Processor} hat auch Zugriff
+auf die \emph{ModelView-Matrix}, die Position von Lichtquellen oder die Position
+der Kamera.
+Solche Eigenschaften wechseln nicht von Eckpunkt zu Eckpunkt und werden deshalb
+in \emph{GLSL} als \emph{Uniform Variables} bezeichnet.
+Auch für diese Art von
+Variablen gibt es die Möglichkeit eigene Variable zu definieren und von der Anwendung
+an den \emph{Vertex Shader} zu übergeben. Eine neue Möglichkeit in \emph{GLSL} ist, dass
+die Möglichkeit besteht in einem \emph{Vertex Shader} aus dem Texturspeicher zu lesen.
+Ein \emph{Vertex Shader} wird pro Eckpunkt aufgerufen. Die Ausgabe eines solchen Shaders
+ist insbesondere die Position des aktuellen Eckpunkts in \emph{Clipping Koordinaten}.
+Diese Position sollte nach Durchlauf des Shaders in der Ausgabe-Variable
+\lstinline$gl_Position$ stehen.
+%
+%
+%
+\subsection{Fragment Processor}
+Wie der Name schon sagt arbeitet der \emph{Fragment Processor} auf den Fragmenten und
+den dazugehörenden Daten. Dieser Prozessor ist für die folgenden Operationen vorgesehen:
+\begin{itemize}
+\item Operationen und Berechnungen auf interpolierten Werten,
+\item Zugriff auf Texturen,
+\item Anwendung der Texturen,
+\item Nebel oder
+\item Farbberechnungen.
+\end{itemize}
+\emph{Fragment Shader} können keine Operationen durchführen, die mehr als ein Fragment
+auf einmal benötigen.
+Die primäre Eingabe eines \emph{Fragment Shaders} sind die interpolierten \emph{varying}
+Variablen, sowohl die eingebauten als auch die von der Anwendung definierten. Innerhalb
+des Shaders kann mit Hilfe der Variablen \lstinline$gl_FragCoord$
+die Position des Fragments festgestellt werden. Mit  \lstinline$gl_FrontFacing$ kann abgefragt
+werden, ob die Werte des Fragments zu einem \emph{Front Face} gehören. Der Shader kann auf alle
+\emph{Uniform Variables} wie \lstinline$gl_ModelViewMatrix$ oder \lstinline$gl_FrontMaterial$
+zugreifen. Dadurch werden Berechnungen ermöglicht, die normalerweise im \emph{Vertex Processor}
+erfolgen würden.
+
+Die hauptsächliche Ausgabe dieser Shader ist die Variable
+\lstinline$gl_FragColor$ -- die Farbe des Fragments.
+%
+% Ein erster GLSL-Shader
+%
+\section{Unser erster \emph{GLSL}-Shader}
+Jetzt wollen wir einen ersten kleinen \emph{GLSL}-Shader erstellen. Dieser ist
+ganz unspektakulär, er färbt ein Dreieck. Mit dieser einfachen Funktionalität
+können wir uns auf die Verbindung zwischen \emph{C++}-Programm und \emph{GLSL} konzentrieren,
+bevor wir komplexere Shader implementieren.
+
+Wir wollen ähnlich wie bei Ihrem ersten \emph{OpenGL}-Beispiel ein gelbes Dreieck
+ausgeben. Allerdings soll die Farbe nicht durch \lstinline$glColor$, sondern durch Shader
+definiert werden. Sehr häufig können Sie solche Aufgaben entweder
+als \emph{Vertex}-  oder
+als \emph{Fragment}-Shader implementieren.
+
+Als erste Lösungsmöglichkeit verwenden wir einen \emph{Vertex Shader}.
+Die Ecken sollen wie in der Standard-Pipeline transformiert werden. Das könnten wir durch
+Anweisungen nachbauen, aber einfacher ist die Verwendung der Funktion \lstinline$ftransform()$.
+Diese stellt die Funktionalität der \emph{Fixed-Function-Pipeline} zur Verfügung.
+Bleibt die Definition der Farbe übrig, dafür wird der Wert
+auf \lstinline$gl_FrontColor$ übergeben.
+Sie sehen ein erstes Beispiel für die in \emph{GLSL} eingebauten Funktionen für
+Felder.
+\begin{lstlisting}{}
+void main(void)
+{
+   gl_FrontColor = vec4(1.0, 1.0, 0.0, 1.0);
+   gl_Position = ftransform();
+}
+\end{lstlisting}
+Einen \emph{Fragment Shader} benötigen wir nicht. Jetzt müssen wir den Shader
+in das \emph{OpenGL}-Programm integrieren. Dazu müssen wir unter \emph{Windows}
+alle Pointer auf die Funktionen abfragen; wir gehen im Folgenden davon aus, dass
+dies bereits durchgeführt wurde.
+
+\ldots

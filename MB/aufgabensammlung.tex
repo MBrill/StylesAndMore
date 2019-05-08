@@ -35,5 +35,5 @@
 % Datensatz-Texte und Daten in eigener Datei
 % chapter- und sectionmark mit der Kurzbezeichnung
 % Die Kurzbezeichnungen werden mit addcontentsline dem Inhaltsverzeichnis hinzugefügt
-\newcommand{\dataset}[3]{\newpage\hrule\textbf{\large #1}\addcontentsline{toc}{section}{#1}\hspace*{2cm}\textbf{\large #2}\vspace*{0.3cm}\hrule\label{#3}\input{datasets/#3}\sectionmark{#1}\chaptermark{#1}}
+\newcommand{\dataset}[3]{\newpage\hrule\textbf{\large #1}\addcontentsline{toc}{section}{#1}\hspace*{2cm}\textbf{\large #2}\vspace*{0.3cm}\hrule\label{#3}\input{\dataPath/datasets/#3}\sectionmark{#1}\chaptermark{#1}}
 %

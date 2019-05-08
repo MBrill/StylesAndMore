@@ -1,0 +1,418 @@
+% -----------------------------------------------------------------------------------------------------------------------
+% Abschlussarbeiten mit LaTeX
+% -----------------------------------------------------------------------------------------------------------------------
+\documentclass[enabledeprecatedfontcommands, a4paper,
+                       fontsize=12pt, twoside, open=right,
+                       headsepline,
+                       numbers=noenddot,
+                       DIV=15, BCOR=15mm,
+                       headings=standardclasses,
+                       headings=big]{scrbook}
+\KOMAoptions{cleardoublepage=empty}
+%
+\input{setup}
+%
+\input{pdfsetup}
+%
+% ---------------------------------
+% Dokument
+% ---------------------------------
+\begin{document}
+\thispagestyle{empty}
+\title{Abschlussarbeiten mit \LaTeX{} schreiben\\Formatvorlagen und Empfehlungen}
+\author{Manfred Brill}
+\maketitle
+% Abstract
+
+% Inhaltsverzeichnis
+\pagenumbering{roman}
+\tableofcontents
+\pagebreak
+\pagenumbering{arabic}
+% Text
+%
+%
+\chapter{\LaTeX{}}
+Die in diesem Text beschriebenen Einstellungen setzen eine Installation von \LaTeX{}
+voraus. Getestet wurden die Einstellungen mit \lstinline$MikTeX 2.9$ und
+\lstinline$KOMA-Script$ auf \lstinline$Windows$ \lstinline$10$.
+Insbesondere die Verwendung von \lstinline$KOMA-Script$
+wird dringend empfohlen. Dieses Paket bietet eine sehr gute Anpassung für
+das Verfassen von Texten in deutscher Sprache.
+
+Dieser Text enthält keine Anleitung für die Installation von \LaTeX{}.
+Es gibt einige gute Bücher zu \LaTeX{}, die teilweise auch in der Bibliothek vorhanden sind.
+Ich arbeite gerne mit den folgenden beiden Büchern:
+\begin{itemize}
+\item Helmut Kopka "`\LaTeX{} -- Band 1"' \cite{kopka:02}; und
+\item Frank Mitteldorf und Michel Goossens: "`Der \LaTeX{}-Begleiter"' \cite{mittelbach:05}.
+\end{itemize}
+Ob Sie mit \LaTeX{} oder mit PDF\LaTeX{} arbeiten ist Ihnen überlassen. Beachten Sie allerdings
+die Bemerkungen zu Grafikformaten in Abschnitt \ref{grafikformate} auf Seite
+\pageref{grafikformate}. Dieses Dokument ist mit PDF\LaTeX{} erzeugt worden, dabei wurde
+die Datei \lstinline$setup.tex$ eingesetzt, die Sie auf GitHub finden (\cite{brillStyles}). In diesem 
+Repository finden Sie auch die Quell dieses Dokuments!
+
+%
+\section*{Arbeiten mit großen Dokumenten in \LaTeX{}}
+\LaTeX{} ist bei der Arbeit mit großen Dokumenten
+sehr stabil -- einer der vielen Gründe, warum Sie über die Verwendung von \LaTeX{} nachdenken
+sollten.
+
+Trotzdem empfiehlt es sich, jedes Kapitel in eine eigene Datei abzulegen.
+In einer zentralen Datei, die die Verzeichnisse enthält,
+können Sie die einzelnen Kapitel mit Hilfe der
+Funktion \lstinline$\input{kapitelxxx}$ einfügen.
+%
+\chapter{Gliederung}
+Die Überschriften werden nach der Dezimalklassifikation bis zur dritten Ebene nummeriert.
+Diese drei Ebenen werden in einem Inhaltsverzeichnis aufgeführt.
+Vermeiden Sie unbedingt mehr als drei Gliederungsebenen!
+
+Für die Gliederung verwenden Sie wie in \LaTeX{} üblich die Befehle
+\begin{lstlisting}{}
+\chapter{Kapitelüberschrift}
+
+\section{Abschnittsüberschrift}
+
+\subsection{Unterabschnittsüberschrift}
+\end{lstlisting}
+\LaTeX{} mit den verwendeten Paketen sorgt dafür, dass die richtigen Formate verwendet werden.
+
+Wenn Sie Überschriften ohne Nummerierung benötigen, dann verwenden Sie wie in \LaTeX{}
+üblich die Formen \lstinline$chapter*$, \lstinline$\section*$ und \lstinline$\subsection*$.
+%
+\chapter{Seitenlayout}
+Als Papiergröße verwenden Sie \emph{immer} DIN A4. Dieses Dokument wurde mit
+den folgenden Angaben erzeugt:
+\begin{lstlisting}{}
+\documentclass[enabledeprecatedfontcommands, a4paper,
+                       fontsize=12pt, twoside, open=right,
+                       headsepline,
+                       numbers=noenddot,
+                       DIV=15, BCOR=15mm,
+                       headings=standardclasses,
+                       headings=big]{scrbook}
+\KOMAoptions{cleardoublepage=empty}
+\end{lstlisting}
+Diese Optionen für die \emph{KOMA-Script}-Klasse \lstinline$scrbook$ setzen die
+Ränder entsprechend und definiert auch eine Bindekorrektor. Insbesondere wird
+hier mit \lstinline$twoside$ doppelseitiger Druck eingestellt. Damit fangen neue
+Kapitel \emph{immer} auf ungeraden Seiten an.
+
+Sie können natürlich auch einseitigen Druck
+verwenden - verändern Sie dann die erste Zeile Ihres Dokuments entsprechend!
+%
+\chapter{Textlayout}
+\section{Titelblatt und Zusammenfassung}
+Das Titelblatt steht Ihnen in \texttt{Campusboard} zur Verfügung. Solange Sie den endgültigen
+Titel noch nicht fest gelegt haben mit Wasserzeichen, am Ende ohne Wasserzeichen im
+PDf-Format.
+
+Auf der dem Titelblatt folgenden Seite geben wir Kurzfassung, ein \emph{Abstract} Ihrer Arbeit.
+Der Umfang sollte in der Regel eine halbe Seite sein. Sie können dafür auch die
+\LaTeX{}-Umgebung \lstinline$abstract$ verwenden!
+
+Danach, auf der restlichen halben Seite, geben Sie den englischen Titel Ihrer Diplomarbeit an, gefolgt
+von einem englischen Abstract.
+Beim englischen Text bitte unbedingt auf vernünftiges Englisch achten. Versuchen Sie \emph{nicht},
+eine wörtliche Übersetzung zu erstellen. Dann entsteht keine gute Formulierung. Verwenden Sie
+einfache englische Sätze. Ernest Hemingway ist bekannt für seinen einfachen Stil -- er
+hat einen Nobelpreis dafür bekommen \ldots
+
+Besonders wichtig ist der englische Titel, da dieser auch auf dem \emph{Diploma Supplement}
+erscheint. Achten Sie bei der  Schreibweise des Titels auf die Besonderheiten der
+Groß-/Kleinschreibung. Üblich ist hier:
+Das erste Wort wird immer mit einem großen Anfangsbuchstaben geschrieben,
+ebenso alle anderen Worte außer:
+\begin{itemize}
+\item Präpositionen mit
+maximal 4 Buchstaben (for, with, of, over, from, in, to, at, out, into etc.);
+\item bestimmte und unbestimmte Artikel (a, an, the);
+\item das to bei Verben im Infinitiv (z. B. »to Have«, »to Go«);
+\item Konjunktionen mit maximal 4 Buchstaben (and, or etc.)
+\item wenn es ein Eigenname oder ähnliches ist (z. B. ein Namen einer Prozedur),
+der klein geschrieben wird (diese Regel gilt als einzige Ausnahme auch
+für das erste Wort in der Überschrift)
+\end{itemize}
+Wörter mit Bindestrich werden
+dabei wie einzelne Wörter behandelt
+(d. h. der Bindestrich ist hierbei einem Leerzeichen gleichwertig).
+%
+\section{Fließtext}
+Fließtext wird von \LaTeX{} in Blocksatz gesetzt. Dafür wird der Font
+Palatino verwendet; die Schriftgröße ist 12~pt mit einfachem Zeilenabstand.
+\lstinline$KOMA-Script$ verwendet für Kapitel-Überschriften den Font
+Arial; verändern Sie diese Einstellung nicht.
+
+Die Silbentrennung
+wird von \LaTeX{} automatisch ausgeführt. Sollte ein Wort falsch getrennt sein, können Sie
+dies durch das Einfügen von geschützten Trennzeichen \lstinline$\-$ korrigieren.
+Sie können \LaTeX{} mit Hilfe der Funktion \lstinline$\hyphenation$ die korrekte Trennung
+definieren:
+\begin{lstlisting}{}
+\hyphenation{Ent-wick-lung}
+\hyphenation{Open-GL}
+\hyphenation{Bild-ebe-ne}
+\end{lstlisting}
+Wörter im Text werden durch Kursivschrift hervorgehoben; dazu verwenden Sie
+die Umgebung \lstinline$\emph{}$. Vermeiden Sie bitte Unterstreichungen und Fettdruck
+im Fließtext; das ergibt ein unruhiges Druckbild -- die Zeiten der Schreibmaschine
+sind vorbei.
+
+Fußnoten sollten wenn möglich
+vermieden werden.
+Ebenfalls vermeiden sollten Sie das manuelle Einfügen von Leerzeilen. Die Absatz-Abstände
+sind für \LaTeX{} korrekt eingestellt.
+%
+\section{Quellcodes}
+Quellcodes werden mit Hilfe des Pakets \lstinline$lstlistings$ vom Fließtext abgesetzt.
+Die Beispiele für die \LaTeX{}-Quellen in diesem Dokument wurden so erstellt. Quellcode innerhalb von
+Fließtext wird mit \lstinline$\lstinline$ formatiert.
+%
+\section{Eigene Einstellungen}
+Sollte die Notwendigkeit auftauchen zusätzliche Einstellungen einzubauen, dann verwenden Sie
+\emph{immer} den Font Palatino. Informieren Sie mich, um sicher zu stellen, dass
+sinnvolle Erweiterungen in die Vorlage aufgenommen werden -- nachfolgende Studierende
+werden Ihnen dies danken!
+%
+\chapter{Verzeichnisse und Querverweise}
+\LaTeX{} bietet die Möglichkeit, das
+Inhaltsverzeichnis automatisch zu erstellen. Benutzen Sie diese Funktion.
+Als Default ist eingestellt, dass Überschriften bis zur Stufe $2$ eingefügt werden.
+Sie können sies so verändern:
+Stellen Sie das Inhaltsverzeichnis mit
+\begin{lstlisting}{}
+\setcounter{tocdepth}{2}.
+\end{lstlisting}
+Das Inhaltsverzeichnis steht vor der Einleitung und wird in die Seitennummerierung
+aufgenommen.
+Das Literaturverzeichnis befindet sich im Anhang.
+Verwenden Sie Bib\TeX{} für das Literaturverzeichnis!
+
+So binden Sie das Literaturverzeichnis ein, falls Ihre Literatur in der Datei
+\lstinline$arbeit.bib$ steht:
+\begin{lstlisting}{}
+\cleardoublepage
+\phantomsection % Literaturverzeichnis im PDF Reader
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\chaptermark{Literaturverzeichnis}
+\sectionmark{Literaturverzeichnis}
+\bibliography{arbeit}
+\end{lstlisting}
+Mit der Anweisung \lstinline$\bibliograph{meineLiteratur,cg}$ können Sie 
+auch mehrere Bib\TeX{}-Dateien verwenden; hier wären dies die Dateien
+\lstinline$meineLiteratur.bib$ und \lstinline$cg.bib$.
+
+Ein mögliches Ergebnis sehen Sie im Literaturverzeichnis auf Seite
+\pageref{literatur}.
+Die Einträge werden alphabetisch, nach dem Schlüssel in der ersten Spalte sortiert.
+Der Schlüssel wird durch die ersten drei Zeichen des Nachnamens des Autors gebildet,
+gefolgt von einer zweistelligen Jahresangabe.
+Gibt es mehrere Quellenangaben des gleichen Autors in einem Jahr,
+wird beginnend mit dem Buchstaben a nummeriert.
+Hat eine Quelle mehrere Autoren wird der Schlüssel aus den Anfangsbuchstaben der
+Autorennamen gebildet, gefolgt von der Jahreszahl.
+Bei mehreren Quellen im gleichen Jahr gilt die obige Regel entsprechend.
+Bib\TeX{} setzt diese Regeln im Stylefile \lstinline$geralpha$
+um; Sie müssen sich nur darum kümmern die Eingabedatei und die Schlüssel für die einzelnen
+Einträge zu vergeben.
+
+Falls es notwendig ist, Online-Dokumente
+als Literatur zu zitieren, dann verwenden Sie den
+Inhalt des Titel-Tags der HTML-Seite als Titel, und
+geben die URL an. Zusätzlich geben sie an,
+wann Sie das Dokument angesehen haben,
+da Dokumente im World Wide Web oft eine kurze Lebensdauer aufweisen.
+\cite{brill:08} ist ein Beispiel für eine Online-Quelle im Literaturverzeichnis.
+%
+\chapter{Abbildungen und Tabellen}
+Für die Beschriftung von Tabellen und Abbildungen
+gibt es den Befehl \lstinline$\caption$.
+Die Nummerierung erfolgt immer kapitelweise.
+\LaTeX{} sorgt nach dem Einfügen dafür, dass die Nummerierung immer korrekt ist!
+Versehen Sie jede Beschriftung mit einer Marke, dazu gibt es in \LaTeX{}
+die Funktion \lstinline$\label{}$.
+Der Text um eine Abbildung oder Tabelle sollte sich darauf beziehen.
+Dies gelingt durch die Verwendung von Querverweisen. Bezüge erstellen Sie
+mit \lstinline$\ref{}$.
+
+Beschriftungen von Abbildungen werden immer als
+Unterschrift erstellt, wie das Beispiel Abbildung \ref{abbildung1} zeigt.
+
+\begin{figure}[ht]
+\centering
+\includegraphics{abbildung}
+\caption{\label{abbildung1}Ein Beispiel für eine Abbildung}
+\end{figure}
+Tabellen erhalten ebenfalls Beschriftungen,
+allerdings verwenden Sie bitte Tabellen-Überschriften, wie im Beispiel Tabelle \ref{tabelle1}.
+Stellen Sie innerhalb der Umgebung \lstinline$tabular$ mit
+\lstinline$\small$ die Fontgröße kleiner.
+Spaltenüberschriften werden in Fettdruck gesetzt.
+
+\begin{table}[ht]
+\centering
+\caption{\label{tabelle1}Ein Beispiel einer Tabelle}
+\small
+\begin{tabular}{|l|l|}\hline
+\textbf{Überschrift Spalte 1}&\textbf{Überschrift Spalte 2}\\\hline
+Hier kommt ein Text hin&und hier vielleicht eine Zahl?\\\hline
+\end{tabular}
+\end{table}
+%
+\section{\label{grafikformate}Grafikformate}
+In den Anfangszeiten von \LaTeX{} wurde ein Dokument sehr häufig mit Hilfe von
+\lstinline$dvips$ erstellt. Das bedeutet, dass aus dem \lstinline$dvi$-File ein
+Postscript-Dokument gemacht wurde. Heute kann man das immer noch tun; mit \lstinline$ps2pdf$
+wird anschließend eine PDF-Datei erzeugt werden. Für diese Erstellung müssen Sie
+Abbildungen im \emph{Encapsulated Postscript}-Format verwenden; andere Formate sind nicht
+möglich. Vorteil dieser Methode ist natürlich, dass Postscript Vektorgrafik ist.
+Die Befehle im Paket \lstinline$hyperref$ wie \lstinline$\hypersetup$ werden
+auch bei dieser Erstellungsmethode korrekt von \lstinline$ps2pdf$ in die PDF-Datei
+übernommen!
+
+Wenn Sie \lstinline$EPS$ verwenden möchten, dann können Sie Ihre Bitmaps beispielsweise
+mit Hilfe von \emph{OpenOffice Draw} in dieses Format exportieren.
+Möglich ist natürlich \emph{Adobe Illustrator}; das \lstinline$AI$-Format ist an \lstinline$EPS$
+angelehnt; der Export ist verlässlich. Bei \emph{Adobe Photoshop} funktioniert der
+Export zu Postscript nicht ganz so sauber; hier sollten Sie vorsichtig sein.
+
+\section{Vektorgrafik in \LaTeX{}}
+\LaTeX{} bietet die Möglichkeiten, mit Hilfe der \lstinline$epic$-,
+\lstinline$eepic$-, \lstinline$graphics$- und \lstinline$graphicsx$-Pakete
+Zeichnungen zu erstellen. Unterschätzen Sie diese Möglichkeit nicht. 
+
+Verwenden Sie PDF\LaTeX{}, dann können Sie Bitmaps in den Formaten
+\lstinline$png$, \lstinline$jpg$ oder \lstinline$pdf$ verwenden. Sie erstellen damit direkt ohne Umweg über
+\lstinline$dvi$ oder \lstinline$ps$ ein PDF-File. Statt dem Paket \lstinline$graphics$ können Sie
+\lstinline$graphicx$ und \lstinline$xpicture$ einsetzen.
+
+Die Abbildungen \ref{parameter7:zykloide} bis \ref{parameter7:trocho4}
+sind mit dem folgenden Source-Code erzeugt worden:
+
+\begin{lstlisting}{}
+\begin{figure}[ht]
+\COPY{2.0}{\radius}
+\SUBTRACTfunction\IDENTITYfunction\SINfunction{\bracketOne}
+\SCALEfunction{\radius}\bracketOne{\xfunction}
+\SUBTRACTfunction\ONEfunction\COSfunction{\bracketTwo}
+\SCALEfunction\radius\bracketTwo{\yfunction}
+\PARAMETRICfunction{\xfunction}{\yfunction}{\myparfunction}
+\centering
+\setlength{\unitlength}{0.175cm}
+\begin{Picture}(-36,-0.5)(31,6.5)
+\pictcolor{orange}
+\linethickness{1pt}
+\PlotParametricFunction[48]{\myparfunction}{-16}{15}
+\pictcolor{black}
+\linethickness{0.5pt}
+\xtrivVECTOR(-36.0, 0.0)(31.0, 0.0)
+\end{Picture}
+\caption{\label{parameter7:zykloide}Eine Zykloide
+mit $r=2$}
+
+\vspace*{0.2cm}
+\COPY{3.5}{\distance}
+\begin{Picture}(-36,-1.5)(31,6.5)
+\pictcolor{orange}
+\linethickness{1pt}
+\PlotParametricFunction[48]{\myparfunction}{-16}{15}
+\pictcolor{black}
+\linethickness{0.5pt}
+\xtrivVECTOR(-36.0, 0.0)(31.0, 0.0)
+\end{Picture}
+\caption{\label{parameter7:trocho4}Eine Trochoide mit
+$r=2$ und $d=3{,}5$}
+\end{figure}
+\end{lstlisting}
+
+\begin{figure}[ht]
+\COPY{2.0}{\radius}
+\SUBTRACTfunction\IDENTITYfunction\SINfunction{\bracketOne}
+\SCALEfunction{\radius}\bracketOne{\xfunction}
+\SUBTRACTfunction\ONEfunction\COSfunction{\bracketTwo}
+\SCALEfunction\radius\bracketTwo{\yfunction}
+\PARAMETRICfunction{\xfunction}{\yfunction}{\myparfunction}
+\centering
+\setlength{\unitlength}{0.175cm}
+\begin{Picture}(-36,-0.5)(31,6.5)
+\pictcolor{orange}
+\linethickness{1pt}
+\PlotParametricFunction[48]{\myparfunction}{-16}{15}
+\pictcolor{black}
+\linethickness{0.5pt}
+\xtrivVECTOR(-36.0, 0.0)(31.0, 0.0)
+\end{Picture}
+\caption{\label{parameter7:zykloide}Eine Zykloide mit $r=2$}
+
+\vspace*{0.2cm}
+\COPY{3.5}{\distance}
+\begin{Picture}(-36,-1.5)(31,6.5)
+\pictcolor{orange}
+\linethickness{1pt}
+\PlotParametricFunction[48]{\myparfunction}{-16}{15}
+\pictcolor{black}
+\linethickness{0.5pt}
+\xtrivVECTOR(-36.0, 0.0)(31.0, 0.0)
+\end{Picture}
+\caption{\label{parameter7:trocho4}Eine Trochoide mit $r=2$ und $d=3{,}5$}
+\end{figure}
+%
+\chapter{Ehrenwörtliche Erklärung und Sperrvermerk}
+Die Prüfungsordnungen sehen eine schriftliche Versicherung vor,
+dass Sie ihre Arbeit selbst\-ständig verfasst und keine anderen als die
+angegebenen Quellen und Hilfsmittel verwendet haben.
+Fügen Sie dies als ehrenwörtliche Erklärung der Diplomarbeit bei,
+nach dem letzten Anhang. In Anhang \ref{ehrenwort} auf Seite \pageref{ehrenwort} finden Sie
+einen Text, den Sie als Vorlage verwenden können.
+
+Vor allem bei externen Arbeiten kommt es vor, dass der Inhalt Ihrer Arbeit
+einem Sperrvermerk unterliegt. Im Anhang
+\ref{sperre} auf Seite \pageref{sperre} finden Sie
+eine entsprechende Formulierung.
+%
+% Anhang
+%
+\appendix
+% Literatur
+\cleardoublepage
+\phantomsection
+\chaptermark{Literaturverzeichnis}
+\sectionmark{Literaturverzeichnis}\label{literatur}
+%\chapter{\label{literatur}Literaturverzeichnis}
+\bibliography{arbeit}
+%
+\chapter{\label{ehrenwort}Ehrenwörtliche Erklärung}
+Hiermit erkläre ich, \textbf{[Vorname]} \textbf{[Name]}, geboren am
+\textbf{[Geburtsdatum und -Ort]}, ehrenwörtlich,
+\begin{itemize}
+\item dass ich meine Bachelorarbeit/Masterarbeit mit dem Titel
+
+\textbf{[Titel]}
+
+selbstständig und ohne fremde Hilfe angefertigt habe und keine anderen als in der
+Abhandlung angegebenen Hilfen benutzt habe;
+\item dass ich die Übernahme wörtlicher Zitate aus der Literatur
+sowie die Verwendung der Gedanken anderer Autoren an den entsprechenden
+Stellen innerhalb der Arbeit gekennzeichnet habe.
+\end{itemize}
+Ich bin mir bewusst, dass eine falsche Erklärung rechtliche Folgen haben kann.
+\vspace*{3cm}
+
+\textbf{[Ausstellungsort], [Ausstellungsdatum]}\hfill\textbf{[ausgeschriebene Unterschrift]}
+\pagebreak
+\section{\label{sperre}Sperrvermerk}
+Die vorliegende Bachelorarbeit/Masterarbeit
+\textbf{[Titel der Arbeit]}
+enthält zum Teil Informationen, die nicht für die Öffentlichkeit bestimmt
+sind.
+Der Inhalt darf daher nur mit der ausdrücklichen schriftlichen Genehmigung
+des Verfassers und \textbf{[Firmenangabe]} an Dritte weitergegeben werden.
+
+Die Arbeit ist nur den Korrektoren sowie erforderlichenfalls den Mitgliedern des
+Prüfungsausschusses zugänglich zu machen.
+\vspace*{3cm}
+
+\textbf{[Ausstellungsort], [Ausstellungsdatum]}\hfill\textbf{[Unterschriften]}
+\end{document}
