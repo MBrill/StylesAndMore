@@ -5,7 +5,7 @@
 % ---------------------------------------------------------------------
 \typeout{Einstellung für Texte auf report/book-Basis}
 \typeout{     (C) Manfred Brill}
-\typeout{     Version 1.3 März 2019}
+\typeout{     Version 1.4 Juli 2019}
 \typeout{     PDF-Support für LaTeX-Grafiken}
 \typeout{     Bei Verwendung von dvi -> ps -> pdf mb.sty verwenden!}
 \usepackage{mbPDF}
@@ -291,3 +291,8 @@
 
 \Large{\theSemester{}}%
 \end{titlepage}}
+
+% Darstellung von Punkten mit xpicture mit Hilfe von \pointmark
+\renewcommand{\pointmark}{$\bullet$}
+% Funktion, der die Koordinaten übergeben werden und einen Punkt ausgibt
+\newcommand{\drawPoint}[2]{\Put[c](#1, #2){\pointmark}}

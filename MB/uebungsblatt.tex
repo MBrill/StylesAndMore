@@ -3,7 +3,7 @@
 % ----------------------------------------
 \typeout{Übungsblätter in Mathematik-Veranstaltungen}
 \typeout{     (C) Manfred Brill}
-\typeout{     Version 1.2 Juni 2018}
+\typeout{     Version 1.3 Juli 2019}
 \typeout{     PDF-Support für LaTeX-Grafiken}
 \typeout{     Bei Verwendung von dvi -> ps -> pdf mb.sty verwenden!}
 % Voraussetzungen
@@ -121,3 +121,8 @@
 %   Tip (in einer Box)
 \newcommand{\tip}[1]{
 \begin{quote}\fboxsep 3mm\framebox[140mm][c]{\parbox{130mm}{{\textbf{Tipp}:\\}#1}}\end{quote}}
+
+% Darstellung von Punkten mit xpicture mit Hilfe von \pointmark
+\renewcommand{\pointmark}{$\bullet$}
+% Funktion, der die Koordinaten übergeben werden und einen Punkt ausgibt
+\newcommand{\drawPoint}[2]{\Put[c](#1, #2){\pointmark}}
