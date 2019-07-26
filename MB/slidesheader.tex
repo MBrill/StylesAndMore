@@ -1,9 +1,9 @@
 % --------------------------------------------------------------------------------
 %    Farben, Optionen, Packages und Kommandos für Folien
 % --------------------------------------------------------------------------------
-\typeout{Beamder-Folien an der Hochschule Kaiserslautern}
+\typeout{Beamer-Folien an der Hochschule Kaiserslautern}
 \typeout{     (C) Manfred Brill}
-\typeout{     Version 1.1 September 2018}
+\typeout{     Version 1.2 Juli 2019}
 \typeout{     PDF-Support für LaTeX-Grafiken}
 \typeout{     Bei Verwendung von dvi -> ps -> pdf mb.sty verwenden!}
 \usepackage[german]{babel}
@@ -47,6 +47,9 @@
 % Variablen für Namen, Software, ...
 \input{variablen}
 % Saveboxes für das Zeichnen von Koordinatensystemen
+% Dies ist legacy-Code und nur enthalten um sicher zu stellen,
+% dass alte Folien, die noch diese koordinatensysteme und nicht
+% cartesiangrid aus xpicture verwenden kompiliert werden können.:w
 \input{coordinateSystems}
 % Beamer theme
 \usetheme{CambridgeUS}
@@ -108,3 +111,9 @@
    \includegraphics[width = #2]{\imagePath/#3}%
   \end{center}%
 \end{frame}}
+
+% Darstellung von Punkten mit xpicture mit Hilfe von \pointmark
+\renewcommand{\pointmark}{$\bullet$}
+% Funktion, der die Koordinaten übergeben werden und einen Punkt ausgibt
+\newcommand{\drawPoint}[2]{\Put[c](#1, #2){\pointmark}}
+
