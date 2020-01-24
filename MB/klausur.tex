@@ -110,3 +110,8 @@
 %   Tip (in einer Box)
 \newcommand{\tip}[1]{
 \begin{quote}\fboxsep 3mm\framebox[140mm][c]{\parbox{130mm}{{\bf Tip:\\}#1}}\end{quote}}
+
+% Darstellung von Punkten mit xpicture mit Hilfe von \pointmark
+\renewcommand{\pointmark}{$\bullet$}
+% Funktion, der die Koordinaten übergeben werden und einen Punkt ausgibt
+\newcommand{\drawPoint}[2]{\Put[c](#1, #2){\pointmark}}
