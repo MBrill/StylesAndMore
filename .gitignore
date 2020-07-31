@@ -1,4 +1,4 @@
-*.prj
+# ignores for latex
 /installs/
 *.aux
 *.glo
@@ -23,4 +23,9 @@
 *.mtc1
 *.out
 *.synctex.gz
-*~
+
+# vi is cool
+**/*~
+# winedt files
+**/*.prj
+**/*.bak
