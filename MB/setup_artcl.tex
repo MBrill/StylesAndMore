@@ -5,8 +5,8 @@
 % Basiert auf Datei setup.tex. Der einzige
 % Unterschied besteht in den Zählern, die definiert
 % werden und die von chapter auf section
-% umgestellt werden. Das könnte man
-% zukünftig auch eleganter lösen.
+% umgestellt werden.
+% Das könnte man zukünftig auch eleganter lösen.
 % ---------------------------------------------------------------------
 \typeout{Einstellung für Texte auf article-Basis}
 \typeout{     (C) Manfred Brill}
@@ -79,14 +79,16 @@
 % listings-Paket für Quelltexte
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 %   Hintergrundfarbe von Quellcode
-\definecolor{codecolor}{rgb}{0.85,0.85,0.85}
-\lstloadlanguages{Java}
-\lstset{language=Java}
 \definecolor{lstback}{gray}{0.85}
+\lstloadlanguages{Python, Java}
+\lstset{language=Python}
 \lstset{backgroundcolor=\color{lstback}}
 \lstset{extendedchars=true}
-\lstset{showstringspaces = false}
+\lstset{keywordstyle=\bfseries} % Keywords fett
 \lstset{basicstyle = \ttfamily \small}
+\lstset{breaklines=true, breakatwhitespace=true} % Zeilenumbruch in listings
+\lstset{basicstyle = \ttfamily \small}
+
 % Kommando für den Flattersatz bei nebeneinander liegenden Abbildungen
 \newcommand*{\flatter}{\setlength{\rightskip}{0pt plus 2cm}}
 % Anteil der Grafiken höher auf jeder Seite!
