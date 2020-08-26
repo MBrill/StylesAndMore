@@ -1,0 +1,60 @@
+\chapter{Packages and Style Files}
+\section{The setup file setup\_english.tex}
+To make sure the header of the main \LaTeX{}-file is not too long
+we put most of the settings in a file \datei{setup\_english}.
+There we load all needed packages and do the settings.
+
+The rest can be seen in the documentation of the corresponding german
+version. We use an external file with definitions for class names, teacher names
+and more.
+
+Here you find the values used for this document:
+\begin{lstlisting}{}
+% Variablen für das Semester, die Vorlesung ...
+\newcommand{\theSemester}{Summer~Term~2020}
+% Variable für die Vorlesung
+\newcommand{\theClass}{Styles and More}
+% Variable für den Studiengang
+\newcommand{\theCourse}{Documentation of Datei setup\_english.tex}
+% Variable für den Namen der Hochschule
+\newcommand{\theSchool}{University~of
+    ~Applied~Sciences~Kaiserslautern}
+% Variable für den Dozenten
+\newcommand{\theTeacher}{Manfred~Brill}
+%
+% Verzeichnisse für Übungsaufgaben, Bitmaps, ...
+%
+
+% Verzeichnis für die Übungsaufgaben und Musterlösungen
+\newcommand{\exercisePath}{./Uebungsaufgaben/}
+% Verzeichnis für  Bilder
+\newcommand{\imagePath}{./images}
+
+%
+% Abbildungen für die Titelseite oder spezielle Markierungen
+%
+% Default-Titelbild der Lehrveranstaltung
+\newcommand{\titleImage}{\imagePath/tugboat}
+% Abbildung für die Angabe von Begleittexten
+\newcommand{\lesenImage}{\imagePath/Misc/buchicon}
+% Abbildung für die Angabe von vertiefenden Texten
+\newcommand{\vertiefenImage}{\imagePath/Misc/reading}
+% Abbildung für eine Marginalie zum Praxisbezug
+\newcommand{\praxisImage}{\imagePath/Misc/gabel}
+% Abbildung für ein Smiley
+\newcommand{\smileImage}{\imagePath/Misc/smilie} 
+\end{lstlisting}
+%
+\subsection{Used \LaTeX{}-Packages}
+The file \datei{setup\_englisch.tex} use style files like the german version,
+especially \datei{mbPDF\_english.sty} und \datei{mbmath.sty}. 
+The big difference is the usage of \lstinline$babel$ with the option \lstinline$english$.
+%
+\subsection{Functions and Macros}
+All other functions and macros can be used like in the german version. Just make sure
+you use proper englisch.
+%
+\section{References}
+This document uses the package \lstinline$bibgerm$ to reuse the german \lstinline$bib$-file
+from the german documentation. Just get rid of this package by creating a proper english
+\lstinline$bib$-file!

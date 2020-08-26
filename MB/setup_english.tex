@@ -2,18 +2,12 @@
 % Vorlage für Dokumente, die auf report oder book basieren
 % Voraussetzung: spezifische Variable wie \imagePath
 % oder \theSemester sind bereits definiert.
-% Basiert auf Datei setup.tex. Der einzige
-% Unterschied besteht in den Zählern, die definiert
-% werden und die von chapter auf section
-% umgestellt werden.
-% Das könnte man zukünftig auch eleganter lösen.
 % ---------------------------------------------------------------------
-\typeout{Einstellung für Texte auf article-Basis}
+\typeout{Setup for english texts}
 \typeout{     (C) Manfred Brill}
-\typeout{     Version 1.3 Juli 2019}
-\typeout{     PDF-Support für LaTeX-Grafiken}
-\typeout{     Bei Verwendung von dvi -> ps -> pdf mb.sty verwenden!}
-\usepackage{mbPDF}
+\typeout{     Version 1.0, August 2020}
+\typeout{     PDF-Support for LaTeX-graphics}
+\usepackage{mbPDF_english}
 \usepackage{mbmath}
 \usepackage{textcomp}
 % Array-Paket für mehr Kontrolle der Tabellen
@@ -29,7 +23,7 @@
 \usepackage[shortlabels]{enumitem}
 % Alphabetischer Index
 \usepackage{imakeidx}
-\makeindex[title=Index,columns=2,options=-s myGerman, intoc=true]
+\makeindex[title=Index,columns=2, intoc=true]
 % Kopf- und Fusszeilen mit KoMaScript
 \usepackage[automark, headsepline]{scrlayer-scrpage}
 %
@@ -57,6 +51,7 @@
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
 % Abstände zwischen Caption und Bild/Tabelle
+% Überschreiben der Werte aus sty.
 \setlength\abovecaptionskip          {0.4em}
 \setlength\belowcaptionskip          {0.2em}
 % Anteil der Grafiken auf einer Seite sehr hoch setzen
@@ -80,14 +75,14 @@
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 %   Hintergrundfarbe von Quellcode
 \definecolor{lstback}{gray}{0.85}
-\lstloadlanguages{Python, Java}
+\lstloadlanguages{Java}
 \lstset{language=Python}
 \lstset{backgroundcolor=\color{lstback}}
 \lstset{extendedchars=true}
+\lstset{showstringspaces = false}
 \lstset{keywordstyle=\bfseries} % Keywords fett
 \lstset{basicstyle = \ttfamily \small}
 \lstset{breaklines=true, breakatwhitespace=true} % Zeilenumbruch in listings
-
 % Kommando für den Flattersatz bei nebeneinander liegenden Abbildungen
 \newcommand*{\flatter}{\setlength{\rightskip}{0pt plus 2cm}}
 % Anteil der Grafiken höher auf jeder Seite!
@@ -127,7 +122,7 @@
 % Angabe im Begleittext, was die Studierenden lesen sollen (in einer Box)
 \newcommand{\lesen}[1]{%
 \begin{minipage}[c]{2.5cm}
-\includegraphics[width=0.8\textwidth]{\generalImagePath/Misc/buchicon}%
+\includegraphics[width=0.8\textwidth]{\lesenImage}%
 \end{minipage}%
 \begin{minipage}[t]{12cm}%
 #1%
@@ -140,7 +135,7 @@
 %   Im Gegensatz zu lesen, was einen verpflichtenden Charakter hat.
 \newcommand{\vertiefen}[1]{%
 \begin{minipage}[b]{2.5cm}
-\includegraphics[width=\textwidth]{\generalImagePath/Misc/reading}%
+\includegraphics[width=0.8\textwidth]{\vertiefenImage}%
 \end{minipage}%
 \begin{minipage}[b]{12cm}%
 #1%
@@ -148,7 +143,7 @@
 %
 % Ein Counter für die Kontrollfragen. Wir zählen diesen Counter selbst hoch
 % mit einem entsprechenden Kommando, das wir in \item verwenden.
-\newcounter{kontrollCounter}[section]
+\newcounter{kontrollCounter}[chapter]
 \newcommand{\kontroll}[0]{
     \refstepcounter{kontrollCounter}
     % Kapitelnummer.Zähler für das Item
@@ -184,7 +179,7 @@
 % "Normaler" Font im Text
 \theorembodyfont{\normalfont}
 % Kapitelweise neu nummerieren
-\newtheorem{auftitle}{Aufgabe}[section]
+\newtheorem{auftitle}{Aufgabe}[chapter]
 }
 %
 % Definition für die Kennzeichnung der Übungsaufgaben
@@ -192,12 +187,12 @@
 \newcommand{\uebung}{%
 \vspace*{11pt}%
 \begin{tabular}{@{}p{2.25cm}@{}p{11.7cm}}%
-\huge{\ding{45}}&\Large{\textbf{Übungsaufgaben}}%
+\huge{\ding{45}}&\Large{\textbf{Exercises}}%
 \end{tabular}%
 }
 % Ein Counter für die Übungsaufgaben. Wir zählen diesen Counter selbst hoch
 % mit einem entsprechenden Kommando, das wir in \item verwenden.
-\newcounter{aufgabenCounter}[section]
+\newcounter{aufgabenCounter}[chapter]
 \newcommand{\auf}[0]{
     \refstepcounter{aufgabenCounter}
     % Kapitelnummer.Zähler für das Item
@@ -216,9 +211,9 @@
 \theorembodyfont{\normalfont}
 % Die Namen sind so gewählt, dass sie kompatibel zu Beamer sind; dann können
 % wir den Text aus Folien kopieren und umgekehrt auch.
-\newtheorem{Satz}{Satz}[section]
-\newtheorem{Fakt}{Fakt}[section]
-\newtheorem{Definition}{Definition}[section]
+\newtheorem{Satz}{Theorem}[chapter]
+\newtheorem{Fakt}{Fact}[chapter]
+\newtheorem{Definition}{Definition}[chapter]
 }
 % Text mit Pfad, der vorher im Dokument definiert ist.
 \newcommand{\aufgabentext}[1]{\renewcommand{\labelenumi}{\alph{enumi})}\auftitle\label{#1}\input{\exercisePath/aufgaben/aufgabenstellungen/#1}}
@@ -228,22 +223,22 @@
 % Und jetzt die Funktionen, die wir im Text aufrufen
 \newcommand{\aufgabe}[1]{\aufgabentext{#1}}
 % Lösungshinweise im Anhang
-\newcommand{\hinweis}[1]{\subsubsection*{Aufgabe \ref{#1}} \hinweistext{#1}}
+\newcommand{\hinweis}[1]{\subsubsection*{Exercise \ref{#1}} \hinweistext{#1}}
 %
 % Marginalien
 %
 \newcommand{\randnotiz}[1]{\marginpar{\small{\textbf{#1}}}}
 %
 % Gabelschlüssel als Marginalie und Hinweis auf Praxisbezug
-\newcommand{\praxisbezug}[0]{\randnotiz{\includegraphics[width=1cm]{\generalImagePath/Misc/gabel}}}
+\newcommand{\praxisbezug}[0]{\randnotiz{\includegraphics[width=1cm]{\praxisImage}}}
 %
-% Smile Face
-\newcommand{\smileface}[0]{\randnotiz{\includegraphics[width=1cm]{\generalImagePath/Misc/Face-smile}}}
+% Smiling Face
+\newcommand{\smileface}[0]{\randnotiz{\includegraphics[width=1cm]{\smileImage}}}
 %
 % alert aus beamer-Folien zu emph machen
 \newcommand*{\alert}[1]{\emph{#1}}
 %
-% Titelseite ohne Bild
+% Das Argument ist der Titel des Dokuments.
 %
 \newcommand{\titelseite}[1]{%
 % Titelseite
@@ -252,53 +247,48 @@
 \begin{titlepage}%
 % Volle Zeilenbreite verwenden!
 \centering%
-\vspace*{0.3cm}%
+\vspace*{0.5cm}%
 
-\Large{\textbf{\theClass{}}}\\\vspace*{0.3cm}%
+\Huge{\textbf{\theClass{}}}\\\vspace*{0.5cm}%
 
-\Large{\textbf{#1}}\\\vspace*{0.3cm}%
+\Huge{\textbf{#1}}%
 
 \vspace*{1.0cm}%
+\Large{\theSchool{}}%
 
-\large{\theSchool{}}%
+\Large{\theTeacher{}}%
 
-\large{\theTeacher{}}%
-
-\large{\theSemester{}}%
+\Large{\theSemester{}}%
 \end{titlepage}}
 %
-% Titel, Autor und optional ein Bild
 % Das obligatorische Argument ist der Titel des Dokuments.
-% Mit Hilfe eines optionalen Arguments kann
-% ein hinzugefügt werden!
+% Als Default wird software-project.eps als Titelbild
+% verwendet. Mit Hilfe eines optionalen Arguments kann
+% ein anderes Bild verwendet werden!
 % Beispiel: \titelseite[\imagePath/Misc/ameise]{Das Liebesleben der Ameisen}
 %
-% Das Defaultbild kann in einer spezifisch für das Thema
-% erstellt Datei (wie z.B. stammdaten.tex) mit Hilfe
-% der Variablen \titleImage eingestellt werden.
-%
 \newcommand{\titelseiteMitBild}[2][\titleImage]{%
-%% Titelseite
+% Titelseite
 \pagenumbering{roman}%
 \thispagestyle{empty}%
 \begin{titlepage}%
 % Volle Zeilenbreite verwenden!
 \centering%
-\vspace*{0.3cm}%
+\vspace*{0.5cm}%
 
-\Large{\textbf{\theClass{}}}\\\vspace*{0.3cm}%
+\Huge{\textbf{\theClass{}}}\\\vspace*{0.5cm}%
 
-\Large{\textbf{#2}}%
+\Huge{\textbf{#2}}%
 
-\vspace*{1.0cm}%
-\includegraphics[height=4cm]{#1}%
+\vspace*{3.0cm}%
+\includegraphics[height=5cm]{#1}%
 
-\vspace*{1.0cm}%
-\large{\theSchool{}}%
+\vspace*{3.0cm}%
+\Large{\theSchool{}}%
 
-\large{\theTeacher{}}%
+\Large{\theTeacher{}}%
 
-\large{\theSemester{}}%
+\Large{\theSemester{}}%
 \end{titlepage}}
 
 % Darstellung von Punkten mit xpicture mit Hilfe von \pointmark
