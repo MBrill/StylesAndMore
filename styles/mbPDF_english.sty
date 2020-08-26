@@ -1,7 +1,5 @@
-% \CheckSum{135}
-% \changes{v1.0}{18. Juni 2018}{Erstellt aus mb.sty}
-% \changes{v1.1}{12. September 2018}{pict2e durch xpicture ersetzt (enthält pict2e)}
-% \changes{v1.2}{26. August 20120}{Dokumentation überarbeitet)}
+% \CheckSum{133}
+% \changes{v1.0}{26. August 2020}{Erstellt aus mbPDF.sty und mb_english.sty}
 %    \IndexPrologue
 %      {\section*{Index}
 %          Unterstrichene Seitenzahlen
@@ -12,34 +10,34 @@
 %    \GlossaryPrologue{\section*{Änderungen}}
 %
 % \MakeShortVerb{\|}
-% \title{mbPDF.sty -- \LaTeX{}--Style für Texte an der Hochschule Kaiserslautern}
+% \title{mbPDF\_english.sty -- \LaTeX{}--Style für englishsprachige Texte an der Hochschule Kaiserslautern}
 % \author{Manfred Brill}
 % \maketitle
 % \parindent0.0cm
 % \setlength{\parskip}{2.0ex}
 %\thispagestyle{empty}
 % \section{Einleitung}
-% Das \LaTeX-package \emph{mbPDF.sty} enthält
+% Das \LaTeX-package \emph{mbPDF\_english.sty} enthält
 % die von der Seiten- und Textgröße unabhängigen Angaben für \LaTeX{}-Texte
 % die an der Hochschule Kaiserslautern erstellt werden. Diese
-% Datei ist aus \emph{mb.sty} entstanden. Der einzige Unterschied zwischen
-% diesen beiden Dateien ist die \LaTeX{}-Pipeline, die verwendet wird.
-% Die Style-Datei \emph{mb.sty} unterstützt dvi - dvips - ps2pdf und verwendet
-% die Pakete \emph{epic} und \emph{eepic}.Für eigene
+% Datei ist aus \emph{mbPDf.sty} und \emph{mb\_english.sty} entstanden.
+% Der einzige Unterschied zwischen
+% \emph{mbPDf.sty} und der hier beschriebenen Style-Datei ist die \LaTeX{}-Pipeline, die verwendet wird.
+% Die Style-Datei \emph{mb.sty} unterstützt dvi $\to$ dvips $\to$ ps2pdf. Für eigene
 % Vektorgrafien werden statt
 % der Pakete \emph{epic} und \emph{eepic}
 % die Pakete \emph{graphicx} und \emph{xpicture} eingesetzt.
 %
 % Weitere Makros als Ergänzung zu \emph{AMS}-\LaTeX{}
-% sind im package |mbmath.sty| enthalten. |mbPDF.sty| ist so gehalten, dass im Hauptdokument
-% nur noch eine entsprechende class-Datei und die beiden packages |mbPDF| und
+% sind im package |mbmath.sty| enthalten. Der Style |mbPDF.sty| ist so gehalten, dass im Hauptdokument
+% nur noch eine entsprechende class-Datei und die beiden packages |mbPDF_english| und
 % |mbmath| geladen werden müssen. Diese Dokumentation verwendet die Styles
 % in |mbmath|.
 %
 % \section{Der Initialisierungsteil}
 % Die folgenden Pakete werden geladen:
 % \begin{itemize}
-% \item \emph{ngerman} für die Verwendung der deutschen Sprache
+% \item \emph{babel} mit der Option \emph{english},
 % \item \emph{inputenc} mit den Optionen \emph{utf8} und \emph{ansinew},
 % \item \emph{fonttenc} mit der Option \emph{T1},
 % \item \emph{makeidx} für die Erstellung eines Index,
@@ -51,7 +49,6 @@
 % \item \emph{theorem} für das Layout von theorem-Umgebungen,
 % \item \emph{graphicx} für externe Grafiken,
 % \item \emph{xpicture} für \LaTeX{}-Grafiken,
-% \item \emph{bibgerm} für das Literaturverzeichnis,
 % \item \emph{eurosym} für das Euro-Symbol,
 % \item \emph{supertabular} für mehrseitige Tabellen, insbesondere für das Symbolverzeichnis,
 % \item \emph{multicol} für das zweispaltige Layout des Index.
@@ -68,7 +65,7 @@
 %https://www.namsu.de/Extra/befehle/Umlaute.html,
 %\end{center}
 % die darauf hinweisen, dass die übergebene Option an inputenc vom Betriebssystem
-% abhängt. Dort findet man die Angaben
+% abhängt. Dort findet man folgende Angaben
 % \begin{enumerate}
 % \item Option ansinew für Windows (dies ist die verwendete Einstellung)
 % \item Option latin1 für Linux,
@@ -84,7 +81,7 @@
 %
 % \section{Tabellen und Abbildungen}
 % Tabellenbeschriftungen stehen immer \emph{vor} der Tabelle.
-% Die Einstellungen des Fonts und dass das Wort |Tabelle| fett gedruckt wird ist aus dem
+% Die Einstellungen des Fonts und dass das Wort |Table| fett gedruckt wird ist aus dem
 % sty-File herausgenommen worden, da es inzwischen Inkompabilitäten mit KomaScript gibt.
 % Die gewünschten einstellungen erhält man auch durch die Anweisungen, wie man sie auch
 % in der Dokumentationsdatei zu diesem File findet.
@@ -94,13 +91,13 @@
 % Bemerkung: wird KoMaScript nicht verwendet wird die gewünschte Darstellung nicht erreicht!
 %
 % \begin{table}[ht]
-% \caption{\label{tab1}Eine Tabellenbeschriftung}
+% \caption{\label{tab1}table caption}
 % \small
 % \begin{center}
 % \begin{tabular}{ll}\hline
-% Spaltenbeschriftung 1& Spaltenbeschriftung 2\\ \hline
-% eins&zwei\\
-% drei&vier\\ \hline
+% column header 1& column header 2\\ \hline
+% one&two\\
+% three&four\\ \hline
 % \end{tabular}
 % \end{center}
 % \end{table}
@@ -123,26 +120,23 @@
 % \put(-0.7,1.4){$\scriptstyle x_0$}
 % \put(-0.7,2.4){$\scriptstyle x_1$}
 % \end{Picture}
-% \caption{\label{mux}Eine Multiplexer-Schaltung}
+% \caption{\label{mux}A multiplexer}
 % \end{center}
 % \end{figure}
 % Der Abstand vor Abschnittsüberschriften ist gegenüber dem \LaTeX-Standard etwas
 % vergrößert worden.
 %\section{Bemerkungen zu pict2e und xpicture}
-%Seit September 2018 wird nicht nur \emph{pict2e}, sondern \emph{xpicture}
-%verwendet. Der Schritt zu pict2e war notwendig, um zukünftig pdflatex
+% Der Schritt zu pict2e war notwendig, um zukünftig pdflatex
 %zu verwenden. Alle Grafiken, die bisher mit epic und eepic erstellt wurden
-%können nachwievor eingesetzt werden, bis auf Funktionen wie \emph{drawline}
+%können nach wie vor eingesetzt werden, bis auf Funktionen wie \emph{drawline}
 %zum Ausgeben von Polygonzügen. Dafür gibt es in pict2e die Funktion \emph{polygon}.
-%Das Paket \emph{xpicture} lädt pict2e und gleichzeitig noch Pakete wie
-%\emph{curve2e}, \emph{calculator} und \emph{calculus}. xpicture erweitert die
+%Das Paket \emph{xpicture} lädt \emph{pict2e} und gleichzeitig noch Pakete wie
+%\emph{curve2e}, \emph{calculator} und \emph{calculus}. \emph{xpicture} erweitert die
 %\emph{picture}-Umgebung, es gibt die neue Umgebung \emph{Picture}.
-%Diese neue Umgebunb bietet die Möglichkeit, eigene Referenzsysteme wie
+%Diese neue Umgebung bietet die Möglichkeit, eigene Referenzsysteme wie
 %schiefwinklige Koordinatenachsen oder Polarkoordinaten zu verwenden.
 %Auch ein Gitter in der Koordinatenebene, oder bei Polarkoordinaten Kreise,
-%stehen damit zur Verfügung und können mittelfristig die Datei
-%\emph{coordinateSystems} mit vordefinierten Elementen für \emph{picture}
-%ersetzen.
+%stehen damit zur Verfügung.
 %
 %Zur Illustration der Möglichkeiten werden hier zwei Beispiele gezeigt, die
 %leicht angepasst der Dokumentation von \emph{xpicture} entnommen wurden.
@@ -180,7 +174,7 @@
 %\begin{Picture}(-3.5,-2.5)(3.5,2.5)
 %\cartesiangrid(-3.4,-2.4)(3.4,2.4)
 %\end{Picture}
-%\caption{\label{grid}Ein kartesisches Koordinatensystem mit Gitterlinien}
+%\caption{\label{grid}Cartesian coordinates with gridlines}
 %\end{center}
 %\end{figure}
 %Abbildung \ref{polargrid} zeigt ein Polarkoordinatensystem, dem auch
@@ -206,10 +200,10 @@
 %\polargrid{3.5}{12}
 %\end{Picture}
 %\end{center}
-%\caption{\label{polargrid}Ein Polarkoordinatensystem mit Koordinatenlinien}
+%\caption{\label{polargrid}Polar coordinates with gridlines}
 %\end{figure}
 %\section{Das Paket calculator}
-%\emph{calculator} bietet die Möglichkeit, Berechnen in der
+%\emph{calculator} bietet die Möglichkeit, Berechnungen in der
 %\LaTeX-Datei durchzuführen.
 % Die Dokumentation zu \emph{calculator} zeigt die weitreichenden Möglichkeiten.
 %Hier soll ein einfaches Beispiel gezeigt werden. Wir möchten den Quotienten
@@ -252,11 +246,11 @@
 %Mit dem Paket \emph{calculus} können wir auf so gut wie alle
 %elementare Funktion zurückgreifen und auch neue Funktionen
 %definieren, bis hin zu Verkettung. Dies ist mit \emph{xpicture}
-%kombinierbar, damit können wir Fuunktionsgraphen in \LaTeX
+%kombinierbar, damit können wir Funktionsgraphen in \LaTeX{}
 %erstellen ohne vorher die Funktionswerte extern berechnen zu müssen.
 %Als Beispiel betrachten wir die Funktion $\cos{(2 t)}$.
-%Der Kosinus steht als $\backslash$\emph{COSfunction} zur Verfügung. Die Skalierung
-%ist durch $\backslash$\emph{SCALEVARIABLEfunction} verfügbar.
+%Der Kosinus steht als $\backslash$\emph{COSfunction}, die Skalierung
+% durch $\backslash$\emph{SCALEVARIABLEfunction} zur Verfügung.
 %Dann definieren wir folgendermaßen eine neue Funktion mit dem Namen
 %\emph{neueFunktion}:
 %\begin{verbatim}
@@ -290,7 +284,7 @@
 %\Put[rbr](2,4){$f(t)=t^3-2t$}
 %\end{Picture}
 %\end{center}
-%\caption{\label{graph}Die Funktion $f(x) = x^3-2x$ für $x\in [-2,2]$}
+%\caption{\label{graph}Graph of $f(x) = x^3-2x$ with $x\in [-2,2]$}
 %\end{figure}
 %Diese Abbildung wurde mit dem folgenden Quelltext erzeugt:
 
@@ -320,7 +314,7 @@
 %\end{center}
 %\end{verbatim}
 %
-%Als letztes Beispiel eine grafische Darstellung einer Kardioide $r=1+\cos{(\varphi)}$
+%Als letztes Beispiel eine grafische Darstellung einer Kardioide $\rho=1+\cos{(\varphi)}$
 %in Abbildung \ref{cardioide}. Diese Abbildung wurde mit dem folgenden
 %Quelltext erzeugt:
 %
@@ -354,7 +348,7 @@
 %\cardioide}{0}{\numberTWOPI}
 %\end{Picture}
 %\end{center}
-%\caption{\label{cardioide}Eine grafische Darstellung einer Kardioide $r=1+\cos{(\varphi)}$}
+%\caption{\label{cardioide}Plot of a cardioide $\rho=1+\cos{(\varphi)}$}
 %\end{figure}
 % \StopEventually{
 % \begin{thebibliography}{9}
@@ -373,14 +367,14 @@
 %    Zunächst identifizieren wir das Paket und dessen aktuelle Version:
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}\relax
-\ProvidesPackage{mbPDF}[2020/08/26, (MB)]
-\typeout{MBPDF package, V1.2, (c) Manfred Brill}
+\ProvidesPackage{mbPDF_english}[2020/08/263, (MB)]
+\typeout{MBPDF_english package, V1.0, (c) Manfred Brill}
 \ProcessOptions
 %    \end{macrocode}
 % \subsection{Der Initialisierungsteil}
 % Wir laden die folgenden Pakete:
 %    \begin{macrocode}
-\RequirePackage{ngerman}
+\RequirePackage[english]{babel}
 \usepackage[utf8, ansinew]{inputenc}
 \usepackage[T1]{fontenc}
 \RequirePackage{palatino}
@@ -388,14 +382,12 @@
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{amscd}
-\RequirePackage{mbmath}
 \RequirePackage{theorem}
 \RequirePackage{makeidx}
 \RequirePackage{color}
 \RequirePackage{graphicx}
 \RequirePackage{xpicture}
 \RequirePackage{eurosym}
-\RequirePackage{bibgerm}
 \RequirePackage{multicol}
 \RequirePackage{supertabular}
 \RequirePackage{float}

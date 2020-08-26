@@ -2,6 +2,7 @@
 % \changes{v1.0}{28. Januar 2013}{Erstellt aus hanser.sty}
 % \changes{v2.0}{28. Juli 2017}{Ppackages caption und fancyhf entfernt}
 % \changes{v3.0}{16. Juli 2018}{Codierung mit inputenc auf ansinew gesetzt}
+% \changes{v3.1}{26. August 2020}{Dokumentation durchgesehen, Hochschule statt FH}
 %    \IndexPrologue
 %      {\section*{Index}
 %          Unterstrichene Seitenzahlen
@@ -12,21 +13,21 @@
 %    \GlossaryPrologue{\section*{Änderungen}}
 %
 % \MakeShortVerb{\|}
-% \title{mb.sty -- Style für Texte an der Hochschule Kaiserslautern}
+% \title{mb.sty -- \LaTeX{}--Style für Texte an der Hochschule Kaiserslautern}
 % \author{Manfred Brill}
 % \maketitle
 % \parindent0.0cm
+% \setlength{\parskip}{2.0ex}
 % \section{Einleitung}
 %
 % Das \LaTeX-package \emph{mb.sty} enthält
 % die von der Seiten- und Textgröße unabhängigen Angaben für \LaTeX{}-Texte
-% die an der Fachhochschule Kaiserslautern erstellt werden.
+% die an der Hochschule Kaiserslautern erstellt werden.
 % Weitere Makros als Ergänzung zu \emph{AMS}-\LaTeX{}
 % sind im package |mbmath.sty| enthalten. |mb.sty| ist so gehalten, dass im Hauptdokument
 % nur noch eine entsprechende class-Datei und die beiden packages |mb| und
-% |mbmath| geladen werden müssen. Für englische Texte gibt es die parallel
+% |mbmath| geladen werden müssen. Für englische Texte gibt es die analoge
 % Style-Datei \emph{mb\_english.sty}.
-%
 % Die Style-Datei ist aus \emph{hanser.sty} entstanden, das bei den Projekten
 % für den Hanser-Verlag entstanden ist.
 %
@@ -34,7 +35,7 @@
 % Die folgenden Pakete werden geladen:
 % \begin{itemize}
 % \item \emph{ngerman} für die Verwendung der deutschen Sprache
-% \item \emph{inputenc} mit der Option \emph{ansinew},
+% \item \emph{inputenc} mit den Optionen \emph{utf8} und \emph{ansinew},
 % \item \emph{fonttenc} mit der Option \emph{T1},
 % \item \emph{makeidx} für die Erstellung eines Index,
 % \item \emph{palatino} für die Postscript Type-1 Fontfamilie Palatino,
@@ -56,14 +57,16 @@
 %
 % Ein Hinweis für die beiden Pakete inputenc und fontenc. Diese beiden Pakete werden
 % geladen, um deutsche Umlaute oder das ß korrekt  und ohne weitere Codes einzugeben.
-% Es gibt Quellen im WWW (z.B. https://www.namsu.de/Extra/befehle/Umlaute.html), die
+% Es gibt Quellen im WWW die
 % darauf hinweisen, dass die übergebene Option an inputenc vom Betriebssystem
-% abhängt. Dort findet man die Angaben
+% abhängt. Eine dieser URLs ist https://www.namsu.de/Extra/befehle/Umlaute.html.
+% Dort findet man die folgenden Angaben
 % \begin{enumerate}
 % \item Option ansinew für Windows (dies ist die verwendete Einstellung)
 % \item Option latin1 für Linux,
 % \item Option applemac for OSX.
 % \end{enumerate}
+% Da es immer Probleme mit UTF-8 gibt wurde diese Option hinzugefügt.
 %
 % \section{Tabellen und Abbildungen}
 % Tabellenbeschriftungen stehen immer \emph{vor} der Tabelle.
@@ -140,7 +143,7 @@
 % Wir laden die folgenden Pakete:
 %    \begin{macrocode}
 \RequirePackage{ngerman}
-\usepackage[ansinew]{inputenc}
+\usepackage[utf8, ansinew]{inputenc}
 \usepackage[T1]{fontenc}
 \RequirePackage{palatino}
 \RequirePackage{amsmath}

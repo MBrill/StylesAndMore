@@ -1,0 +1,86 @@
+% -----------------------------------------------------------------------
+% Documentation of setup_english
+% -----------------------------------------------------------------------
+\documentclass[enabledeprecatedfontcommands,
+     fontsize=12pt,
+     open=right, a4paper,
+     twoside, DIV=11,
+     abstractoff,
+     headsepline,
+     numbers=noenddot,
+     BCOR=15mm,
+     headings=standardclasses,
+     headings=big]{scrbook}
+\KOMAoptions{cleardoublepage=empty}
+%
+% Header für Variablen  wie Vorlesung, Semester, Pfade zu Aufgaben, Bildern, ...
+\input{stammdatenEnglish}
+% Einstellungen
+\input{setup_english}
+% Daten zur Lehrveranstaltung
+\input{LVDefinitionenEnglish}
+%
+% bibgerm, da deutsche Einträge in bib-Datei.
+% Falls hier englische Einträge verwendet werden
+% kann diese Zeile kommentiert werden.
+\usepackage{bibgerm}
+%
+\input{pdfsetupEnglish}
+%
+% Schalter für das Ein- und Ausblenden der Lösungen
+\setboolean{solutions}{true}
+%
+% Beginn Dokument
+%
+\begin{document}
+% Es gibt eine Titelseite mit und ohne Bild. Beide Varianten kann man hier testen,
+% durch Verschieben des Kommentarzeichens.
+%\titelseite{\LaTeX{}-Texte an der Hochschule Kaiserslautern}
+\titelseiteMitBild[\imagePath/tugboat]{\LaTeX{}-Texte an der Hochschule Kaiserslautern}
+%
+% Inhaltsverzeichnis
+%
+\tableofcontents
+\clearevenpage
+\pagenumbering{arabic}
+%
+%
+%
+\chapter{Introduction}
+This document is a short introduction for a template we use for documents in classes and seminars
+at the \theSchool{}. The basis for this template is a german version, and this document is based
+on a paper on documentation of online texts in Microsoft Word (\cite{zfh_11}).
+
+We suppose you have a working knowledge in \LaTeX{}. We still use
+BibTeX for the references, which might cause problems, especially if you have german "`Umlaute"'
+in the entries. We plan on switching to \emph{biber} in the future.
+More on \LaTeX{} can be found in\cite{mittelbach_05} und \cite{kopka_02} (sorry for the german references \includegraphics[width=0.4cm]{\smileImage}).
+
+Tests are done on Windows 10 and MiKTeX 2.9. The german versions are also tested on a Debian distribution.
+It is known that students also use this files on a Mac.
+%
+%
+%
+\input{packstyleEnglish}
+%
+%
+% Literatur
+%
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{References}
+\chaptermark{References}
+\sectionmark{References}\label{literatur}
+\bibliography{latex}
+%
+% Anhang
+%
+\appendix
+%
+% Index
+\clearevenpage
+\phantomsection
+\small
+\printindex
+\normalsize
+\end{document}

@@ -1,8 +1,9 @@
-% \CheckSum{202}
+% \CheckSum{195}
 % \changes{v1.0}{01. Juli 2010}{Erstellt aus hanser.sty}
 % \changes{V1.3}{01.06.2003}{Package float beigefügt}
 % \changes{V1.3}{01.06.2003}{Package listings mit savemem-Option beigefügt}
 % \changes{v2.0}{28. Juli 2017}{packages caption und fancyhf entfernt}
+% \changes{v3.0}{26. August 2020}{Eigene Dokumentation und durchgesehen}
 %    \IndexPrologue
 %      {\section*{Index}
 %          Unterstrichene Seitenzahlen
@@ -12,13 +13,15 @@
 %    \GlossaryPrologue{\section*{Änderungen}}
 %
 % \MakeShortVerb{\|}
-% \title{mb\_english.sty -- Ein \LaTeX{}-package für englische Texte}
+% \title{mb\_english.sty -- A \LaTeX{}-package for english documents}
 % \author{Manfred Brill}
 % \maketitle
+% \parindent0.0cm
+% \setlength{\parskip}{2.0ex}
 % \section{Einleitung}
 %
 % Das \LaTeX-package \emph{mb\_english.sty} enthält
-% die von der Seiten- und Textgröße unabhängigen Angaben für ein Hanser-Buch in \LaTeX{}.
+% die von der Seiten- und Textgröße unabhängigen Angaben für Texte in \LaTeX{}.
 % Damit können diese Formatierung auch mit den Standardklassen
 % wie |report| oder |article| verwendet werden. Für das Drucken von Texten, die zum Verlag gehen
 % gibt es die class-Datei |hanserbuch.cls|. Weitere Makros als Ergänzung zu \emph{AMS}-\LaTeX{}
@@ -26,15 +29,19 @@
 % nur noch eine entsprechende class-Datei und die beiden packages |mb\_english| und |mbmath| (falls
 % erforderlich) geladen werden müssen.
 %
+% Dabei wird die Pipeline latex $\to$ dvips$\to$  ps2pdf vorausgesetzt.
+% Für die Verwendung von pdflatex verwenden wir die analoge
+% Style-Datei mbPDF\_english.sty.
+%
 % \section{Der Initialisierungsteil}
 % Die folgenden Pakete werden geladen:
 % \begin{itemize}
-% \item \emph{inputenc} mit der Option \emph{latin1},
+% \item \emph{babel} mit der Option \emph{english},
+% \item \emph{inputenc} mit der Option \emph{utf8} und \emph{ansinew},
 % \item \emph{makeidx} für die Erstellung eines Index,
 % \item \emph{palatino} und \emph{mathpple} für die Postscript Type-1 Fontfamilie Palatino,
 % \item \emph{color} für Graustufen,
 % \item \emph{amsmath, amsfonts, amssymb} und \emph{amscd} für das Layout der mathematischen Inhalte,
-% \item \emph{mbmath} für Erweiterungen von \emph{AMS} \LaTeX{},
 % \item \emph{theorem} für das Layout von theorem-Umgebungen,
 % \item \emph{epsfig, epic} und \emph{eepic} für Grafiken,
 % \item \emph{eurosym} für das Euro-Symbol,
@@ -42,32 +49,33 @@
 % \item \emph{multicol} für das zweispaltige Layout des Index.
 % \item \emph{float} für das Erzeugen von Gleitobjekten.
 % \end{itemize}
-% Für Einzelheiten und Dokumentationen dieser packages wird auf den \LaTeX-Companion \cite{companion} oder die auf CTAN verfügbare
+% Für Einzelheiten und Dokumentationen dieser packages wird auf den \LaTeX-Companion
+% \cite{companion} oder die auf CTAN verfügbare
 % Information verwiesen.
 %
 % \section{Tabellen und Abbildungen}
 % Tabellenbeschriftungen stehen immer \emph{vor} der Tabelle.
-% Die Einstellungen des Fonts und dass das Wort |Tabelle| fett gedruckt wird ist aus dem
-% sty-File herausgenommen worden, da es inzwischen Inkompabilitäten mit KomoScript gibt.
-% Die gewünschten einstellungen erhält man auch durch die Anweisungen, wie man sie auch
+% Die Einstellungen des Fonts und dass das Wort |Table| fett gedruckt wird ist aus dem
+% sty-File herausgenommen worden, da es sonst Inkompabilitäten mit KomoScript gibt.
+% Die gewünschten Einstellungen erhält man auch durch die Anweisungen, wie man sie auch
 % in der Dokumentationsdatei zu diesem File findet.
 % Tabelle \ref{tab1} zeigt
 % das zu erwartende Ergebnis.
 %
-% Bemerkung: wird KoMaScript nicht verwendet wird die gewünschte Darstellung nicht erreicht!
+% \textbf{Bemerkung}: wird KoMaScript nicht verwendet wird die gewünschte Darstellung nicht erreicht!
 %
 % \begin{table}[ht]
-% \caption{\label{tab1}Eine Tabellenbeschrifttung}
+% \caption{\label{tab1}table caption}
 % \small
 % \begin{center}
 % \begin{tabular}{ll}\hline
-% Spaltenbeschriftung 1& Spaltenbeschriftung 2\\ \hline
-% eins&zwei\\
-% drei&vier\\ \hline
+% column header 1& column header 2\\ \hline
+% one&two\\
+% three&four\\ \hline
 % \end{tabular}
 % \end{center}
 % \end{table}
-% Bildbeschriftungen sind bei Hanser \emph{Unterschriften}, das heißt sie stehen unterhalb der Abbildung.
+% Bildbeschriftungen sind \emph{Unterschriften}, das heißt sie stehen unterhalb der Abbildung.
 % Für die Fonts gilt die Bemerkung zu Tabellen entsprechend. Abbildung \ref{mux} ist \cite{mathebuch}
 % entnommen.
 %
@@ -86,7 +94,7 @@
 % \put(-0.7,1.4){$x_0$}
 % \put(-0.7,2.4){$x_1$}
 % \end{picture}
-% \caption{\label{mux}Eine Multiplexer-Schaltung}
+% \caption{\label{mux}A multiplexer}
 % \end{center}
 % \end{figure}
 % Der Abstand vor Abschnittsüberschriften ist gegenüber dem \LaTeX-Standard etwas
@@ -102,22 +110,21 @@
 %
 % |\begin{beweis}|
 %
-% Hier kommt der mathematische Text,
-% und dann das Ende.
+% Here you find a mathematical proof, and the mark for the end.
 %
 % |\end{beweis}|
 %
 % zu folgendem Ergebnis:
 %
 % \begin{beweis}
-% Jetzt kommt der mathematische Text, und dann das Ende.
+% Here you find a mathematical proof, and the mark for the end.
 % \end{beweis}
 %
 % \DescribeEnv{mbeweis}
 % Hört ein Beweis mit einer abgesetzten mathematischen Zeile auf, dann führt die Verwendung von |beweis|
 % zu einer unerwünschten Leerzeile. Dies kann durch die Umgebung |mbeweis| vermieden werden. Sie ist
-% identisch mit |beweis|, allerdings muss das schwarze Quadrat mit |\hfill $\blacksqare$| selbst in der Zeile
-% gesetzt werden.
+% identisch mit |beweis|, aber das schwarze Quadrat muss mit |\hfill $\blacksqare$|
+% selbst in der Zeile gesetzt werden.
 %
 % Der Abstand nach dieser Umgebung ist der normale Paragrafenabstand.
 % \subsection{Beispiele}
@@ -127,14 +134,14 @@
 %
 % |\begin{beispiel}|
 %
-% Das ist der Beispieltext zum Beispieltext.
+% An example for an example..
 %
 % |\end{beispiel}|
 %
 % führt zu
 %
 % \begin{beispiel}
-% Das ist der Beispieltext zum Beispieltext.
+% An example for an example..
 % \end{beispiel}
 %
 % \DescribeEnv{beispiele}
@@ -144,20 +151,20 @@
 % \begin{beispiel}
 % |\begin{beispiele}|
 %
-% |\item| Erstes Beispiel.
+% |\item| first example.
 %
-% |\item| Zweites Beispiel.
+% |\item| second example.
 %
-% |\item| Noch ein Beispiel.
+% |\item| one example more.
 %
 % |\end{beispiele}|
 % führt zu der Liste
 % \begin{beispiele}
-% \item Erstes Beispiel.
+% \item first example.
 %
-% \item Zweites Beispiel.
+% \item second example.
 %
-% \item Noch ein Beispiel.
+% \item one example more.
 %
 % \end{beispiele}
 % \end{beispiel}
@@ -210,20 +217,20 @@
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}\relax
 \ProvidesPackage{mb_english}[2002/06/04, (MB)]
-\typeout{Hanser package, V1.0, (c) Manfred Brill}
+\typeout{Package mbPDF_english, V1.0, (c) Manfred Brill}
 \ProcessOptions
 %    \end{macrocode}
 % \subsection{Der Initialisierungsteil}
 % Wir laden die folgenden Pakete:
 %    \begin{macrocode}
-\RequirePackage[latin1]{inputenc}
+\RequirePackage[english]{babel}
+\RequirePackage[utf8, ansinew]{inputenc}
 \RequirePackage{palatino}
 \RequirePackage{mathpple}
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{amscd}
-\RequirePackage{mbmath}
 \RequirePackage{epsfig}
 \RequirePackage{theorem}
 \RequirePackage{makeidx}
@@ -241,9 +248,8 @@
 
 % Die Bildunterschriften werden einen Punkt kleiner gesetzt auf |\small|. Der Labelfont ist
 % zusätzlich fett gesetzt.  Nach einer Abbildung wird ein Abstand von $0.2$em verwendet.
+% \changes{v3.0}{26.08.2020}{Nur noch above und below skip.}
 %    \begin{macrocode}
-\renewcommand{\captionfont}{\small}
-\renewcommand{\captionlabelfont}{\small \bf}
 \setlength\abovecaptionskip          {0.0mm}
 \setlength\belowcaptionskip          {0.2em}
 %    \end{macrocode}
@@ -293,10 +299,11 @@
 % ohne Zeilenumbruch der Text. Das Ende eines Beweises wird mit dem mathematischen Symbol |$\blacksquare$|
 % angezeigt. Das Quadrat wird rechtsbündig gesetzt.
 %
+% \changes{v3.0}{26.08.2020}{Englische Begriffe in der Definition.}
 %    \begin{macrocode}
 \newenvironment{beweis}%
 {\begin{sloppypar}\noindent  \nopagebreak%
-{\textbf{Beweis:}\nopagebreak}\\[0.0em]}%
+{\textbf{Proof:}\nopagebreak}\\[0.0em]}%
 {\hfill$\blacksquare$\end{sloppypar}\vspace{2.0ex}}
 %    \end{macrocode}
 % \end{environment}
@@ -304,10 +311,11 @@
 % Ein Beweis, der mit einer Formel endet, muss selbst |\blacksquare| setzen. Sonst steht die Box
 % alleine, mit einer Leerzeile davor. Der Abstand von $2.0$ex wird nicht
 % gesetzt.
+% \changes{v3.0}{26.08.2020}{Englische Begriffe in der Definition.}
 %   \begin{macrocode}
 \newenvironment{mbeweis}%
 {\begin{sloppypar}\noindent  \nopagebreak%
-{\textbf{Beweis:}\nopagebreak}\\[0.0em]}{\end{sloppypar}}
+{\textbf{Proof:}\nopagebreak}\\[0.0em]}{\end{sloppypar}}
 %    \end{macrocode}
 % \end{environment}
 %
@@ -318,10 +326,11 @@
 % nutzt.
 % \changes{v1.1}{20.03.2003}{vspace durch vskip ersetzt, um Leerraum am Seitenanfang
 %    zu vermeiden.}
+% \changes{v3.0}{26.08.2020}{Englische Begriffe in der Definition.}
 %    \begin{macrocode}
 \newenvironment{beispiel}%
 {\vskip0.5ex\begin{sloppypar}\noindent \nopagebreak%
-\emph{Beispiel:\nopagebreak}\\[0.5ex]}%
+\emph{Example:\nopagebreak}\\[0.5ex]}%
 {\end{sloppypar}\vspace{0.5ex}}
 %    \end{macrocode}
 % \end{environment}
@@ -387,10 +396,11 @@
 % Wie in der Umgebung |beispiel| wird vor und nach der Umgebung ein Abstand von $0.5$ex definiert.
 % \changes{V1.4}{20.01.2004}{Kein Leerraum nach der Umgebung beispiele}
 % Vorher war hier vor begin{sloppypar} \vskip0.5ex
+% \changes{v3.0}{26.08.2020}{Englische Begriffe in der Definition.}
 %    \begin{macrocode}
 \newenvironment{beispiele}%
 {\vspace{0.5ex}\begin{sloppypar}\noindent%
-\nopagebreak \emph{Beispiele:\nopagebreak}%
+\nopagebreak \emph{Examples:\nopagebreak}%
 \begin{exList}}%
 {\end{exList}\end{sloppypar}\vspace{0.5ex}}
 %    \end{macrocode}
@@ -400,8 +410,9 @@
 %
 % \begin{macro}{\aufgaben}
 % Die Aufgaben stehen zur Zeit am Ende jedes Kapitels.
+% \changes{v3.0}{26.08.2020}{Englische Begriffe in der Definition.}
 %    \begin{macrocode}
-\newcommand{\aufgaben}{ \section{Aufgaben}}
+\newcommand{\aufgaben}{ \section{Exercises}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -423,13 +434,14 @@
 % \begin{center}|\addcontentsline{toc}|\end{center}
 % ein Eintrag in das Inhaltsverzeichnis
 % erzwungen.
+% \changes{v3.0}{26.08.2020}{Englische Begriffe in der Definition.}
 %    \begin{macrocode}
 \makeatletter
 \renewenvironment{theindex}%
     {\newpage\parskip 0pt\columnseprule 0pt%
-     \chapter*{Stichwortverzeichnis}%
-     \markboth{\small Stichwortverzeichnis}{\small Stichwortverzeichnis}%
-     \addcontentsline{toc}{chapter}{Stichwortverzeichnis}%
+     \chapter*{Index}%
+     \markboth{\small Index}{\small Index}%
+     \addcontentsline{toc}{chapter}{Index}%
      \thispagestyle{plain}%
      \let\item\@idxitem%
      \begin{multicols}{2}}
