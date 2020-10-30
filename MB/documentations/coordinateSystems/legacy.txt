@@ -1,0 +1,6 @@
+Dieses Verzeichnis dokumentiert legacy-code. Die Datei
+coordinateSystems.tex wird nicht mehr verwendet und ist nur noch
+enthalten, um sehr alte Texte zu kompilieren.
+
+Die in dieser Datei vorhandene Funktionalität steht
+jetzt einfacher mit xpicture zur Verfügung!
