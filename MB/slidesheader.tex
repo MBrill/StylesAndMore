@@ -81,7 +81,8 @@
 % Schalter für das ein- und ausblenden der Lösungen
 \newboolean{solutions}
 
-% Folie mit Bild und Fragen? ...
+% Folie mit Bild und Header
+%
 % Auf den Handouts kommt die Fragefolie nicht vor; die braucht man
 % ja nicht jedes Mal auszudrucken.
 %
@@ -89,6 +90,18 @@
 \ifthenelse{\boolean{solutions}}{%
 \section{Fragen?}%
 \begin{frame}{Unklarheiten? Fragen? Bemerkungen?}%
+\begin{center}%
+\includegraphics[width=#1]{\imagePath/\questionImage}%
+\end{center}%
+\end{frame}}{}%
+}
+
+% Folie mit Bild und Fragen mit englischem Text
+%
+\newcommand*{\questionsEnglish}[1][5cm]{%
+\ifthenelse{\boolean{solutions}}{%
+\section{Questions?}%
+\begin{frame}{Questions? Remarks?}%
 \begin{center}%
 \includegraphics[width=#1]{\imagePath/\questionImage}%
 \end{center}%
