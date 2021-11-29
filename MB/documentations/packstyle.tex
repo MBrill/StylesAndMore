@@ -13,7 +13,7 @@ zu Bilder, die dazu einsetzt ebenfalls in dieser Datei.
 Hier die Werte die für dieses Dokument verwendet wurden:
 \begin{lstlisting}{}
 % Variablen für das Semester, die Vorlesung ...
-\newcommand{\theSemester}{Sommersemester~2019}
+\newcommand{\theSemester}{Wintersemester~2021/22}
 % Variable für die Vorlesung
 \newcommand{\theClass}{Styles and More}
 % Variable für den Studiengang
@@ -39,12 +39,15 @@ Hier die Werte die für dieses Dokument verwendet wurden:
 \newcommand{\vertiefenImage}{\imagePath/Misc/reading}
 % Abbildung für eine Marginalie zum Praxisbezug
 \newcommand{\praxisImage}{\imagePath/Misc/gabel}
-% Abbildung für ein Smiley
-\newcommand{\smileImage}{\imagePath/Misc/smilie} 
 \end{lstlisting}
 Makros und Funktionen verwenden diese Variablen, so dass Namen, Semester und anderes einfach zu verändern ist,
 indem man diese Datei anpasst. Die hier dargestellten Werte
 findet man unter anderem auf der Titelseite.
+
+Die Bitmaps auf die hier verwiesen wird finden Sie im Verzeichnis
+\lstinline$documentations/imagse$. Selbstverständlich können wir
+diese Bitmaps austauschen, solange wir die Definitionen für die
+oben vorgestellten \LaTeX{}-Variablen anpassen oder die Bitmaps austauschen.
 
 Weiter gibt es die Datei \datei{pdfsetup.tex}, in der Angaben für die PDF-Dateien
 gemacht werden. Insbesondere wird mit \lstinline$\hypersetup$ eingestellt, dass Links
@@ -74,6 +77,8 @@ pdfpagelayout = {SinglePage}
 Vom Ergebnis kann man sich im Acrobat Reader überzeugen, die Angaben in der Datei
 werden in die Eigenschaften der PDF-Datei geschrieben.
 Wichtig ist, dass die Funktion \lstinline$\hypersetup$ als letztes im Header durchgeführt wird.
+Die Datei \lstinline$setup.tex$ verwendet die Bitmaps und andere \LaTeX{}-Variable,
+die oben definiert sind.
 
 Die Files für die Erstellung eines Studienbriefs oder ähnlicher Dokumente für die Lehre sind immer auf die gleiche Weise organisiert. Im Stamm-Verzeichnis befinden sich
 \begin{itemize}
