@@ -27,10 +27,15 @@
 % Beginn Dokument
 %
 \begin{document}
-% Es gibt eine Titelseite mit und ohne Bild. Beide Varianten kann man hier testen,
-% durch Verschieben des Kommentarzeichens.
-%\titelseite{\LaTeX{}-Texte an der Hochschule Kaiserslautern}
 \titelseiteMitBild[\imagePath/tugboat]{\LaTeX{}-Texte an der Hochschule Kaiserslautern}
+% Versionsangaben
+\thispagestyle{empty}
+\vspace*{20cm}
+{
+\hspace*{6.5cm}\begin{minipage}{10cm}
+\emph{Stand: \theSemester{}}
+\end{minipage}
+}
 %
 % Inhaltsverzeichnis
 %
@@ -41,9 +46,7 @@
 %
 %
 \chapter{Einleitung}
-Dieses Dokument ist eine kurze Einführung in eine Vorlage, die für Lehrbriefe in den Modulen
-\emph{Stochastik für Informatiker}, \emph{Software Management Grundlagen},
-\emph{Software Qualitätsmanagement} und \emph{Datenanalyse mit R} erstellt wurde. Grundlage der Vorlage
+Dieses Dokument ist eine kurze Einführung in eine Vorlage, die für Studienbriefe erstellt wurde. Grundlage der Vorlage
 waren Empfehlungen für die Formatierung von Lehrbriefen der ZFH für Microsoft Word (\cite{zfh_11}).
 
 Das Dokument setzt voraus, dass Kenntnisse in \LaTeX{} vorhanden sind.
