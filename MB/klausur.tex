@@ -5,7 +5,7 @@
 % -----------------------------------------------------------------------------------------------------------------------
 \typeout{Klausuren an der Hochschule Kaiserslautern}
 \typeout{     (C) Manfred Brill}
-\typeout{     Version 1.3 Oktober 2020}
+\typeout{     Version 1.4 November 2023}
 \typeout{     PDF-Support für LaTeX-Grafiken}
 \typeout{     Bei Verwendung von dvi -> ps -> pdf mb.sty verwenden!}
 % Voraussetzungen
@@ -13,6 +13,8 @@
 % Lokal gibt es eine Datei stammdaten.tex, mit Definitionen
 % für das Semester, Studiengang etc.
 \usepackage{mbPDF}
+% Hack für Warnings in KomaScript
+\usepackage{scrhack} % suppresses \foat@addtolist warning
 \usepackage{mbmath}
 \usepackage{textcomp}
 % Array-Paket für mehr Kontrolle der Tabellen

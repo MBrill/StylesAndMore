@@ -3,12 +3,14 @@
 % ----------------------------------------
 \typeout{Übungsblätter in Mathematik-Veranstaltungen}
 \typeout{     (C) Manfred Brill}
-\typeout{     Version 1.5 April 2023}
+\typeout{     Version 1.6 November 2023}
 % Voraussetzungen
 % Struktur der Aufgaben und Lösungen wie erwartet.
-% Lokal gibt es eine Datei stammdaten, mit Definitionen
+% Lokal gibt es eine Datei stammdaten.tex, mit Definitionen
 % für das Semester, Studiengang etc.
 \usepackage{mbPDF}
+% Hack für Warnings in KomaScript
+\usepackage{scrhack} % suppresses \foat@addtolist warning
 \usepackage{mbmath}
 \usepackage{textcomp}
 % Array-Paket für mehr Kontrolle der Tabellen

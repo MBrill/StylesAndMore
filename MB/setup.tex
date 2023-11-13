@@ -9,6 +9,8 @@
 \typeout{     PDF-Support für LaTeX-Grafiken}
 \typeout{     Bei Verwendung von dvi -> ps -> pdf mb.sty verwenden!}
 \usepackage{mbPDF}
+% Hack für Warnings in KomaScript
+\usepackage{scrhack} % suppresses \foat@addtolist warning
 \usepackage{mbmath}
 \usepackage{textcomp}
 % Array-Paket für mehr Kontrolle der Tabellen
