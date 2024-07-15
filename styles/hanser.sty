@@ -1,8 +1,9 @@
-% \CheckSum{205}
+% \CheckSum{201}
 % \changes{v1.0}{4. Juni 2002}{Erstellt aus hanserbuch.cls}
 % \changes{v1.2}{März 2003}{Kleinere Layout-Anpassungen, LE-TeX GbR}
 % \changes{V1.5}{29.08.2004}{Kein Leerraum nach der Umgebung mbeweis}
 % \changes{V1.6}{28.01.2013}{Paket mathpple gelöscht, obsolet}
+% \changes{V2.0}{15.07.2024}{Paket mathpple gelöscht, obsolet}
 %    \IndexPrologue
 %      {\section*{Index}
 %          Unterstrichene Seitenzahlen
@@ -33,7 +34,7 @@
 % \item \emph{makeidx} für die Erstellung eines Index,
 % \item \emph{palatino} für die Postscript Type-1 Fontfamilie Palatino,
 % \item \emph{color} für Graustufen,
-% \item \emph{amsmath, amsfonts, amssymb} und \emph{amscd} für das Layout der mathematischen Inhalte,
+% \item \emph{amsmath, amsfonts und amssymb} für das Layout der mathematischen Inhalte,
 % \item \emph{mbmath} für Erweiterungen von \emph{AMS} \LaTeX{},
 % \item \emph{theorem} für das Layout von theorem-Umgebungen,
 % \item \emph{epsfig, epic} und \emph{eepic} für Grafiken,
@@ -207,8 +208,8 @@
 %    Zunächst identifizieren wir das Paket und dessen aktuelle Version:
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}\relax
-\ProvidesPackage{hanser}[2013/01/28, (MB)]
-\typeout{Hanser package, V1.6, (c) Manfred Brill}
+\ProvidesPackage{hanser}[2024/07/15, (MB)]
+\typeout{Hanser package, V2.0, (c) Manfred Brill}
 \ProcessOptions
 %    \end{macrocode}
 % \subsection{Der Initialisierungsteil}
@@ -217,10 +218,6 @@
 \RequirePackage{german}
 \RequirePackage[latin1]{inputenc}
 \RequirePackage{palatino}
-\RequirePackage{amsmath}
-\RequirePackage{amsfonts}
-\RequirePackage{amssymb}
-\RequirePackage{amscd}
 \RequirePackage{mbmath}
 \RequirePackage{epsfig}
 \RequirePackage{theorem}

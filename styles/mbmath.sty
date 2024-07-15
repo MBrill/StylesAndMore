@@ -1,8 +1,9 @@
-% \CheckSum{243}
+% \CheckSum{246}
 % \changes{V1.0}{April 2001}{Erstellt aus hanserbuch.doc}
 % \changes{V1.1}{Mai 2004}{Symbol für Bool'sche Algebren hinzugefügt; d(x,y) auf dist(x,y) geändert}
 % \changes{V1.2}{Juni 2005}{Symbol für Sigma-Algebren eingefügt}
 % \changes{V1.2}{Juni 2005}{Symbole für die Area-Funktionen eingefügt}
+% \changes{V2.0}{Juli 2024}{amscd wird nicht mehr verwendet auf Grund von Fehlermeldungent}
 %    \IndexPrologue
 %      {\section*{Index}
 %          Unterstrichene Seitenzahlen
@@ -29,11 +30,11 @@
 % \[
 % \begin{pmatrix} 0& 1 \\ 1& 0 \end{pmatrix}
 % \]
-% \item Die Determinante 
+% \item Die Determinante
 %  \[
 % \begin{vmatrix} a & b \\ -b & a \end{vmatrix}
 % \]
-% erhält man durch 
+% erhält man durch
 %
 % |\begin{vmatrix} a & b \\ -b & a \end{vmatrix}|.
 % \end{beispiele}
@@ -134,7 +135,7 @@
 %   \bibitem{mathebuch} M. ~Brill: \emph{Mathematik für Informatiker},
 %   2001, Hanser.
 % \end{thebibliography}
-% } 
+% }
 %
 % \clearpage
 % \section{Die Package-Datei}
@@ -142,8 +143,8 @@
 %    Zunächst identifizieren wir das Paket und dessen aktuelle Version:
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}\relax
-\ProvidesPackage{mbmath}[2002/06/04, (MB)]
-\typeout{Enhanced math macros, V1.0, (c) Manfred Brill}
+\ProvidesPackage{mbmath}[2024/07/15, (MB)]
+\typeout{Enhanced math macros, V2.0, (c) Manfred Brill}
 \ProcessOptions
 %    \end{macrocode}
 % \subsection{Der Initialisierungsteil}
@@ -152,7 +153,6 @@
 \RequirePackage{amsmath}
 \RequirePackage{amsfonts}
 \RequirePackage{amssymb}
-\RequirePackage{amscd}
 \RequirePackage{epic}
 \RequirePackage{eepic}
 %    \end{macrocode}
@@ -160,17 +160,17 @@
 % \emph{AMS}-\LaTeX{} bietet bereits eine Menge von speziellen Makros und Umgebungen für
 % das Setzen von mathematischen Inhalten. \cite{companion} ist eine gute Einführung zu diesem Thema.
 % Insbesondere wird empfohlen, die |align| Umgebung zu nutzen, die der in \LaTeX{} enthaltenen
-% |eqnarray| Umgebung deutlich überlegen ist. 
+% |eqnarray| Umgebung deutlich überlegen ist.
 % \subsection{Zahlenmengen}
 % Es werden Symbole für natürliche, ganze, rationale, reelle und komplexe Zahlen eingeführt.
 %   \begin{macrocode}
-\DeclareMathSymbol{\B}{\mathalpha}{AMSb}{"42}
-\DeclareMathSymbol{\C}{\mathalpha}{AMSb}{"43}
-\DeclareMathSymbol{\Q}{\mathalpha}{AMSb}{"51}
-\DeclareMathSymbol{\R}{\mathalpha}{AMSb}{"52}
 \newcommand{\A}{\ensuremath\mathbb{A}}
 \newcommand{\N}{\ensuremath\mathbb{N}}
 \newcommand{\Z}{\ensuremath\mathbb{Z}}
+\newcommand{\Q}{\ensuremath\mathbb{Q}}
+\newcommand{\R}{\ensuremath\mathbb{R}}
+\newcommand{\C}{\ensuremath\mathbb{C}}
+\newcommand{\B}{\ensuremath\mathbb{B}}
 %    \end{macrocode}
 %
 % \begin{macro}{\Potenz}
@@ -326,7 +326,7 @@
 {\ensuremath \begin{pmatrix} #1 \\ #2 \\ #3\end{pmatrix}}
 %    \end{macrocode}
 % \end{macro}
-% 
+%
 % \begin{macro}{\vtrz}
 % Abkürzung für Spaltenvektoren im $\R^2$, geschrieben als transponierte Zeilenvektoren:
 %    \begin{macrocode}
@@ -342,7 +342,7 @@
 % \end{macro}
 %
 % \subsection{Intervallboxen für Graphiken}
-% Für die Verwendung in Grafiken werden mit Hilfe von |\newsavebox| verschiedene \LaTeX{}-Boxen 
+% Für die Verwendung in Grafiken werden mit Hilfe von |\newsavebox| verschiedene \LaTeX{}-Boxen
 % definiert.
 % \begin{macro}{closedint}
 % Ein geschlossenes Intervall erhält man durch
@@ -444,4 +444,4 @@
 %    \end{macrocode}
 % \end{macro}
 % \Finale
-\endinput 
+\endinput
